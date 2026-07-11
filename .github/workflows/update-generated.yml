@@ -1,0 +1,39 @@
+name: Update generated SigNoz client
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Regenerate client
+        run: npm run generate
+
+      - name: Build
+        run: npm run build
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: update-generated-signoz-client
+          delete-branch: true
+          title: Update generated SigNoz client
+          commit-message: Update generated SigNoz client
+          body: |
+            Regenerates `src/Generated.ts` from the latest SigNoz OpenAPI spec.

@@ -1,0 +1,285 @@
+[
+  {
+    "op": "remove",
+    "path": "/components/schemas/AlertmanagertypesPostableChannel/oneOf"
+  },
+  {
+    "op": "remove",
+    "path": "/components/schemas/Querybuildertypesv5QueryData/oneOf"
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5QueryData/properties/results/items",
+    "value": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/Querybuildertypesv5TimeSeriesData"
+        },
+        {
+          "$ref": "#/components/schemas/Querybuildertypesv5ScalarData"
+        },
+        {
+          "$ref": "#/components/schemas/Querybuildertypesv5RawData"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/components/schemas/SignoztypesInt64",
+    "value": {
+      "description": "A non-negative int64 value. JSON numbers may already have lost precision; strings preserve the exact value.",
+      "oneOf": [
+        {
+          "minimum": 0,
+          "multipleOf": 1,
+          "type": "number"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesEvent/properties/timeUnixNano",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/duration_nano",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/time_unix",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesGettableWaterfallTrace/properties/startTimestampMillis",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesGettableWaterfallTrace/properties/endTimestampMillis",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesGettableWaterfallTrace/properties/spans",
+    "value": {
+      "oneOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/SpantypesWaterfallSpan"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesGettableWaterfallTrace/properties/uncollapsedSpans",
+    "value": {
+      "oneOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/attributes",
+    "value": {
+      "oneOf": [
+        {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/events",
+    "value": {
+      "oneOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/SpantypesEvent"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/resource",
+    "value": {
+      "oneOf": [
+        {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/SpantypesWaterfallSpan/properties/references",
+    "value": {
+      "oneOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/SpantypesOtelSpanRef"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "remove",
+    "path": "/components/schemas/SpantypesWaterfallSpan/required"
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5RawData/properties/rows",
+    "value": {
+      "oneOf": [
+        {
+          "items": {
+            "$ref": "#/components/schemas/Querybuildertypesv5RawRow"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5RawRow/properties/data",
+    "value": {
+      "oneOf": [
+        {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5TimeSeriesData/properties/aggregations",
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Querybuildertypesv5AggregationBucket"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5AggregationBucket/properties/series",
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Querybuildertypesv5TimeSeries"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5ScalarData/properties/data",
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5ScalarData/properties/columns",
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Querybuildertypesv5ColumnDescriptor"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+]

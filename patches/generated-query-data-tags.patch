@@ -1,0 +1,46 @@
+--- Generated.ts	2026-07-08 16:02:23
++++ Generated.ts	2026-07-08 16:02:23
+@@ -2,6 +2,7 @@
+ import * as Effect from "effect/Effect"
+ import type { SchemaError } from "effect/Schema"
+ import * as Schema from "effect/Schema"
++import * as SchemaGetter from "effect/SchemaGetter"
+ import type * as HttpClient from "effect/unstable/http/HttpClient"
+ import * as HttpClientError from "effect/unstable/http/HttpClientError"
+ import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest"
+@@ -933,8 +934,33 @@
+ export const Querybuildertypesv5CompositeQuery = Schema.Struct({ "queries": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))])) }).annotate({ "description": "Composite query containing one or more query envelopes. Each query envelope specifies its type and corresponding spec." })
+ export type RuletypesAlertCompositeQuery = { readonly "panelType": RuletypesPanelType, readonly "queries": ReadonlyArray<{ readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }>, readonly "queryType": RuletypesQueryType, readonly "unit"?: string }
+ export const RuletypesAlertCompositeQuery = Schema.Struct({ "panelType": RuletypesPanelType, "queries": Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))]), "queryType": RuletypesQueryType, "unit": Schema.optionalKey(Schema.String) })
+-export type Querybuildertypesv5QueryData = { readonly "results"?: ReadonlyArray<Querybuildertypesv5TimeSeriesData | Querybuildertypesv5ScalarData | Querybuildertypesv5RawData> }
+-export const Querybuildertypesv5QueryData = Schema.Struct({ "results": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Union([Querybuildertypesv5TimeSeriesData, Querybuildertypesv5ScalarData, Querybuildertypesv5RawData]))])) })
++// Decode through one combined shape so the untagged response union cannot strip variant fields.
++export type Querybuildertypesv5QueryDataEncoded = { readonly "results"?: ReadonlyArray<Querybuildertypesv5TimeSeriesData & Querybuildertypesv5ScalarData & Querybuildertypesv5RawData> }
++export type Querybuildertypesv5TaggedTimeSeriesData = Querybuildertypesv5TimeSeriesData & { readonly "_tag": "time_series" }
++export type Querybuildertypesv5TaggedScalarData = Querybuildertypesv5ScalarData & { readonly "_tag": "scalar" }
++export type Querybuildertypesv5TaggedRawData = Querybuildertypesv5RawData & { readonly "_tag": "raw" }
++export type Querybuildertypesv5TaggedQueryDataResult = Querybuildertypesv5TaggedTimeSeriesData | Querybuildertypesv5TaggedScalarData | Querybuildertypesv5TaggedRawData
++export type Querybuildertypesv5QueryData = { readonly "results"?: ReadonlyArray<Querybuildertypesv5TaggedQueryDataResult> }
++export const Querybuildertypesv5QueryDataEncoded = Schema.Struct({ "results": Schema.optionalKey(Schema.Array(Schema.Struct({ ...Querybuildertypesv5TimeSeriesData.fields, ...Querybuildertypesv5ScalarData.fields, ...Querybuildertypesv5RawData.fields }))) })
++export const Querybuildertypesv5TaggedTimeSeriesData = Querybuildertypesv5TimeSeriesData.pipe(Schema.fieldsAssign({ "_tag": Schema.Literal("time_series") }))
++export const Querybuildertypesv5TaggedScalarData = Querybuildertypesv5ScalarData.pipe(Schema.fieldsAssign({ "_tag": Schema.Literal("scalar") }))
++export const Querybuildertypesv5TaggedRawData = Querybuildertypesv5RawData.pipe(Schema.fieldsAssign({ "_tag": Schema.Literal("raw") }))
++export const Querybuildertypesv5TaggedQueryDataResult = Schema.Union([Querybuildertypesv5TaggedTimeSeriesData, Querybuildertypesv5TaggedScalarData, Querybuildertypesv5TaggedRawData])
++export const Querybuildertypesv5QueryData = Querybuildertypesv5QueryDataEncoded.pipe(Schema.decodeTo(
++  Schema.Struct({ "results": Schema.optionalKey(Schema.Array(Querybuildertypesv5TaggedQueryDataResult)) }),
++  {
++    decode: SchemaGetter.transform((data) => ({
++      "results": data.results?.map((result) => {
++        if ("rows" in result) return { ...result, "_tag": "raw" as const }
++        if ("aggregations" in result) return { ...result, "_tag": "time_series" as const }
++        return { ...result, "_tag": "scalar" as const }
++      }),
++    })),
++    encode: SchemaGetter.transform((data) => ({
++      "results": data.results?.map(({ _tag: _tag_, ...result }) => result),
++    })),
++  },
++))
+ export type DashboardtypesQueryPlugin = { readonly "kind": "signoz/BuilderQuery", readonly "spec": DashboardtypesBuilderQuerySpec } | { readonly "kind": "signoz/CompositeQuery", readonly "spec": Querybuildertypesv5CompositeQuery } | { readonly "kind": "signoz/Formula", readonly "spec": Querybuildertypesv5QueryBuilderFormula } | { readonly "kind": "signoz/PromQLQuery", readonly "spec": Querybuildertypesv5PromQuery } | { readonly "kind": "signoz/ClickHouseSQL", readonly "spec": Querybuildertypesv5ClickHouseQuery } | { readonly "kind": "signoz/TraceOperator", readonly "spec": Querybuildertypesv5QueryBuilderTraceOperator }
+ export const DashboardtypesQueryPlugin = Schema.Union([Schema.Struct({ "kind": Schema.Literal("signoz/BuilderQuery"), "spec": DashboardtypesBuilderQuerySpec }), Schema.Struct({ "kind": Schema.Literal("signoz/CompositeQuery"), "spec": Querybuildertypesv5CompositeQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/Formula"), "spec": Querybuildertypesv5QueryBuilderFormula }), Schema.Struct({ "kind": Schema.Literal("signoz/PromQLQuery"), "spec": Querybuildertypesv5PromQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/ClickHouseSQL"), "spec": Querybuildertypesv5ClickHouseQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/TraceOperator"), "spec": Querybuildertypesv5QueryBuilderTraceOperator })], { mode: "oneOf" })
+ export type Querybuildertypesv5QueryRangeRequest = { readonly "compositeQuery"?: Querybuildertypesv5CompositeQuery, readonly "end"?: number, readonly "formatOptions"?: Querybuildertypesv5FormatOptions, readonly "noCache"?: boolean, readonly "requestType"?: Querybuildertypesv5RequestType, readonly "schemaVersion"?: string, readonly "start"?: number, readonly "variables"?: { readonly [x: string]: Querybuildertypesv5VariableItem } }
