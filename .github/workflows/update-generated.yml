@@ -31,6 +31,8 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v7
         with:
+          # A PAT (not GITHUB_TOKEN) so the PR is allowed on a fresh repo and triggers the PR checks.
+          token: ${{ secrets.RELEASE_TOKEN }}
           branch: update-generated-signoz-client
           delete-branch: true
           title: Update generated SigNoz client
