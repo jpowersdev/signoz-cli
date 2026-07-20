@@ -28,6 +28,21 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Add a changeset when the client changed
+        run: |
+          if git diff --quiet -- src/Generated.ts; then
+            echo "Generated client unchanged; no changeset (create-pull-request will open nothing)."
+          else
+            printf '%s\n' \
+              '---' \
+              '"@jpowersdev/signoz": patch' \
+              '---' \
+              '' \
+              'Regenerate the SigNoz client from the latest published SigNoz OpenAPI spec.' \
+              > .changeset/regenerate-client.md
+            echo "Wrote patch changeset for the regenerated client."
+          fi
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v7
         with:
