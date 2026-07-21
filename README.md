@@ -8,7 +8,7 @@ A command-line client for querying [SigNoz](https://signoz.io) observability dat
 npm i -g @jpowersdev/signoz    # or: bun add -g @jpowersdev/signoz
 ```
 
-This installs the `signoz` binary. It's a CLI, not a library — see [Stability](#stability).
+This installs the `signoz` binary.
 
 ## Configure
 
@@ -71,7 +71,3 @@ Two commands let an agent skip the slow "what exists in this instance" discovery
 
 - **`signoz agent instructions`** — a version-stamped usage guide (commands, filter/time syntax, output formats, triage recipes). It ships with the CLI, so re-dump it after upgrades: `signoz agent instructions > AGENTS-signoz.md`.
 - **`signoz agent context`** — a live, concrete overview of the target instance: service families, metric names, and queryable log/trace field keys. Add `--full` for the exhaustive per-item lists.
-
-## Stability
-
-This is a **CLI, not a library** — it exposes no importable API. Its public contract is the `signoz` command surface (command names, flags, and output shapes), and that's what semantic versioning tracks here. For programmatic use, shell out to the CLI (query commands emit JSON) or send a raw request with `signoz query run --file body.json`.
