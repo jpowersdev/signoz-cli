@@ -1,5 +1,11 @@
 # @jpowersdev/signoz
 
+## 1.0.2
+
+### Patch Changes
+
+- cb8cafd: Regenerate the SigNoz client from the latest published SigNoz OpenAPI spec.
+
 ## 1.0.1
 
 ### Patch Changes
