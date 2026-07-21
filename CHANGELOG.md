@@ -1,5 +1,11 @@
 # @jpowersdev/signoz
 
+## 1.0.3
+
+### Patch Changes
+
+- 329203c: Docs: rewrite the README as a concise, user-facing guide (also refreshes the README shown on npm).
+
 ## 1.0.2
 
 ### Patch Changes
