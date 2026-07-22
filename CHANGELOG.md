@@ -1,5 +1,11 @@
 # @jpowersdev/signoz
 
+## 1.0.4
+
+### Patch Changes
+
+- 7123b0d: Docs: link how to create the read-only Viewer API key the CLI needs.
+
 ## 1.0.3
 
 ### Patch Changes
