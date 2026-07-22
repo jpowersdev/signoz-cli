@@ -21,6 +21,8 @@ export SIGNOZ_API_KEY=...
 signoz config doctor
 ```
 
+Create the API key from a SigNoz [service account](https://signoz.io/docs/manage/administrator-guide/iam/service-accounts/) with read access to your telemetry — it's sent as the `SIGNOZ-API-KEY` header.
+
 | Variable | Required | Default | Description |
 | --- | --- | --- | --- |
 | `SIGNOZ_BASE_URL` | yes | — | Base URL of your SigNoz instance |
