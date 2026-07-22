@@ -21,7 +21,7 @@ export SIGNOZ_API_KEY=...
 signoz config doctor
 ```
 
-Create the API key from a SigNoz [service account](https://signoz.io/docs/manage/administrator-guide/iam/service-accounts/) with read access to your telemetry — it's sent as the `SIGNOZ-API-KEY` header.
+Create a read-only **Viewer** API key in SigNoz under **Settings → Access Tokens** (sent as the `SIGNOZ-API-KEY` header). Creating keys requires an Admin by default — if you're not one, ask an admin to issue a read-only key or to [enable self-service keys for viewers](https://signoz.io/docs/manage/administrator-guide/iam/user-guides/self-service-api-keys-for-viewers/).
 
 | Variable | Required | Default | Description |
 | --- | --- | --- | --- |
