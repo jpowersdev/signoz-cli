@@ -40,6 +40,11 @@ signoz services list --signal traces --from "1 day"
 signoz fields --signal traces
 signoz values --signal traces --name name --from "1 day"
 
+# alerts — rules, what's firing, and history
+signoz alerts list --state firing
+signoz alerts get <rule-id>
+signoz alerts history <rule-id> --from "1 day"
+
 # logs
 signoz logs search --service <service> --filter 'severity_text = "ERROR"' --from "30 minutes"
 signoz logs timeseries --service <service> --step "1 hour" --from "6 hours"

@@ -312,5 +312,20 @@
     "value": {
       "$ref": "#/components/schemas/SignoztypesFloat64"
     }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/RuletypesRule/properties/condition",
+    "value": {
+      "type": "object",
+      "additionalProperties": {}
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/RulestatehistorytypesGettableRuleStateHistory/properties/fingerprint",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesInt64"
+    }
   }
 ]
