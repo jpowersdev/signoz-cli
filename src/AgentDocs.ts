@@ -90,7 +90,7 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
   — aggregate spans (default \`count()\`); \`--over-time\` returns a time series.
 - \`signoz traces errors [--name] [--filter] [--group-by] [--from] [--to]\`
   — count 4xx/5xx spans grouped by status code.
-- \`signoz traces latency [--p50] [--p95] [--p99] [--filter] [--group-by] [--from] [--to] [--unit]\`
+- \`signoz traces latency [--name] [--p50] [--p95] [--p99] [--filter] [--group-by] [--from] [--to] [--unit]\`
   — duration percentiles (all three if none selected).
 - \`signoz traces get TRACE_ID [--span SPAN_ID] [--unit]\`
   — the span waterfall for one trace.

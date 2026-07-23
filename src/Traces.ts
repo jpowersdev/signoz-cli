@@ -16,6 +16,7 @@ export interface TracesAggregateInput {
 }
 
 export interface TracesLatencyInput {
+  readonly name?: string | undefined
   readonly filter?: string | undefined
   readonly groupBy?: string | undefined
   readonly percentiles: ReadonlyArray<50 | 95 | 99>
@@ -140,7 +141,10 @@ export const buildTracesErrorsQuery = (input: TracesErrorsInput, now?: number) =
 export const buildTracesLatencyQuery = (input: TracesLatencyInput, now?: number) =>
   Effect.gen(function* () {
     const { start, end } = yield* resolveRange(input.from, input.to, now)
-    const filter = andFilters([input.filter])
+    const filter = andFilters([
+      input.name === undefined ? undefined : `name = ${escapeFilterString(input.name)}`,
+      input.filter,
+    ])
     const groupBy = input.groupBy === undefined || input.groupBy.trim() === ""
       ? undefined
       : yield* parseTraceGroupBy(input.groupBy)

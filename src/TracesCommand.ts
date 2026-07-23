@@ -158,6 +158,7 @@ const latency = Command.make(
     p50: Flag.boolean("p50").pipe(Flag.withDescription("Include p50(duration_nano)")),
     p95: Flag.boolean("p95").pipe(Flag.withDescription("Include p95(duration_nano)")),
     p99: Flag.boolean("p99").pipe(Flag.withDescription("Include p99(duration_nano)")),
+    name: nameFlag,
     filter: filterFlag,
     groupBy: groupByFlag,
     from: fromFlag,
@@ -174,6 +175,7 @@ const latency = Command.make(
       yield* printFilterSyntaxHint(filter)
       const response = yield* traces.latency({
         percentiles,
+        name: Option.getOrUndefined(input.name),
         filter,
         groupBy: Option.getOrUndefined(input.groupBy),
         from: Option.getOrUndefined(input.from) ?? config.defaultFrom,
