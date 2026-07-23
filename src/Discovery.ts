@@ -48,7 +48,7 @@ const signals = ["traces", "logs", "metrics"] as const
 const fieldContexts = ["metric", "log", "span", "resource", "attribute", "body"] as const
 
 export const parseSignal = (input: string): Effect.Effect<Signal, InvalidDiscoveryOption> =>
-  signals.includes(input as Signal)
+  (signals as ReadonlyArray<string>).includes(input)
     ? Effect.succeed(input as Signal)
     : Effect.fail(new InvalidDiscoveryOption({
       input,
@@ -56,7 +56,7 @@ export const parseSignal = (input: string): Effect.Effect<Signal, InvalidDiscove
     }))
 
 export const parseFieldContext = (input: string): Effect.Effect<FieldContext, InvalidDiscoveryOption> =>
-  fieldContexts.includes(input as FieldContext)
+  (fieldContexts as ReadonlyArray<string>).includes(input)
     ? Effect.succeed(input as FieldContext)
     : Effect.fail(new InvalidDiscoveryOption({
       input,

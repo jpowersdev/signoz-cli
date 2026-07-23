@@ -100,9 +100,9 @@ const logsFilterExpression = (input: {
   return filters.length === 0 ? undefined : filters.join(" AND ")
 }
 
-const groupByAttribute = (name: string): Generated.Querybuildertypesv5GroupByKey => ({
+const groupByAttribute = (name: string) => ({
   name,
-  fieldContext: "attribute",
+  fieldContext: "attribute" as const,
 })
 
 export const buildLogsQuery = (input: LogsSearchInput, now?: number) =>
