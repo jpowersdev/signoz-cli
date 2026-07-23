@@ -133,6 +133,19 @@ it.effect("buildTracesLatencyQuery uses pNN duration_nano aggregations", () =>
     expect(envelope.spec.groupBy).toEqual([{ name: "name", fieldContext: "span" }])
   }))
 
+it.effect("buildTracesLatencyQuery folds --name into the filter, ANDed with --filter", () =>
+  Effect.gen(function* () {
+    const query = yield* buildTracesLatencyQuery({
+      from: "1 hour",
+      name: "GET /orders",
+      filter: "response_status_code >= 500",
+      percentiles: [95],
+    }, now)
+
+    const envelope = query.compositeQuery.queries[0] as any
+    expect(envelope.spec.filter.expression).toBe('name = "GET /orders" AND response_status_code >= 500')
+  }))
+
 it("formats only selected latency columns", () => {
   const response: Generated.QueryRangeV5200 = {
     status: "success",
