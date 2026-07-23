@@ -1,5 +1,5 @@
 import { expect, it } from "@effect/vitest"
-import { formatError, verboseErrorsEnabled } from "../src/Errors.ts"
+import { formatError, isHelpRequest, verboseErrorsEnabled } from "../src/Errors.ts"
 
 it("formats a SigNoz-shaped backend error", () => {
   expect(formatError({
@@ -46,4 +46,20 @@ it("formats plain errors and unknown values", () => {
   expect(formatError(new Error("connection failed"))).toBe("error: connection failed")
   expect(formatError("unexpected failure")).toBe("error: unexpected failure")
   expect(formatError(42)).toBe("error: 42")
+})
+
+it("appends a narrow-the-window suggestion on a 504 gateway timeout", () => {
+  const timeout = Object.assign(new Error("gateway timeout"), { reason: { response: { status: 504 } } })
+  expect(formatError(timeout)).toBe(
+    "error: gateway timeout\nsuggestion: the request timed out (504) — try a narrower time window with --from / --to",
+  )
+  // non-504 statuses get no suggestion
+  const serverError = Object.assign(new Error("server error"), { reason: { response: { status: 500 } } })
+  expect(formatError(serverError)).toBe("error: server error")
+})
+
+it("recognizes the framework's ShowHelp signal", () => {
+  expect(isHelpRequest({ _tag: "ShowHelp", errors: [] })).toBe(true)
+  expect(isHelpRequest(new Error("real failure"))).toBe(false)
+  expect(isHelpRequest("nope")).toBe(false)
 })

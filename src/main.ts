@@ -5,7 +5,7 @@ import { Command } from "effect/unstable/cli"
 import * as fs from "node:fs"
 import { normalizeArgv } from "./Argv.js"
 import { command } from "./Command.js"
-import { formatError, verboseErrorsEnabled } from "./Errors.js"
+import { formatError, isHelpRequest, verboseErrorsEnabled } from "./Errors.js"
 
 const PackageJson = Schema.Struct({
   version: Schema.String,
@@ -22,8 +22,11 @@ const program = Command.run(command, { version: packageJson.version }).pipe(
   Effect.provide(NodeServices.layer),
   Effect.catchCause((cause) =>
     Effect.gen(function* () {
+      const error = Cause.squash(cause)
+      // Help output is already printed by the framework; don't tack on a bogus "error:" line.
+      if (isHelpRequest(error)) return yield* Effect.failCause(cause)
       if (verboseErrors) yield* Console.error(Cause.pretty(cause))
-      yield* Console.error(formatError(Cause.squash(cause)))
+      yield* Console.error(formatError(error))
       return yield* Effect.failCause(cause)
     })),
 )
