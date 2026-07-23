@@ -102,6 +102,12 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
   — run PromQL. Metric names are **dot-qualified** (\`http.server.request.duration.count\`);
   select by name with \`{__name__="my.metric.name"}\`.
 
+**Alerts**
+- \`signoz alerts list [--state STATE] [--output]\`
+  — alert rules and their current state (firing first). \`--state firing\` for just what's firing.
+- \`signoz alerts get RULE_ID [--output]\` — a rule's definition plus its current firing instances.
+- \`signoz alerts history RULE_ID [--state] [--from] [--to]\` — a rule's state-change timeline.
+
 **Raw / config**
 - \`signoz query run --file BODY.json [--output]\` / \`signoz query preview --file BODY.json\`
   — run a raw \`query_range\` request body.
@@ -110,6 +116,9 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
 ## Triage recipes
 
 \`\`\`
+# See what's firing right now (start here)
+signoz alerts list --state firing
+
 # What's slow in a service, then drill into the slowest trace
 signoz traces list --filter 'resource.service.name = "api"' --order-by duration --limit 10
 signoz traces get <trace_id>
