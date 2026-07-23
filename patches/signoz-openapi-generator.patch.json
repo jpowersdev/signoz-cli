@@ -281,5 +281,36 @@
         }
       ]
     }
+  },
+  {
+    "op": "add",
+    "path": "/components/schemas/SignoztypesFloat64",
+    "value": {
+      "description": "A float64 value. Finite values are numbers; non-finite values are serialized by the SigNoz API as one of these JSON string tokens (JSON has no NaN/Infinity literal).",
+      "oneOf": [
+        {
+          "type": "number",
+          "format": "double"
+        },
+        {
+          "type": "string",
+          "enum": ["NaN", "Inf", "+Inf", "-Inf", "Infinity", "+Infinity", "-Infinity"]
+        }
+      ]
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5TimeSeriesValue/properties/value",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesFloat64"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/components/schemas/Querybuildertypesv5TimeSeriesValue/properties/values/items",
+    "value": {
+      "$ref": "#/components/schemas/SignoztypesFloat64"
+    }
   }
 ]
