@@ -1,5 +1,21 @@
 # @jpowersdev/signoz
 
+## 1.1.1
+
+### Patch Changes
+
+- f93470c: Error-message and UX polish:
+
+  - `query run`/`preview` with an empty or invalid `--file` now reports `could not parse JSON in <path>: <reason>` (or `file not found: <path>`) instead of a bare `Unexpected end of JSON input`.
+  - A bare parent command (e.g. `signoz traces`) prints its help and exits cleanly, without the spurious `error: Help requested` line.
+  - A `504` gateway timeout now suggests narrowing the time window (`--from` / `--to`).
+
+  Closes #23.
+
+- bab1f90: `traces latency` now accepts `--name` (span-name filter), matching `traces errors` and `traces aggregate`. It ANDs onto `--filter` the same way, so `signoz traces latency --name "GET /orders" --p95` works instead of erroring with "Unrecognized flag: --name".
+
+  Closes #21.
+
 ## 1.1.0
 
 ### Minor Changes
