@@ -55,14 +55,30 @@ export const verboseErrorsEnabled = (args: ReadonlyArray<string>): boolean => {
   return false
 }
 
+// The CLI framework signals "help was shown" (a bare parent command, or --help) by
+// failing with a ShowHelp value. That is not an error — the help text is already printed —
+// so callers should skip the usual "error: ..." line for it.
+export const isHelpRequest = (cause: unknown): boolean => record(cause)?._tag === "ShowHelp"
+
+const httpStatus = (cause: unknown): number | undefined => {
+  const outer = record(cause)
+  const response = record(record(outer?.reason)?.response) ?? record(outer?.response)
+  const status = response?.status
+  return typeof status === "number" ? status : undefined
+}
+
 export const formatError = (cause: unknown): string => {
+  const lines: Array<string> = []
   const backend = backendError(cause)
   if (backend !== undefined) {
-    return [
-      `error: ${backend.message}`,
-      ...backend.suggestions.map((suggestion) => `suggestion: ${suggestion}`),
-    ].join("\n")
+    lines.push(`error: ${backend.message}`, ...backend.suggestions.map((suggestion) => `suggestion: ${suggestion}`))
+  } else if (cause instanceof Error) {
+    lines.push(`error: ${cause.message}`)
+  } else {
+    lines.push(`error: ${String(cause)}`)
   }
-  if (cause instanceof Error) return `error: ${cause.message}`
-  return `error: ${String(cause)}`
+  if (httpStatus(cause) === 504) {
+    lines.push("suggestion: the request timed out (504) — try a narrower time window with --from / --to")
+  }
+  return lines.join("\n")
 }
