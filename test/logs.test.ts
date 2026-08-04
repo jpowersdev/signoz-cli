@@ -84,7 +84,7 @@ it.effect("buildLogsQuery composes body and caller filters", () =>
     }, now)
     const envelope = query.compositeQuery.queries[0] as any
     expect(envelope.spec.filter.expression).toBe(
-      'log.body contains "database timeout" AND severity_text = "ERROR"',
+      'log.body contains "database timeout" AND (severity_text = "ERROR")',
     )
   }))
 
@@ -109,7 +109,7 @@ it.effect("buildLogsQuery correlates logs using the built-in trace ID field", ()
     }, now)
     const envelope = query.compositeQuery.queries[0] as any
     expect(envelope.spec.filter.expression).toBe(
-      'log.trace_id = "abc123" AND severity_text = "ERROR"',
+      'log.trace_id = "abc123" AND (severity_text = "ERROR")',
     )
   }))
 
@@ -135,7 +135,7 @@ it.effect("buildLogsContextQueries builds descending-before and ascending-after 
     expect(before.spec.limit).toBe(20)
     expect(before.spec.order[0].direction).toBe("desc")
     expect(before.spec.filter.expression).toBe(
-      'resource.service.name = "api" AND severity_text = "ERROR"',
+      'resource.service.name = "api" AND (severity_text = "ERROR")',
     )
 
     expect(queries.after.start).toBe(at)
@@ -143,7 +143,7 @@ it.effect("buildLogsContextQueries builds descending-before and ascending-after 
     expect(after.spec.limit).toBe(15)
     expect(after.spec.order[0].direction).toBe("asc")
     expect(after.spec.filter.expression).toBe(
-      'resource.service.name = "api" AND severity_text = "ERROR"',
+      'resource.service.name = "api" AND (severity_text = "ERROR")',
     )
   }))
 

@@ -82,8 +82,10 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
   — search log records. \`--trace-id\` derives its own window unless \`--from\`/\`--to\` is given.
 - \`signoz logs context --at TS [--around N | --before N --after N] [--service] [--filter]\`
   — show N log lines on each side of an anchor timestamp.
+- \`signoz logs aggregate --aggregation NAME [--aggregate-on FIELD] [--group-by KEY ...] [--order-by value|KEY] [--order asc|desc] [--limit] [--time-series --step DUR] [--contains] [--service] [--filter] [--from] [--to]\`
+  — scalar or time-series log statistics: count, count_distinct, rate, avg, sum, min, max, or p50/p75/p90/p95/p99. Repeat or comma-separate \`--group-by\`; results default to value-descending with a bounded limit. JSON includes truncation and missing-key recovery metadata while preserving the backend response.
 - \`signoz logs timeseries --step DUR [--contains] [--service] [--filter] [--group-by KEY] [--aggregation EXPR] [--from] [--to]\`
-  — bucketed log counts over time (default aggregation \`count()\`).
+  — backward-compatible convenience command for bucketed log counts (default aggregation \`count()\`).
 
 **Traces**
 - \`signoz traces list [--name] [--filter] [--order-by duration|time] [--limit] [--from] [--to] [--unit raw|format]\`
@@ -135,6 +137,9 @@ signoz traces errors --filter 'resource.service.name = "api"' --from "1 hour"
 
 # Latency percentiles per endpoint
 signoz traces latency --p50 --p95 --p99 --group-by span:name --from "1 hour"
+
+# Find which service and severity dominate recent logs
+signoz logs aggregate --aggregation count --group-by service.name --group-by severity_text --from "1 hour" --limit 20
 
 # Tail recent errors in a service's logs
 signoz logs search --service api --filter 'severity_text = "ERROR"' --from "15 minutes"
