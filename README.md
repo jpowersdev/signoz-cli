@@ -37,6 +37,7 @@ Discover what exists, then query logs, traces, and metrics. Every command takes 
 ```bash
 # discover
 signoz services list --signal traces --from "1 day"
+signoz services operations <service> --from "1 hour" --limit 20  # p99 descending
 signoz fields --signal traces
 signoz values --signal traces --name name --from "1 day"
 

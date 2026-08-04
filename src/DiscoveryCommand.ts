@@ -1,10 +1,13 @@
-import { Effect, Option } from "effect"
-import { Command, Flag } from "effect/unstable/cli"
+import { Console, Effect, Option } from "effect"
+import { Argument, Command, Flag } from "effect/unstable/cli"
 import { Discovery, parseFieldContext, parseSignal } from "./Discovery.js"
 import type { FieldKey } from "./Discovery.js"
 import { printFilterSyntaxHint } from "./FilterHint.js"
 import * as Output from "./Output.js"
 import { printRows } from "./Rows.js"
+import { ServiceOperations } from "./ServiceOperations.js"
+import { renderServiceOperations } from "./ServiceOperationsOutput.js"
+import * as Warnings from "./Warnings.js"
 
 const fromFlag = Flag.string("from").pipe(
   Flag.optional,
@@ -74,9 +77,46 @@ const list = Command.make(
     }).pipe(Effect.provide(Discovery.Live)),
 ).pipe(Command.withDescription("List service.name values"))
 
+const serviceArg = Argument.string("service").pipe(
+  Argument.withDescription("Exact traced service.name"),
+)
+
+const operations = Command.make(
+  "operations",
+  {
+    service: serviceArg,
+    filter: filterFlag,
+    limit: limitFlag,
+    from: fromFlag,
+    to: toFlag,
+    output: Output.outputFlag,
+  },
+  (input) =>
+    Effect.gen(function* () {
+      const filter = Option.getOrUndefined(input.filter)
+      yield* printFilterSyntaxHint(filter)
+      const serviceOperations = yield* ServiceOperations
+      const result = yield* serviceOperations.get({
+        service: input.service,
+        filter,
+        limit: Option.getOrUndefined(input.limit),
+        from: Option.getOrUndefined(input.from),
+        to: Option.getOrUndefined(input.to),
+      })
+      const format = yield* Output.parseOutputFormat(input.output)
+      yield* Warnings.printWarnings(result.response)
+      yield* Console.log(renderServiceOperations(result, format))
+      if (format !== "json" && result.operations.length === 0) {
+        yield* Console.error(result.status === "no_activity"
+          ? "# known traced service; 0 operations matched the requested window and filter"
+          : "# unknown service; not found in retained trace data")
+      }
+    }).pipe(Effect.provide(ServiceOperations.Live)),
+).pipe(Command.withDescription("Rank a traced service's operations by p99 latency"))
+
 export const servicesCommand = Command.make("services").pipe(
-  Command.withDescription("Discover services"),
-  Command.withSubcommands([list]),
+  Command.withDescription("Discover and diagnose services"),
+  Command.withSubcommands([list, operations]),
 )
 
 export const valuesCommand = Command.make(
