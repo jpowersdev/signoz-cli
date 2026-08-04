@@ -49,6 +49,8 @@ signoz alerts triage <rule-id> --from "1 hour"
 signoz alerts evaluate <rule-id> --from "2 hours"
 
 # logs
+signoz logs aggregate --aggregation count --group-by service.name --group-by severity_text --from "1 hour"
+signoz logs aggregate --aggregation p99 --aggregate-on duration_ms --time-series --step "1 minute"
 signoz logs search --service <service> --filter 'severity_text = "ERROR"' --from "30 minutes"
 signoz logs timeseries --service <service> --step "1 hour" --from "6 hours"
 signoz logs context --at <iso-or-unix-ms> --around 20 --service <service>
