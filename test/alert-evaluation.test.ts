@@ -133,6 +133,32 @@ it("summarizes selected grouped series and the first threshold crossing", () => 
   expect(series[0]?.labels[0]?.value).toBe("checkout")
 })
 
+it("does not call a series that starts breached a threshold crossing", () => {
+  const alreadyBreached = {
+    ...response,
+    data: {
+      ...response.data,
+      data: {
+        results: [{
+          _tag: "time_series",
+          queryName: "A",
+          aggregations: [{ series: [{ values: [
+            { timestamp: 1_767_225_600_000, value: 550 },
+            { timestamp: 1_767_225_660_000, value: 600 },
+          ] }] }],
+        }],
+      },
+    },
+  } as Generated.QueryRangeV5200
+  const series = summarizeSelectedSeries(alreadyBreached, "A", [{
+    name: "critical",
+    op: "above",
+    target: 500,
+    channels: [],
+  }])
+  expect(series[0]?.firstCrossings).toEqual([])
+})
+
 it("renders thresholds and selected-query evidence for humans", () => {
   const series = summarizeSelectedSeries(response, "A", [{ name: "critical", op: "above", target: 500, channels: [] }])
   const rendered = renderAlertEvaluation({

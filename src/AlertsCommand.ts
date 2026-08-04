@@ -6,6 +6,7 @@ import { renderAlertTriage, unavailableTriageSections } from "./AlertTriageOutpu
 import { Alerts, parseAlertState, ruleSeverity } from "./Alerts.js"
 import * as Output from "./Output.js"
 import { printRows } from "./Rows.js"
+import * as Warnings from "./Warnings.js"
 
 const stateFlag = Flag.string("state").pipe(
   Flag.optional,
@@ -131,7 +132,11 @@ const evaluate = Command.make(
         to: Option.getOrUndefined(input.to),
       })
       const format = yield* Output.parseOutputFormat(input.output)
+      yield* Warnings.printWarnings(evaluation.response)
       yield* Console.log(renderAlertEvaluation(evaluation, format))
+      if (format !== "json" && evaluation.series.length === 0) {
+        yield* Console.error("# 0 selected-query series in the requested window")
+      }
     }).pipe(Effect.provide(AlertEvaluationService.Live)),
 ).pipe(Command.withDescription("Evaluate an alert rule against live telemetry"))
 

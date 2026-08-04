@@ -120,7 +120,11 @@ const crossings = (
 ): ReadonlyArray<AlertThresholdCrossing> =>
   thresholds.flatMap((threshold) => {
     if (typeof threshold.target !== "number") return []
-    const point = points.find((point) => thresholdMatches(point.value, threshold))
+    const point = points.find((point, index) =>
+      index > 0 &&
+      !thresholdMatches(points[index - 1]!.value, threshold) &&
+      thresholdMatches(point.value, threshold)
+    )
     return point === undefined
       ? []
       : [{
