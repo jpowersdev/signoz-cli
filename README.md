@@ -57,6 +57,7 @@ signoz logs context --at <iso-or-unix-ms> --around 20 --service <service>
 signoz logs search --trace-id <trace-id>              # the logs for one trace
 
 # traces
+signoz traces search --service <service> --operation "POST /checkout" --error --min-duration 500ms --from "1 hour"
 signoz traces list --filter 'resource.service.name = "<service>"' --order-by duration --from "1 hour"
 signoz traces errors --filter 'resource.service.name = "<service>"' --from "1 hour"
 signoz traces latency --p50 --p95 --p99 --group-by span:name --from "1 hour"
