@@ -1,5 +1,15 @@
 # @jpowersdev/signoz
 
+## 1.2.0
+
+### Minor Changes
+
+- 2e7d598: Add `signoz alerts evaluate` to replay supported v2 metric, log, and trace alert queries against live telemetry and summarize grouped values alongside configured thresholds.
+- 9d00266: Add `signoz alerts triage` for a read-only briefing of an alert rule, its current firing instances, recent labeled history, status statistics, top contributors, and SigNoz deep link.
+- d830763: Add `signoz logs aggregate` for bounded scalar and time-series log statistics, multi-field grouping, ordering, and structured truncation and missing-key recovery metadata.
+- d01084b: Add `signoz services operations` to rank an exact traced service's operations by p99 latency with call volume, errors, error rate, and p50/p95/p99 diagnostics.
+- 243f3d8: Add `signoz traces search` for deterministic, paginated span-level drill-down with duration/error filters, canonical span fields, trace links, and structured completeness and missing-key metadata.
+
 ## 1.1.1
 
 ### Patch Changes
