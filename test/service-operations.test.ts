@@ -45,6 +45,11 @@ it("builds an exact-service top-operations query ordered by p99", () => {
   })
 })
 
+it("rejects an empty service name", () => {
+  const error = Effect.runSync(Effect.flip(buildServiceOperationsQuery({ service: "" })))
+  expect(error.message).toContain("must not be empty")
+})
+
 it("rejects operation limits outside the backend range", () => {
   for (const limit of [0, 5001]) {
     const error = Effect.runSync(Effect.flip(buildServiceOperationsQuery({ service: "api", limit })))

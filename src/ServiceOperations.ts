@@ -17,6 +17,10 @@ export class InvalidServiceOperationsLimit extends Data.TaggedError("InvalidServ
   readonly message: string
 }> {}
 
+export class InvalidServiceName extends Data.TaggedError("InvalidServiceName")<{
+  readonly message: string
+}> {}
+
 export class InvalidServiceOperationsResponse extends Data.TaggedError("InvalidServiceOperationsResponse")<{
   readonly message: string
 }> {}
@@ -73,8 +77,11 @@ const serviceWebUrl = (baseUrl: string, service: string): string =>
 export const buildServiceOperationsQuery = (
   input: ServiceOperationsInput,
   now?: number,
-): Effect.Effect<Generated.Querybuildertypesv5QueryRangeRequest, InvalidServiceOperationsLimit | unknown> =>
+): Effect.Effect<Generated.Querybuildertypesv5QueryRangeRequest, InvalidServiceName | InvalidServiceOperationsLimit | unknown> =>
   Effect.gen(function* () {
+    if (input.service.length === 0) {
+      return yield* Effect.fail(new InvalidServiceName({ message: "Service name must not be empty" }))
+    }
     const limit = input.limit ?? 20
     if (!Number.isInteger(limit) || limit < 1 || limit > 5000) {
       return yield* Effect.fail(new InvalidServiceOperationsLimit({

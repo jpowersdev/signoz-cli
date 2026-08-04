@@ -81,12 +81,22 @@ const serviceArg = Argument.string("service").pipe(
   Argument.withDescription("Exact traced service.name"),
 )
 
+const operationsFilterFlag = Flag.string("filter").pipe(
+  Flag.optional,
+  Flag.withDescription("Additional trace filter expression ANDed with the exact service"),
+)
+
+const operationsLimitFlag = Flag.integer("limit").pipe(
+  Flag.optional,
+  Flag.withDescription("Maximum operations by descending p99 latency (1-5000)"),
+)
+
 const operations = Command.make(
   "operations",
   {
     service: serviceArg,
-    filter: filterFlag,
-    limit: limitFlag,
+    filter: operationsFilterFlag,
+    limit: operationsLimitFlag,
     from: fromFlag,
     to: toFlag,
     output: Output.outputFlag,
