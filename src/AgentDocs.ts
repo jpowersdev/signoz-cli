@@ -70,6 +70,8 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
 **Discovery**
 - \`signoz services list [--signal traces|logs] [--search TEXT] [--limit N] [--from] [--to]\`
   — list \`service.name\` values.
+- \`signoz services operations SERVICE [--filter] [--limit] [--from] [--to]\`
+  — rank an exact traced service's operations by p99 latency (descending) with call/error counts, error rate, and p50/p95/p99. JSON keeps raw nanoseconds; empty results distinguish a known inactive service from an unknown service.
 - \`signoz fields --signal traces|logs|metrics [--context metric|log|span|resource|attribute|body] [--search] [--limit]\`
   — list queryable field keys (use these in \`--filter\`).
 - \`signoz values --signal S --name KEY [--context] [--filter] [--search] [--limit]\`
@@ -124,6 +126,7 @@ signoz alerts triage <rule_id> --from "1 hour"
 signoz alerts evaluate <rule_id> --from "2 hours"
 
 # What's slow in a service, then drill into the slowest trace
+signoz services operations api --from "1 hour" --limit 10
 signoz traces list --filter 'resource.service.name = "api"' --order-by duration --limit 10
 signoz traces get <trace_id>
 
