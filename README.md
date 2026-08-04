@@ -45,6 +45,7 @@ signoz alerts list --state firing
 signoz alerts get <rule-id>
 signoz alerts history <rule-id> --from "1 day"
 signoz alerts triage <rule-id> --from "1 hour"
+signoz alerts evaluate <rule-id> --from "2 hours"
 
 # logs
 signoz logs search --service <service> --filter 'severity_text = "ERROR"' --from "30 minutes"
