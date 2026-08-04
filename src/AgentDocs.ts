@@ -108,6 +108,7 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
 - \`signoz alerts get RULE_ID [--output]\` — a rule's definition plus its current firing instances.
 - \`signoz alerts history RULE_ID [--state] [--from] [--to]\` — a rule's state-change timeline.
 - \`signoz alerts triage RULE_ID [--from] [--to] [--limit]\` — one read-only briefing with the rule condition, thresholds, firing instances, recent labeled history, status statistics, top contributors, and a SigNoz deep link. Optional history sections degrade with warnings on older servers.
+- \`signoz alerts evaluate RULE_ID [--from] [--to]\` — replay a supported v2 metric, log, or trace alert's stored query against live telemetry; show grouped first/latest/min/max values and the first threshold crossing. Legacy, exception, and anomaly rules fail clearly rather than guessing.
 
 **Raw / config**
 - \`signoz query run --file BODY.json [--output]\` / \`signoz query preview --file BODY.json\`
@@ -120,6 +121,7 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
 # See what's firing right now, then assemble the rule's triage evidence
 signoz alerts list --state firing
 signoz alerts triage <rule_id> --from "1 hour"
+signoz alerts evaluate <rule_id> --from "2 hours"
 
 # What's slow in a service, then drill into the slowest trace
 signoz traces list --filter 'resource.service.name = "api"' --order-by duration --limit 10

@@ -1,5 +1,7 @@
 import { Console, Effect, Option } from "effect"
 import { Argument, Command, Flag } from "effect/unstable/cli"
+import { renderAlertEvaluation } from "./AlertEvaluationOutput.js"
+import { AlertEvaluationService } from "./AlertEvaluation.js"
 import { renderAlertTriage, unavailableTriageSections } from "./AlertTriageOutput.js"
 import { Alerts, parseAlertState, ruleSeverity } from "./Alerts.js"
 import * as Output from "./Output.js"
@@ -113,6 +115,26 @@ const history = Command.make(
     }).pipe(Effect.provide(Alerts.Live)),
 ).pipe(Command.withDescription("Show a rule's state-change timeline over a time window"))
 
+const evaluate = Command.make(
+  "evaluate",
+  {
+    id: idArg,
+    from: fromFlag,
+    to: toFlag,
+    output: Output.outputFlag,
+  },
+  (input) =>
+    Effect.gen(function* () {
+      const evaluator = yield* AlertEvaluationService
+      const evaluation = yield* evaluator.evaluate(input.id, {
+        from: Option.getOrUndefined(input.from),
+        to: Option.getOrUndefined(input.to),
+      })
+      const format = yield* Output.parseOutputFormat(input.output)
+      yield* Console.log(renderAlertEvaluation(evaluation, format))
+    }).pipe(Effect.provide(AlertEvaluationService.Live)),
+).pipe(Command.withDescription("Evaluate an alert rule against live telemetry"))
+
 const triage = Command.make(
   "triage",
   {
@@ -143,5 +165,5 @@ const triage = Command.make(
 
 export const command = Command.make("alerts").pipe(
   Command.withDescription("Inspect alert rules and firing alerts"),
-  Command.withSubcommands([list, get, history, triage]),
+  Command.withSubcommands([list, get, history, triage, evaluate]),
 )
