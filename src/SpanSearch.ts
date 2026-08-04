@@ -247,13 +247,20 @@ export const spanSearchRows = (
     const traceId = valueString(data.trace_id)
     const spanId = valueString(data.span_id)
     const durationNano = valueNumber(data.duration_nano)
-    if (traceId.length === 0 || spanId.length === 0 || durationNano === undefined) return []
+    const timestamp = valueString(data.timestamp) || row.timestamp || ""
+    if (
+      traceId.length === 0 ||
+      spanId.length === 0 ||
+      timestamp.length === 0 ||
+      durationNano === undefined ||
+      typeof data.has_error !== "boolean"
+    ) return []
     const statusCode = valueNumber(data.status_code)
     return [{
       traceId,
       spanId,
       parentSpanId: valueString(data.parent_span_id),
-      timestamp: valueString(data.timestamp) || row.timestamp || "",
+      timestamp,
       service: valueString(data["service.name"]),
       operation: valueString(data.name),
       durationNano,
@@ -265,6 +272,19 @@ export const spanSearchRows = (
       webUrl: traceWebUrl(baseUrl, traceId),
     }]
   })
+
+export const decodeSpanSearchRows = (
+  response: Generated.QueryRangeV5200,
+  baseUrl: string,
+): Effect.Effect<ReadonlyArray<SpanSearchRow>, InvalidSpanSearch> => {
+  const raw = rawRows(response).rows
+  const spans = spanSearchRows(response, baseUrl)
+  return spans.length === raw.length
+    ? Effect.succeed(spans)
+    : Effect.fail(new InvalidSpanSearch({
+      message: "Span search response is missing a canonical trace ID, span ID, timestamp, duration, or error field",
+    }))
+}
 
 const missingKeyPattern = /key `([^`]+)` not found/g
 
@@ -296,7 +316,7 @@ export class SpanSearch extends Context.Service<SpanSearch, {
           const plan = yield* buildSpanSearchQuery(input)
           const response = yield* executeQuery(api, plan.request)
           const raw = rawRows(response)
-          const rows = spanSearchRows(response, config.baseUrl)
+          const rows = yield* decodeSpanSearchRows(response, config.baseUrl)
           const spans = rows.slice(0, plan.limit)
           return {
             window: {

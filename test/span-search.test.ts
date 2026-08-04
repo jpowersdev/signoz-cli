@@ -3,6 +3,7 @@ import { Effect } from "effect"
 import type * as Generated from "../src/Generated.ts"
 import {
   buildSpanSearchQuery,
+  decodeSpanSearchRows,
   missingSpanSearchKeys,
   spanSearchPagination,
   spanSearchRows,
@@ -113,6 +114,23 @@ it("extracts canonical span rows, error fields, and absolute trace links", () =>
     webUrl: "https://signoz.example.com/trace/trace-1",
   }])
   expect(missingSpanSearchKeys(response)).toEqual(["missing.span.key"])
+})
+
+it("fails clearly instead of silently dropping malformed canonical span rows", () => {
+  const malformed = {
+    ...response,
+    data: {
+      ...response.data,
+      data: {
+        results: [{
+          _tag: "raw",
+          rows: [{ data: { span_id: "span-only", duration_nano: 1, has_error: false }, timestamp: "2026-01-01T00:00:00Z" }],
+        }],
+      },
+    },
+  } as Generated.QueryRangeV5200
+  const error = Effect.runSync(Effect.flip(decodeSpanSearchRows(malformed, "https://signoz.example.com")))
+  expect(error.message).toContain("canonical trace ID")
 })
 
 it("reports deterministic offset completeness from a limit-plus-one fetch", () => {
