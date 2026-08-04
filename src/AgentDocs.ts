@@ -88,6 +88,8 @@ machine parsing, \`table\` for a human scan (it collapses constant labels into a
   — backward-compatible convenience command for bucketed log counts (default aggregation \`count()\`).
 
 **Traces**
+- \`signoz traces search [--service] [--operation] [--error|--no-error] [--min-duration] [--max-duration] [--filter] [--limit] [--offset] [--from] [--to] [--unit]\`
+  — search individual spans with canonical IDs, timing/error fields, and trace links. Results use timestamp/trace-ID/span-ID ordering and limit-plus-one completeness metadata; reuse the returned window with \`nextOffset\` for stable pagination. JSON preserves raw nanoseconds and structured missing-key recovery.
 - \`signoz traces list [--name] [--filter] [--order-by duration|time] [--limit] [--from] [--to] [--unit raw|format]\`
   — list traces (slowest by default) with their IDs; feed an ID to \`traces get\`.
 - \`signoz traces aggregate [--name] [--filter] [--group-by] [--aggregation EXPR] [--over-time] [--from] [--to]\`
@@ -127,8 +129,9 @@ signoz alerts list --state firing
 signoz alerts triage <rule_id> --from "1 hour"
 signoz alerts evaluate <rule_id> --from "2 hours"
 
-# What's slow in a service, then drill into the slowest trace
+# What's slow in a service, then drill into the relevant spans and trace
 signoz services operations api --from "1 hour" --limit 10
+signoz traces search --service api --error --min-duration 500ms --from "1 hour" --limit 10
 signoz traces list --filter 'resource.service.name = "api"' --order-by duration --limit 10
 signoz traces get <trace_id>
 

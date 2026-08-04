@@ -1,11 +1,18 @@
-import { Console, Effect, Option } from "effect"
+import { Console, Effect, Layer, Option } from "effect"
 import { Argument, Command, Flag } from "effect/unstable/cli"
 import { SignozConfig } from "./ApiClient.js"
+import { Discovery } from "./Discovery.js"
 import type { UnitMode } from "./Durations.js"
 import { printFilterSyntaxHint } from "./FilterHint.js"
 import * as Output from "./Output.js"
 import * as Json from "./Json.js"
+import { warnUnknownServiceIfEmpty } from "./ServiceHint.js"
+import { InvalidSpanSearch, SpanSearch } from "./SpanSearch.js"
+import { renderSpanSearch, spanSearchMissingKeysNote, spanSearchPaginationNote } from "./SpanSearchOutput.js"
 import { formatTraceDurationColumns, traceListRows, Traces, waterfallRows, waterfallSummary } from "./Traces.js"
+import * as Warnings from "./Warnings.js"
+
+const spanSearchLive = Layer.mergeAll(SpanSearch.Live, Discovery.Live)
 
 const fromFlag = Flag.string("from").pipe(
   Flag.optional,
@@ -233,6 +240,77 @@ const renderTraceListRows = (
   }
 }
 
+const search = Command.make(
+  "search",
+  {
+    service: Flag.string("service").pipe(
+      Flag.optional,
+      Flag.withDescription("Exact resource.service.name"),
+    ),
+    operation: Flag.string("operation").pipe(
+      Flag.optional,
+      Flag.withDescription("Exact span operation/name"),
+    ),
+    error: Flag.boolean("error").pipe(Flag.withDescription("Return only error spans")),
+    noError: Flag.boolean("no-error").pipe(Flag.withDescription("Return only non-error spans")),
+    minDuration: Flag.string("min-duration").pipe(
+      Flag.optional,
+      Flag.withDescription("Minimum span duration, e.g. 500ms"),
+    ),
+    maxDuration: Flag.string("max-duration").pipe(
+      Flag.optional,
+      Flag.withDescription("Maximum span duration, e.g. 2 seconds"),
+    ),
+    filter: filterFlag,
+    from: fromFlag,
+    to: toFlag,
+    limit: Flag.integer("limit").pipe(
+      Flag.optional,
+      Flag.withDescription("Maximum spans per page (default: configured limit; max: 9999)"),
+    ),
+    offset: Flag.integer("offset").pipe(
+      Flag.optional,
+      Flag.withDescription("Number of spans to skip for pagination (default: 0)"),
+    ),
+    unit: unitFlag,
+    output: Output.outputFlag,
+  },
+  (input) =>
+    Effect.gen(function* () {
+      if (input.error && input.noError) {
+        return yield* Effect.fail(new InvalidSpanSearch({ message: "Use only one of --error or --no-error" }))
+      }
+      const config = yield* SignozConfig
+      const spans = yield* SpanSearch
+      const filter = Option.getOrUndefined(input.filter)
+      const service = Option.getOrUndefined(input.service)
+      yield* printFilterSyntaxHint(filter)
+      const result = yield* spans.search({
+        service,
+        operation: Option.getOrUndefined(input.operation),
+        error: input.error ? true : input.noError ? false : undefined,
+        minDuration: Option.getOrUndefined(input.minDuration),
+        maxDuration: Option.getOrUndefined(input.maxDuration),
+        filter,
+        from: Option.getOrUndefined(input.from) ?? config.defaultFrom,
+        to: Option.getOrUndefined(input.to),
+        limit: Option.getOrUndefined(input.limit) ?? Math.min(config.defaultLimit, 9_999),
+        offset: Option.getOrUndefined(input.offset),
+      })
+      const format = yield* Output.parseOutputFormat(input.output)
+      yield* Warnings.printWarnings(result.response)
+      yield* Console.log(renderSpanSearch(result, format, input.unit))
+      const missingKeysNote = spanSearchMissingKeysNote(result)
+      if (missingKeysNote !== undefined) yield* Console.error(missingKeysNote)
+      if (format !== "json") {
+        yield* Console.error(spanSearchPaginationNote(result))
+        const emptyNote = Output.formatEmptyResultNote(result.response)
+        if (emptyNote !== undefined) yield* Console.error(emptyNote)
+      }
+      yield* warnUnknownServiceIfEmpty(result.response, service, "traces")
+    }).pipe(Effect.provide(spanSearchLive)),
+).pipe(Command.withDescription("Search individual spans with deterministic offset pagination"))
+
 const list = Command.make(
   "list",
   {
@@ -301,5 +379,5 @@ const get = Command.make(
 
 export const command = Command.make("traces").pipe(
   Command.withDescription("Query traces"),
-  Command.withSubcommands([list, aggregate, errors, latency, get]),
+  Command.withSubcommands([search, list, aggregate, errors, latency, get]),
 )
