@@ -1,3 +1,4 @@
+import { Duration } from "effect"
 import type { AlertHistoryLabel, AlertTopContributor, AlertTriage, TriageSection } from "./Alerts.js"
 import type * as Output from "./Output.js"
 import { renderRows } from "./Rows.js"
@@ -40,6 +41,9 @@ export const unavailableTriageSections = (triage: AlertTriage): ReadonlyArray<Un
 const sectionHeading = (name: string, detail?: string): string =>
   `## ${name}${detail === undefined ? "" : ` (${detail})`}`
 
+const formatSeconds = (seconds: number): string =>
+  Duration.format(Duration.millis(Math.round(seconds * 1_000)))
+
 export const renderAlertTriageTable = (triage: AlertTriage): string => {
   const rule = triage.rule
   const sections: Array<string> = [
@@ -57,7 +61,6 @@ export const renderAlertTriageTable = (triage: AlertTriage): string => {
         ["window", `${triage.window.start} → ${triage.window.end}`],
         ["evaluation", oneLine(rule.evaluation ?? { evalWindow: rule.evalWindow, frequency: rule.frequency })],
         ["thresholds", oneLine(rule.thresholds)],
-        ["condition/query", oneLine(rule.condition)],
         ["labels", oneLine(rule.labels)],
         ["annotations", oneLine(rule.annotations)],
         ["notifications", oneLine({
@@ -69,17 +72,20 @@ export const renderAlertTriageTable = (triage: AlertTriage): string => {
       "table",
       rule,
     ),
+    sectionHeading("Condition / query"),
+    JSON.stringify(rule.condition, null, 2),
     sectionHeading("Firing instances", String(triage.firing.length)),
     triage.firing.length === 0
       ? "_none_"
       : renderRows(
-        ["state", "severity", "since", "name", "labels", "routing"],
+        ["state", "severity", "since", "name", "labels", "annotations", "routing"],
         triage.firing.map((instance) => [
           instance.state,
           instance.severity,
           instance.startsAt,
           instance.name,
           oneLine(instance.labels),
+          oneLine(instance.annotations),
           oneLine({
             receivers: instance.receivers,
             silencedBy: instance.silencedBy,
@@ -124,7 +130,7 @@ export const renderAlertTriageTable = (triage: AlertTriage): string => {
         ["field", "current", "previous"],
         [
           ["triggers", stats.totalCurrentTriggers, stats.totalPastTriggers],
-          ["average resolution time", stats.currentAvgResolutionTime, stats.pastAvgResolutionTime],
+          ["average resolution time", formatSeconds(stats.currentAvgResolutionTime), formatSeconds(stats.pastAvgResolutionTime)],
         ],
         "table",
         stats,
