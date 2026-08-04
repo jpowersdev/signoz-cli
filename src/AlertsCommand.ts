@@ -1,5 +1,6 @@
 import { Console, Effect, Option } from "effect"
 import { Argument, Command, Flag } from "effect/unstable/cli"
+import { renderAlertTriage, unavailableTriageSections } from "./AlertTriageOutput.js"
 import { Alerts, parseAlertState, ruleSeverity } from "./Alerts.js"
 import * as Output from "./Output.js"
 import { printRows } from "./Rows.js"
@@ -20,6 +21,13 @@ const toFlag = Flag.string("to").pipe(
 )
 
 const idArg = Argument.string("id").pipe(Argument.withDescription("Alert rule ID"))
+
+const formatHistoryLabels = (
+  labels: ReadonlyArray<{ readonly name: string, readonly value?: string | number | boolean | undefined }>,
+): string => labels
+  .filter((label) => label.name.length > 0)
+  .map((label) => `${label.name}=${String(label.value ?? "")}`)
+  .join(", ")
 
 const list = Command.make(
   "list",
@@ -90,15 +98,50 @@ const history = Command.make(
         state,
       })
       yield* printRows(
-        ["time", "state", "value", "changed"],
-        events.map((event) => [event.time, event.state, event.value, event.changed]),
+        ["time", "state", "overall", "value", "changed", "labels"],
+        events.map((event) => [
+          event.time,
+          event.state,
+          event.overallState,
+          event.value,
+          event.changed || event.overallChanged,
+          formatHistoryLabels(event.labels),
+        ]),
         input.output,
         events,
       )
     }).pipe(Effect.provide(Alerts.Live)),
 ).pipe(Command.withDescription("Show a rule's state-change timeline over a time window"))
 
+const triage = Command.make(
+  "triage",
+  {
+    id: idArg,
+    from: fromFlag,
+    to: toFlag,
+    limit: Flag.integer("limit").pipe(
+      Flag.optional,
+      Flag.withDescription("Maximum recent history events to include (default 20, max 100)"),
+    ),
+    output: Output.outputFlag,
+  },
+  (input) =>
+    Effect.gen(function* () {
+      const alerts = yield* Alerts
+      const briefing = yield* alerts.triage(input.id, {
+        from: Option.getOrUndefined(input.from),
+        to: Option.getOrUndefined(input.to),
+        historyLimit: Option.getOrUndefined(input.limit),
+      })
+      const format = yield* Output.parseOutputFormat(input.output)
+      for (const section of unavailableTriageSections(briefing)) {
+        yield* Console.error(`# ${section.name} unavailable: ${section.reason}`)
+      }
+      yield* Console.log(renderAlertTriage(briefing, format))
+    }).pipe(Effect.provide(Alerts.Live)),
+).pipe(Command.withDescription("Build a read-only alert triage briefing"))
+
 export const command = Command.make("alerts").pipe(
   Command.withDescription("Inspect alert rules and firing alerts"),
-  Command.withSubcommands([list, get, history]),
+  Command.withSubcommands([list, get, history, triage]),
 )
