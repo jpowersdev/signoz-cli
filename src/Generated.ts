@@ -10,6 +10,26 @@ import * as HttpClientResponse from "effect/unstable/http/HttpClientResponse"
 // non-recursive definitions
 export type AlertmanagertypesChannel = { readonly "createdAt"?: string, readonly "data": string, readonly "id": string, readonly "name": string, readonly "orgId": string, readonly "type": string, readonly "updatedAt"?: string }
 export const AlertmanagertypesChannel = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "data": Schema.String, "id": Schema.String, "name": Schema.String, "orgId": Schema.String, "type": Schema.String, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
+export type AlertmanagertypesChannelEmailConfig = { readonly "headers"?: { readonly [x: string]: string }, readonly "html"?: string, readonly "sendResolved"?: boolean | null, readonly "to": string }
+export const AlertmanagertypesChannelEmailConfig = Schema.Struct({ "headers": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "html": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "to": Schema.String })
+export type AlertmanagertypesChannelGoogleChatConfig = { readonly "sendResolved"?: boolean | null, readonly "text"?: string, readonly "title"?: string, readonly "webhookUrl": string }
+export const AlertmanagertypesChannelGoogleChatConfig = Schema.Struct({ "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "text": Schema.optionalKey(Schema.String), "title": Schema.optionalKey(Schema.String), "webhookUrl": Schema.String })
+export type AlertmanagertypesChannelIncidentIOConfig = { readonly "description"?: string, readonly "metadata"?: { readonly [x: string]: string }, readonly "sendResolved"?: boolean | null, readonly "title"?: string, readonly "token": string, readonly "url": string }
+export const AlertmanagertypesChannelIncidentIOConfig = Schema.Struct({ "description": Schema.optionalKey(Schema.String), "metadata": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "title": Schema.optionalKey(Schema.String), "token": Schema.String, "url": Schema.String })
+export type AlertmanagertypesChannelJSMOpsConfig = { readonly "apiKey": string, readonly "description"?: string, readonly "message"?: string, readonly "priority"?: string, readonly "sendResolved"?: boolean | null, readonly "tags"?: string }
+export const AlertmanagertypesChannelJSMOpsConfig = Schema.Struct({ "apiKey": Schema.String, "description": Schema.optionalKey(Schema.String), "message": Schema.optionalKey(Schema.String), "priority": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "tags": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesChannelJiraConfig = { readonly "apiToken": string, readonly "customFields"?: { readonly [x: string]: Schema.Json }, readonly "description"?: string, readonly "email": string, readonly "issueType": string, readonly "labels"?: ReadonlyArray<string>, readonly "priority"?: string, readonly "project": string, readonly "reopenDuration"?: string, readonly "reopenTransition"?: string, readonly "resolveTransition"?: string, readonly "sendResolved"?: boolean | null, readonly "site": string, readonly "summary"?: string, readonly "wontFixResolution"?: string }
+export const AlertmanagertypesChannelJiraConfig = Schema.Struct({ "apiToken": Schema.String, "customFields": Schema.optionalKey(Schema.Record(Schema.String, Schema.Json)), "description": Schema.optionalKey(Schema.String), "email": Schema.String, "issueType": Schema.String, "labels": Schema.optionalKey(Schema.Array(Schema.String)), "priority": Schema.optionalKey(Schema.String), "project": Schema.String, "reopenDuration": Schema.optionalKey(Schema.String), "reopenTransition": Schema.optionalKey(Schema.String), "resolveTransition": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "site": Schema.String, "summary": Schema.optionalKey(Schema.String), "wontFixResolution": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesChannelMSTeamsConfig = { readonly "sendResolved"?: boolean | null, readonly "text"?: string, readonly "title"?: string, readonly "webhookUrl": string }
+export const AlertmanagertypesChannelMSTeamsConfig = Schema.Struct({ "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "text": Schema.optionalKey(Schema.String), "title": Schema.optionalKey(Schema.String), "webhookUrl": Schema.String })
+export type AlertmanagertypesChannelOpsgenieConfig = { readonly "apiKey": string, readonly "apiUrl"?: string, readonly "description"?: string, readonly "details"?: { readonly [x: string]: string }, readonly "message"?: string, readonly "priority"?: string, readonly "sendResolved"?: boolean | null, readonly "source"?: string }
+export const AlertmanagertypesChannelOpsgenieConfig = Schema.Struct({ "apiKey": Schema.String, "apiUrl": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "details": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "message": Schema.optionalKey(Schema.String), "priority": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "source": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesChannelPagerdutyConfig = { readonly "class"?: string, readonly "client"?: string, readonly "clientUrl"?: string, readonly "component"?: string, readonly "description"?: string, readonly "details"?: { readonly [x: string]: string }, readonly "group"?: string, readonly "routingKey": string, readonly "sendResolved"?: boolean | null, readonly "severity"?: string, readonly "source"?: string, readonly "url"?: string }
+export const AlertmanagertypesChannelPagerdutyConfig = Schema.Struct({ "class": Schema.optionalKey(Schema.String), "client": Schema.optionalKey(Schema.String), "clientUrl": Schema.optionalKey(Schema.String), "component": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "details": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "group": Schema.optionalKey(Schema.String), "routingKey": Schema.String, "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "severity": Schema.optionalKey(Schema.String), "source": Schema.optionalKey(Schema.String), "url": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesChannelSlackConfig = { readonly "apiUrl": string, readonly "channel"?: string, readonly "sendResolved"?: boolean | null, readonly "text"?: string, readonly "title"?: string }
+export const AlertmanagertypesChannelSlackConfig = Schema.Struct({ "apiUrl": Schema.String, "channel": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "text": Schema.optionalKey(Schema.String), "title": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesChannelWebhookConfig = { readonly "bearerToken"?: string, readonly "password"?: string, readonly "sendResolved"?: boolean | null, readonly "url": string, readonly "username"?: string }
+export const AlertmanagertypesChannelWebhookConfig = Schema.Struct({ "bearerToken": Schema.optionalKey(Schema.String), "password": Schema.optionalKey(Schema.String), "sendResolved": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "url": Schema.String, "username": Schema.optionalKey(Schema.String) })
 export type AlertmanagertypesExpressionKind = "rule" | "policy"
 export const AlertmanagertypesExpressionKind = Schema.Literals(["rule", "policy"])
 export type AlertmanagertypesMaintenanceKind = "fixed" | "recurring"
@@ -20,8 +40,8 @@ export type AlertmanagertypesRepeatType = "daily" | "weekly" | "monthly"
 export const AlertmanagertypesRepeatType = Schema.Literals(["daily", "weekly", "monthly"])
 export type AuthtypesAttributeMapping = { readonly "email"?: string, readonly "groups"?: string, readonly "name"?: string, readonly "role"?: string }
 export const AuthtypesAttributeMapping = Schema.Struct({ "email": Schema.optionalKey(Schema.String), "groups": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String), "role": Schema.optionalKey(Schema.String) })
-export type AuthtypesAuthNProvider = "google_auth" | "saml" | "email_password" | "oidc"
-export const AuthtypesAuthNProvider = Schema.Literals(["google_auth", "saml", "email_password", "oidc"])
+export type AuthtypesAuthNProvider = "google" | "saml" | "email_password" | "oidc"
+export const AuthtypesAuthNProvider = Schema.Literals(["google", "saml", "email_password", "oidc"])
 export type AuthtypesAuthNProviderInfo = { readonly "relayStatePath"?: string | null }
 export const AuthtypesAuthNProviderInfo = Schema.Struct({ "relayStatePath": Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])) })
 export type AuthtypesDeprecatedPostableUserRole = { readonly "id": string }
@@ -30,8 +50,8 @@ export type AuthtypesGettableRole = { readonly "createdAt"?: string, readonly "d
 export const AuthtypesGettableRole = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "description": Schema.String, "id": Schema.String, "name": Schema.String, "orgId": Schema.String, "type": Schema.String, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
 export type AuthtypesGettableToken = { readonly "accessToken"?: string, readonly "expiresIn"?: number, readonly "refreshToken"?: string, readonly "tokenType"?: string }
 export const AuthtypesGettableToken = Schema.Struct({ "accessToken": Schema.optionalKey(Schema.String), "expiresIn": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "refreshToken": Schema.optionalKey(Schema.String), "tokenType": Schema.optionalKey(Schema.String) })
-export type AuthtypesGoogleConfig = { readonly "allowedGroups"?: ReadonlyArray<string>, readonly "clientId"?: string, readonly "clientSecret"?: string, readonly "domainToAdminEmail"?: { readonly [x: string]: string }, readonly "fetchGroups"?: boolean, readonly "fetchTransitiveGroupMembership"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "redirectURI"?: string, readonly "serviceAccountJson"?: string }
-export const AuthtypesGoogleConfig = Schema.Struct({ "allowedGroups": Schema.optionalKey(Schema.Array(Schema.String)), "clientId": Schema.optionalKey(Schema.String), "clientSecret": Schema.optionalKey(Schema.String), "domainToAdminEmail": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "fetchGroups": Schema.optionalKey(Schema.Boolean), "fetchTransitiveGroupMembership": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "redirectURI": Schema.optionalKey(Schema.String), "serviceAccountJson": Schema.optionalKey(Schema.String) })
+export type AuthtypesGoogleConfig = { readonly "allowedGroups"?: ReadonlyArray<string>, readonly "clientId": string, readonly "clientSecret": string, readonly "domainToAdminEmail"?: { readonly [x: string]: string }, readonly "fetchGroups"?: boolean, readonly "fetchTransitiveGroupMembership"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "serviceAccountJson"?: string }
+export const AuthtypesGoogleConfig = Schema.Struct({ "allowedGroups": Schema.optionalKey(Schema.Array(Schema.String)), "clientId": Schema.String, "clientSecret": Schema.String.annotate({ "format": "password" }), "domainToAdminEmail": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "fetchGroups": Schema.optionalKey(Schema.Boolean), "fetchTransitiveGroupMembership": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "serviceAccountJson": Schema.optionalKey(Schema.String.annotate({ "format": "password" })) })
 export type AuthtypesPostableEmailPasswordSession = { readonly "email"?: string, readonly "orgId"?: string, readonly "password"?: string }
 export const AuthtypesPostableEmailPasswordSession = Schema.Struct({ "email": Schema.optionalKey(Schema.String), "orgId": Schema.optionalKey(Schema.String), "password": Schema.optionalKey(Schema.String) })
 export type AuthtypesPostableRotateToken = { readonly "refreshToken"?: string }
@@ -90,8 +110,8 @@ export type CloudintegrationtypesOldAWSMetricsStrategy = { readonly "cloudwatch_
 export const CloudintegrationtypesOldAWSMetricsStrategy = Schema.Struct({ "cloudwatch_metric_stream_filters": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "MetricNames": Schema.optionalKey(Schema.Array(Schema.String)), "Namespace": Schema.optionalKey(Schema.String) }))])) })
 export type CloudintegrationtypesPostableAgentCheckIn = { readonly "account_id"?: string, readonly "cloud_account_id"?: string, readonly "cloudIntegrationId"?: string, readonly "data": {  }, readonly "providerAccountId"?: string }
 export const CloudintegrationtypesPostableAgentCheckIn = Schema.Struct({ "account_id": Schema.optionalKey(Schema.String), "cloud_account_id": Schema.optionalKey(Schema.String), "cloudIntegrationId": Schema.optionalKey(Schema.String), "data": Schema.Union([Schema.Struct({  })]), "providerAccountId": Schema.optionalKey(Schema.String) })
-export type CloudintegrationtypesServiceID = "alb" | "api-gateway" | "dynamodb" | "ec2" | "ecs" | "eks" | "elasticache" | "lambda" | "msk" | "rds" | "s3sync" | "sns" | "sqs" | "storageaccountsblob" | "cdnprofile" | "virtualmachine" | "appservice" | "containerapp" | "aks" | "sqldatabase" | "sqldatabasemi" | "mysqlflexibleserver" | "postgresqlflexibleserver" | "mongodb" | "cosmosdb" | "cassandradb" | "redis" | "cloudsql_postgres" | "memorystore_redis"
-export const CloudintegrationtypesServiceID = Schema.Literals(["alb", "api-gateway", "dynamodb", "ec2", "ecs", "eks", "elasticache", "lambda", "msk", "rds", "s3sync", "sns", "sqs", "storageaccountsblob", "cdnprofile", "virtualmachine", "appservice", "containerapp", "aks", "sqldatabase", "sqldatabasemi", "mysqlflexibleserver", "postgresqlflexibleserver", "mongodb", "cosmosdb", "cassandradb", "redis", "cloudsql_postgres", "memorystore_redis"])
+export type CloudintegrationtypesServiceID = "alb" | "api-gateway" | "dynamodb" | "ec2" | "ecs" | "eks" | "elasticache" | "lambda" | "msk" | "rds" | "s3sync" | "sns" | "sqs" | "storageaccountsblob" | "cdnprofile" | "virtualmachine" | "appservice" | "containerapp" | "aks" | "sqldatabase" | "sqldatabasemi" | "mysqlflexibleserver" | "postgresqlflexibleserver" | "mongodb" | "cosmosdb" | "cassandradb" | "redis" | "cloudsql_postgres" | "memorystore_redis" | "computeengine" | "gke" | "cloudstorage" | "cloudsql_mysql"
+export const CloudintegrationtypesServiceID = Schema.Literals(["alb", "api-gateway", "dynamodb", "ec2", "ecs", "eks", "elasticache", "lambda", "msk", "rds", "s3sync", "sns", "sqs", "storageaccountsblob", "cdnprofile", "virtualmachine", "appservice", "containerapp", "aks", "sqldatabase", "sqldatabasemi", "mysqlflexibleserver", "postgresqlflexibleserver", "mongodb", "cosmosdb", "cassandradb", "redis", "cloudsql_postgres", "memorystore_redis", "computeengine", "gke", "cloudstorage", "cloudsql_mysql"])
 export type CloudintegrationtypesServiceMetadata = { readonly "enabled": boolean, readonly "icon": string, readonly "id": string, readonly "title": string }
 export const CloudintegrationtypesServiceMetadata = Schema.Struct({ "enabled": Schema.Boolean, "icon": Schema.String, "id": Schema.String, "title": Schema.String })
 export type CloudintegrationtypesStorableIntegrationDashboard = { readonly "createdAt": string, readonly "dashboardId": string, readonly "id": string, readonly "provider": string, readonly "slug": string, readonly "updatedAt": string }
@@ -102,8 +122,6 @@ export type CloudintegrationtypesUpdatableAzureAccountConfig = { readonly "resou
 export const CloudintegrationtypesUpdatableAzureAccountConfig = Schema.Struct({ "resourceGroups": Schema.Array(Schema.String) })
 export type CloudintegrationtypesUpdatableGCPAccountConfig = { readonly "deploymentProjectId": string, readonly "deploymentRegion": string, readonly "projectIds": ReadonlyArray<string> }
 export const CloudintegrationtypesUpdatableGCPAccountConfig = Schema.Struct({ "deploymentProjectId": Schema.String, "deploymentRegion": Schema.String, "projectIds": Schema.Union([Schema.Array(Schema.String)]) })
-export type CommonDisplay = { readonly "description"?: string, readonly "name"?: string }
-export const CommonDisplay = Schema.Struct({ "description": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String) })
 export type CommonJSONRef = { readonly "$ref"?: string }
 export const CommonJSONRef = Schema.Struct({ "$ref": Schema.optionalKey(Schema.String) })
 export type ConfigAuthorization = { readonly "credentials"?: string, readonly "credentials_file"?: string, readonly "credentials_ref"?: string, readonly "type"?: string }
@@ -150,8 +168,8 @@ export type ConfigURL = {  }
 export const ConfigURL = Schema.Struct({  })
 export type ConfigURLType2 = {  }
 export const ConfigURLType2 = Schema.Struct({  })
-export type CoretypesKind = "anonymous" | "organization" | "role" | "serviceaccount" | "user" | "notification-channel" | "route-policy" | "apdex-setting" | "auth-domain" | "session" | "cloud-integration" | "cloud-integration-service" | "integration" | "dashboard" | "public-dashboard" | "ingestion-key" | "ingestion-limit" | "pipeline" | "user-preference" | "org-preference" | "quick-filter" | "ttl-setting" | "rule" | "planned-maintenance" | "saved-view" | "trace-funnel" | "factor-password" | "factor-api-key" | "license" | "subscription" | "logs" | "traces" | "metrics" | "audit-logs" | "meter-metrics" | "logs-field" | "traces-field"
-export const CoretypesKind = Schema.Literals(["anonymous", "organization", "role", "serviceaccount", "user", "notification-channel", "route-policy", "apdex-setting", "auth-domain", "session", "cloud-integration", "cloud-integration-service", "integration", "dashboard", "public-dashboard", "ingestion-key", "ingestion-limit", "pipeline", "user-preference", "org-preference", "quick-filter", "ttl-setting", "rule", "planned-maintenance", "saved-view", "trace-funnel", "factor-password", "factor-api-key", "license", "subscription", "logs", "traces", "metrics", "audit-logs", "meter-metrics", "logs-field", "traces-field"])
+export type CoretypesKind = "anonymous" | "organization" | "role" | "serviceaccount" | "user" | "notification-channel" | "route-policy" | "apdex-setting" | "auth-domain" | "session" | "cloud-integration" | "cloud-integration-service" | "integration" | "dashboard" | "public-dashboard" | "ingestion-key" | "ingestion-limit" | "pipeline" | "user-preference" | "org-preference" | "quick-filter" | "ttl-setting" | "rule" | "planned-maintenance" | "saved-view" | "trace-funnel" | "factor-password" | "factor-api-key" | "license" | "subscription" | "deployment-host" | "logs" | "traces" | "metrics" | "audit-logs" | "meter-metrics" | "logs-field" | "traces-field"
+export const CoretypesKind = Schema.Literals(["anonymous", "organization", "role", "serviceaccount", "user", "notification-channel", "route-policy", "apdex-setting", "auth-domain", "session", "cloud-integration", "cloud-integration-service", "integration", "dashboard", "public-dashboard", "ingestion-key", "ingestion-limit", "pipeline", "user-preference", "org-preference", "quick-filter", "ttl-setting", "rule", "planned-maintenance", "saved-view", "trace-funnel", "factor-password", "factor-api-key", "license", "subscription", "deployment-host", "logs", "traces", "metrics", "audit-logs", "meter-metrics", "logs-field", "traces-field"])
 export type CoretypesType = "user" | "serviceaccount" | "anonymous" | "role" | "organization" | "metaresource" | "telemetryresource"
 export const CoretypesType = Schema.Literals(["user", "serviceaccount", "anonymous", "role", "organization", "metaresource", "telemetryresource"])
 export type DashboardGridLayoutCollapse = { readonly "open"?: boolean }
@@ -164,6 +182,8 @@ export type DashboardtypesCustomVariableSpec = { readonly "customValue": string 
 export const DashboardtypesCustomVariableSpec = Schema.Struct({ "customValue": Schema.String })
 export type DashboardtypesDisplay = { readonly "description"?: string, readonly "name": string }
 export const DashboardtypesDisplay = Schema.Struct({ "description": Schema.optionalKey(Schema.String), "name": Schema.String })
+export type DashboardtypesDynamicVariableSignal = "traces" | "logs" | "metrics" | "all"
+export const DashboardtypesDynamicVariableSignal = Schema.Literals(["traces", "logs", "metrics", "all"])
 export type DashboardtypesFillMode = "solid" | "gradient" | "none"
 export const DashboardtypesFillMode = Schema.Literals(["solid", "gradient", "none"])
 export type DashboardtypesGettablePublicDasbhboard = { readonly "defaultTimeRange"?: string, readonly "publicPath"?: string, readonly "timeRangeEnabled"?: boolean }
@@ -194,8 +214,6 @@ export type DashboardtypesPrecisionOption = "0" | "1" | "2" | "3" | "4" | "full"
 export const DashboardtypesPrecisionOption = Schema.Literals(["0", "1", "2", "3", "4", "full"])
 export type DashboardtypesQueryVariableSpec = { readonly "queryValue": string }
 export const DashboardtypesQueryVariableSpec = Schema.Struct({ "queryValue": Schema.String })
-export type DashboardtypesSigNozDatasourceSpec = {  }
-export const DashboardtypesSigNozDatasourceSpec = Schema.Struct({  })
 export type DashboardtypesSource = "user" | "system" | "integration"
 export const DashboardtypesSource = Schema.Literals(["user", "system", "integration"])
 export type DashboardtypesSpanGaps = { readonly "fillLessThan"?: string, readonly "fillOnlyBelow"?: boolean }
@@ -238,32 +256,54 @@ export type InframonitoringtypesCheckComponentType = "receiver" | "processor"
 export const InframonitoringtypesCheckComponentType = Schema.Literals(["receiver", "processor"])
 export type InframonitoringtypesCheckType = "hosts" | "processes" | "pods" | "nodes" | "deployments" | "daemonsets" | "statefulsets" | "jobs" | "namespaces" | "clusters" | "volumes" | "kube_containers"
 export const InframonitoringtypesCheckType = Schema.Literals(["hosts", "processes", "pods", "nodes", "deployments", "daemonsets", "statefulsets", "jobs", "namespaces", "clusters", "volumes", "kube_containers"])
+export type InframonitoringtypesClusterFilter = { readonly "expression"?: string, readonly "filterByNodeReadiness"?: ReadonlyArray<"ready" | "not_ready" | "no_data">, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesClusterFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByNodeReadiness": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["ready", "not_ready", "no_data"]))])), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesContainerCountsByReady = { readonly "notReady": number, readonly "ready": number }
 export const InframonitoringtypesContainerCountsByReady = Schema.Struct({ "notReady": Schema.Number.check(Schema.isInt()), "ready": Schema.Number.check(Schema.isInt()) })
 export type InframonitoringtypesContainerCountsByStatus = { readonly "completed": number, readonly "containerCannotRun": number, readonly "containerCreating": number, readonly "crashLoopBackOff": number, readonly "createContainerConfigError": number, readonly "errImagePull": number, readonly "error": number, readonly "imagePullBackOff": number, readonly "oomKilled": number, readonly "running": number, readonly "terminated": number, readonly "unknown": number, readonly "waiting": number }
 export const InframonitoringtypesContainerCountsByStatus = Schema.Struct({ "completed": Schema.Number.check(Schema.isInt()), "containerCannotRun": Schema.Number.check(Schema.isInt()), "containerCreating": Schema.Number.check(Schema.isInt()), "crashLoopBackOff": Schema.Number.check(Schema.isInt()), "createContainerConfigError": Schema.Number.check(Schema.isInt()), "errImagePull": Schema.Number.check(Schema.isInt()), "error": Schema.Number.check(Schema.isInt()), "imagePullBackOff": Schema.Number.check(Schema.isInt()), "oomKilled": Schema.Number.check(Schema.isInt()), "running": Schema.Number.check(Schema.isInt()), "terminated": Schema.Number.check(Schema.isInt()), "unknown": Schema.Number.check(Schema.isInt()), "waiting": Schema.Number.check(Schema.isInt()) })
+export type InframonitoringtypesContainerFilter = { readonly "expression"?: string, readonly "filterByContainerStatus"?: ReadonlyArray<"running" | "waiting" | "terminated" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "unknown" | "no_data"> }
+export const InframonitoringtypesContainerFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByContainerStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["running", "waiting", "terminated", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "unknown", "no_data"]))])) })
 export type InframonitoringtypesContainerReady = "ready" | "not_ready" | "no_data"
 export const InframonitoringtypesContainerReady = Schema.Literals(["ready", "not_ready", "no_data"])
 export type InframonitoringtypesContainerStatus = "running" | "waiting" | "terminated" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "unknown" | "no_data"
 export const InframonitoringtypesContainerStatus = Schema.Literals(["running", "waiting", "terminated", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "unknown", "no_data"])
+export type InframonitoringtypesDaemonSetFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesDaemonSetFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
+export type InframonitoringtypesDeploymentFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesDeploymentFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesHostStatus = "active" | "inactive" | ""
 export const InframonitoringtypesHostStatus = Schema.Literals(["active", "inactive", ""])
+export type InframonitoringtypesJobFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesJobFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
+export type InframonitoringtypesNamespaceFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesNamespaceFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesNodeCondition = "ready" | "not_ready" | "no_data"
 export const InframonitoringtypesNodeCondition = Schema.Literals(["ready", "not_ready", "no_data"])
 export type InframonitoringtypesNodeCountsByReadiness = { readonly "notReady": number, readonly "ready": number }
 export const InframonitoringtypesNodeCountsByReadiness = Schema.Struct({ "notReady": Schema.Number.check(Schema.isInt()), "ready": Schema.Number.check(Schema.isInt()) })
-export type InframonitoringtypesPodCountsByPhase = { readonly "failed": number, readonly "pending": number, readonly "running": number, readonly "succeeded": number, readonly "unknown": number }
-export const InframonitoringtypesPodCountsByPhase = Schema.Struct({ "failed": Schema.Number.check(Schema.isInt()), "pending": Schema.Number.check(Schema.isInt()), "running": Schema.Number.check(Schema.isInt()), "succeeded": Schema.Number.check(Schema.isInt()), "unknown": Schema.Number.check(Schema.isInt()) })
+export type InframonitoringtypesNodeFilter = { readonly "expression"?: string, readonly "filterByNodeReadiness"?: ReadonlyArray<"ready" | "not_ready" | "no_data">, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesNodeFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByNodeReadiness": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["ready", "not_ready", "no_data"]))])), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesPodCountsByStatus = { readonly "completed": number, readonly "containerCannotRun": number, readonly "containerCreating": number, readonly "crashLoopBackOff": number, readonly "createContainerConfigError": number, readonly "errImagePull": number, readonly "error": number, readonly "evicted": number, readonly "failed": number, readonly "imagePullBackOff": number, readonly "nodeAffinity": number, readonly "nodeLost": number, readonly "oomKilled": number, readonly "pending": number, readonly "running": number, readonly "shutdown": number, readonly "unexpectedAdmissionError": number, readonly "unknown": number }
 export const InframonitoringtypesPodCountsByStatus = Schema.Struct({ "completed": Schema.Number.check(Schema.isInt()), "containerCannotRun": Schema.Number.check(Schema.isInt()), "containerCreating": Schema.Number.check(Schema.isInt()), "crashLoopBackOff": Schema.Number.check(Schema.isInt()), "createContainerConfigError": Schema.Number.check(Schema.isInt()), "errImagePull": Schema.Number.check(Schema.isInt()), "error": Schema.Number.check(Schema.isInt()), "evicted": Schema.Number.check(Schema.isInt()), "failed": Schema.Number.check(Schema.isInt()), "imagePullBackOff": Schema.Number.check(Schema.isInt()), "nodeAffinity": Schema.Number.check(Schema.isInt()), "nodeLost": Schema.Number.check(Schema.isInt()), "oomKilled": Schema.Number.check(Schema.isInt()), "pending": Schema.Number.check(Schema.isInt()), "running": Schema.Number.check(Schema.isInt()), "shutdown": Schema.Number.check(Schema.isInt()), "unexpectedAdmissionError": Schema.Number.check(Schema.isInt()), "unknown": Schema.Number.check(Schema.isInt()) })
-export type InframonitoringtypesPodPhase = "pending" | "running" | "succeeded" | "failed" | "unknown" | "no_data"
-export const InframonitoringtypesPodPhase = Schema.Literals(["pending", "running", "succeeded", "failed", "unknown", "no_data"])
+export type InframonitoringtypesPodFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesPodFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesPodStatus = "pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"
 export const InframonitoringtypesPodStatus = Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"])
 export type InframonitoringtypesResponseType = "list" | "grouped_list"
 export const InframonitoringtypesResponseType = Schema.Literals(["list", "grouped_list"])
+export type InframonitoringtypesStatefulSetFilter = { readonly "expression"?: string, readonly "filterByPodStatus"?: ReadonlyArray<"pending" | "running" | "failed" | "unknown" | "crashloopbackoff" | "imagepullbackoff" | "errimagepull" | "createcontainerconfigerror" | "containercreating" | "oomkilled" | "completed" | "error" | "containercannotrun" | "evicted" | "nodeaffinity" | "nodelost" | "shutdown" | "unexpectedadmissionerror" | "no_data"> }
+export const InframonitoringtypesStatefulSetFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByPodStatus": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["pending", "running", "failed", "unknown", "crashloopbackoff", "imagepullbackoff", "errimagepull", "createcontainerconfigerror", "containercreating", "oomkilled", "completed", "error", "containercannotrun", "evicted", "nodeaffinity", "nodelost", "shutdown", "unexpectedadmissionerror", "no_data"]))])) })
 export type InframonitoringtypesVolumeRecord = { readonly "meta": {  }, readonly "persistentVolumeClaimName": string, readonly "volumeAvailable": number, readonly "volumeCapacity": number, readonly "volumeInodes": number, readonly "volumeInodesFree": number, readonly "volumeInodesUsed": number, readonly "volumeUsage": number }
 export const InframonitoringtypesVolumeRecord = Schema.Struct({ "meta": Schema.Union([Schema.Struct({  })]), "persistentVolumeClaimName": Schema.String, "volumeAvailable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "volumeCapacity": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "volumeInodes": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "volumeInodesFree": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "volumeInodesUsed": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "volumeUsage": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) })
+export type LicensetypesFeature = { readonly "active"?: boolean, readonly "name"?: string, readonly "route"?: string, readonly "usage"?: number, readonly "usage_limit"?: number }
+export const LicensetypesFeature = Schema.Struct({ "active": Schema.optionalKey(Schema.Boolean), "name": Schema.optionalKey(Schema.String), "route": Schema.optionalKey(Schema.String), "usage": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "usage_limit": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())) })
+export type LicensetypesLicenseEventQueue = { readonly "createdAt": string, readonly "event": string, readonly "scheduledAt": string, readonly "status": string, readonly "updatedAt": string }
+export const LicensetypesLicenseEventQueue = Schema.Struct({ "createdAt": Schema.String.annotate({ "format": "date-time" }), "event": Schema.String, "scheduledAt": Schema.String.annotate({ "format": "date-time" }), "status": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }) })
+export type LicensetypesLicensePlan = { readonly "createdAt": string, readonly "description": string, readonly "id": string, readonly "isActive": boolean, readonly "name": string, readonly "updatedAt": string }
+export const LicensetypesLicensePlan = Schema.Struct({ "createdAt": Schema.String.annotate({ "format": "date-time" }), "description": Schema.String, "id": Schema.String, "isActive": Schema.Boolean, "name": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }) })
+export type LicensetypesPostableLicense = { readonly "key"?: string }
+export const LicensetypesPostableLicense = Schema.Struct({ "key": Schema.optionalKey(Schema.String.annotate({ "format": "password" })) })
 export type LlmpricingruletypesGettableUnmappedModels = { readonly "items": ReadonlyArray<{ readonly "modelName": string, readonly "provider"?: string, readonly "spanCount": number }> }
 export const LlmpricingruletypesGettableUnmappedModels = Schema.Struct({ "items": Schema.Union([Schema.Array(Schema.Struct({ "modelName": Schema.String, "provider": Schema.optionalKey(Schema.String), "spanCount": Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0)) }))]) })
 export type LlmpricingruletypesLLMPricingRuleCacheMode = "subtract" | "additive" | "unknown"
@@ -318,6 +358,10 @@ export type PreferencetypesUpdatablePreference = { readonly "value"?: Schema.Jso
 export const PreferencetypesUpdatablePreference = Schema.Struct({ "value": Schema.optionalKey(Schema.Json) })
 export type PreferencetypesValue = {  }
 export const PreferencetypesValue = Schema.Struct({  })
+export type PrometheusErrorResponseSchema = { readonly "error": string, readonly "errorType": "bad_data" | "execution" | "canceled" | "timeout" | "internal", readonly "status": "error" }
+export const PrometheusErrorResponseSchema = Schema.Struct({ "error": Schema.String, "errorType": Schema.Literals(["bad_data", "execution", "canceled", "timeout", "internal"]), "status": Schema.Literal("error") })
+export type PrometheusSamplePairSchema = ReadonlyArray<number | string>
+export const PrometheusSamplePairSchema = Schema.Union([Schema.Array(Schema.Union([Schema.Number.check(Schema.isFinite()), Schema.String], { mode: "oneOf" })).check(Schema.makeFilterGroup([Schema.isMinLength(2), Schema.isMaxLength(2)], { "description": "A [timestamp, value] pair: float unix seconds, then the string-encoded sample value (\"NaN\", \"+Inf\", \"-Inf\" included)." }))])
 export type Querybuildertypesv5Bucket = { readonly "step"?: number }
 export const Querybuildertypesv5Bucket = Schema.Struct({ "step": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())) })
 export type Querybuildertypesv5ClickHouseQuery = { readonly "disabled"?: boolean, readonly "legend"?: string, readonly "name"?: string, readonly "query"?: string }
@@ -340,8 +384,8 @@ export type Querybuildertypesv5OrderDirection = "asc" | "desc"
 export const Querybuildertypesv5OrderDirection = Schema.Literals(["asc", "desc"])
 export type Querybuildertypesv5QueryRangePreviewResponse = { readonly "compositeQuery": {  } }
 export const Querybuildertypesv5QueryRangePreviewResponse = Schema.Struct({ "compositeQuery": Schema.Union([Schema.Struct({  })]) }).annotate({ "description": "Response from the v5 query range preview (dry-run) endpoint. For each query in the composite query, returns the underlying ClickHouse statement(s) it renders to without executing them (one per PromQL metric selector; exactly one for builder/ClickHouse/trace-operator queries), with the optional EXPLAIN ESTIMATE and granule analysis attached per statement when requested." })
-export type Querybuildertypesv5QueryType = "builder_query" | "builder_formula" | "builder_trace_operator" | "clickhouse_sql" | "promql"
-export const Querybuildertypesv5QueryType = Schema.Literals(["builder_query", "builder_formula", "builder_trace_operator", "clickhouse_sql", "promql"])
+export type Querybuildertypesv5QueryType = "builder_query" | "builder_ai_query" | "builder_formula" | "builder_trace_operator" | "clickhouse_sql" | "promql"
+export const Querybuildertypesv5QueryType = Schema.Literals(["builder_query", "builder_ai_query", "builder_formula", "builder_trace_operator", "clickhouse_sql", "promql"])
 export type Querybuildertypesv5QueryWarnDataAdditional = { readonly "message"?: string }
 export const Querybuildertypesv5QueryWarnDataAdditional = Schema.Struct({ "message": Schema.optionalKey(Schema.String) })
 export type Querybuildertypesv5RawRow = { readonly "data"?: { readonly [x: string]: Schema.Json } | null, readonly "timestamp"?: string }
@@ -354,12 +398,14 @@ export type Querybuildertypesv5Step = string | number
 export const Querybuildertypesv5Step = Schema.Union([Schema.String.annotate({ "description": "Duration string (e.g., \"60s\", \"5m\", \"1h\").", "examples": ["60s"] }), Schema.Number.annotate({ "description": "Duration in seconds.", "examples": [60] }).check(Schema.isFinite())], { mode: "oneOf" }).annotate({ "description": "Step interval. Accepts a Go duration string (e.g., \"60s\", \"1m\", \"1h\") or a number representing seconds (e.g., 60)." })
 export type Querybuildertypesv5VariableType = "query" | "dynamic" | "custom" | "text"
 export const Querybuildertypesv5VariableType = Schema.Literals(["query", "dynamic", "custom", "text"])
+export type QuickfiltertypesSource = "traces" | "logs" | "api_monitoring" | "exceptions" | "meter" | "ai_observability"
+export const QuickfiltertypesSource = Schema.Literals(["traces", "logs", "api_monitoring", "exceptions", "meter", "ai_observability"])
 export type RuletypesAlertState = "inactive" | "pending" | "recovering" | "firing" | "nodata" | "disabled"
 export const RuletypesAlertState = Schema.Literals(["inactive", "pending", "recovering", "firing", "nodata", "disabled"])
 export type RuletypesAlertType = "METRIC_BASED_ALERT" | "TRACES_BASED_ALERT" | "LOGS_BASED_ALERT" | "EXCEPTIONS_BASED_ALERT"
 export const RuletypesAlertType = Schema.Literals(["METRIC_BASED_ALERT", "TRACES_BASED_ALERT", "LOGS_BASED_ALERT", "EXCEPTIONS_BASED_ALERT"])
-export type RuletypesCompareOperator = "above" | "below" | "equal" | "not_equal" | "outside_bounds"
-export const RuletypesCompareOperator = Schema.Literals(["above", "below", "equal", "not_equal", "outside_bounds"])
+export type RuletypesCompareOperator = "above" | "below" | "equal" | "not_equal" | "above_or_equal" | "below_or_equal" | "outside_bounds"
+export const RuletypesCompareOperator = Schema.Literals(["above", "below", "equal", "not_equal", "above_or_equal", "below_or_equal", "outside_bounds"])
 export type RuletypesEvaluationKind = "rolling" | "cumulative"
 export const RuletypesEvaluationKind = Schema.Literals(["rolling", "cumulative"])
 export type RuletypesGettableTestRule = { readonly "alertCount"?: number, readonly "message"?: string }
@@ -382,8 +428,14 @@ export type RuletypesSeasonality = "hourly" | "daily" | "weekly"
 export const RuletypesSeasonality = Schema.Literals(["hourly", "daily", "weekly"])
 export type RuletypesThresholdKind = "basic"
 export const RuletypesThresholdKind = Schema.Literal("basic")
-export type ServiceaccounttypesDeprecatedPostableServiceAccountRole = { readonly "id": string }
-export const ServiceaccounttypesDeprecatedPostableServiceAccountRole = Schema.Struct({ "id": Schema.String })
+export type SavedviewtypesDisplay = { readonly "color"?: string, readonly "fontSize"?: string, readonly "format"?: string, readonly "maxLines"?: number }
+export const SavedviewtypesDisplay = Schema.Struct({ "color": Schema.optionalKey(Schema.String), "fontSize": Schema.optionalKey(Schema.String), "format": Schema.optionalKey(Schema.String), "maxLines": Schema.optionalKey(Schema.Number.check(Schema.isInt())) })
+export type SavedviewtypesPanelType = "value" | "graph" | "table" | "list" | "trace"
+export const SavedviewtypesPanelType = Schema.Literals(["value", "graph", "table", "list", "trace"])
+export type SavedviewtypesSchemaVersion = "v2"
+export const SavedviewtypesSchemaVersion = Schema.Literal("v2")
+export type SavedviewtypesSource = "traces" | "logs" | "metrics" | "meter" | "ai_observability"
+export const SavedviewtypesSource = Schema.Literals(["traces", "logs", "metrics", "meter", "ai_observability"])
 export type ServiceaccounttypesGettableFactorAPIKey = { readonly "createdAt"?: string, readonly "expiresAt": number, readonly "id": string, readonly "lastObservedAt": string, readonly "name"?: string, readonly "serviceAccountId": string, readonly "updatedAt"?: string }
 export const ServiceaccounttypesGettableFactorAPIKey = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "expiresAt": Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0)), "id": Schema.String, "lastObservedAt": Schema.String.annotate({ "format": "date-time" }), "name": Schema.optionalKey(Schema.String), "serviceAccountId": Schema.String, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
 export type ServiceaccounttypesGettableFactorAPIKeyWithKey = { readonly "id": string, readonly "key": string }
@@ -414,14 +466,20 @@ export type SpantypesSpanMapperGroupCondition = { readonly "attributes": Readonl
 export const SpantypesSpanMapperGroupCondition = Schema.Union([Schema.Struct({ "attributes": Schema.Union([Schema.Array(Schema.String)]), "resource": Schema.Union([Schema.Array(Schema.String)]) })])
 export type SpantypesSpanMapperOperation = "move" | "copy"
 export const SpantypesSpanMapperOperation = Schema.Literals(["move", "copy"])
+export type SubscriptiontypesGettableSubscription = { readonly "redirectURL": string }
+export const SubscriptiontypesGettableSubscription = Schema.Struct({ "redirectURL": Schema.String })
+export type SubscriptiontypesPostableSubscription = { readonly "url": string }
+export const SubscriptiontypesPostableSubscription = Schema.Struct({ "url": Schema.String })
+export type SubscriptiontypesSubscriptionUsageDayWiseBreakdown = { readonly "breakdown"?: ReadonlyArray<{ readonly "count"?: number, readonly "quantity"?: number, readonly "size"?: number, readonly "timestamp"?: number, readonly "total"?: number, readonly "unitPrice"?: number }>, readonly "type"?: string }
+export const SubscriptiontypesSubscriptionUsageDayWiseBreakdown = Schema.Struct({ "breakdown": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "count": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "quantity": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "size": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "timestamp": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "total": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "unitPrice": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())) }))])), "type": Schema.optionalKey(Schema.String) })
 export type TagtypesGettableTag = { readonly "key": string, readonly "value": string }
 export const TagtypesGettableTag = Schema.Struct({ "key": Schema.String, "value": Schema.String })
 export type TelemetrystoretypesEstimateEntry = { readonly "database": string, readonly "marks": number, readonly "parts": number, readonly "rows": number, readonly "table": string }
 export const TelemetrystoretypesEstimateEntry = Schema.Struct({ "database": Schema.String, "marks": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "parts": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "rows": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "table": Schema.String })
 export type TelemetrystoretypesIndexStep = { readonly "condition": string, readonly "initialGranules": number, readonly "initialParts": number, readonly "keys": ReadonlyArray<string>, readonly "name": string, readonly "selectedGranules": number, readonly "selectedParts": number, readonly "type": string }
 export const TelemetrystoretypesIndexStep = Schema.Struct({ "condition": Schema.String, "initialGranules": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "initialParts": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "keys": Schema.Array(Schema.String), "name": Schema.String, "selectedGranules": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "selectedParts": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "type": Schema.String })
-export type TelemetrytypesFieldContext = "metric" | "log" | "span" | "resource" | "attribute" | "body" | ""
-export const TelemetrytypesFieldContext = Schema.Literals(["metric", "log", "span", "resource", "attribute", "body", ""])
+export type TelemetrytypesFieldContext = "metric" | "log" | "span" | "trace" | "resource" | "scope" | "attribute" | "body" | ""
+export const TelemetrytypesFieldContext = Schema.Literals(["metric", "log", "span", "trace", "resource", "scope", "attribute", "body", ""])
 export type TelemetrytypesFieldDataType = "string" | "bool" | "float64" | "int64" | "number" | ""
 export const TelemetrytypesFieldDataType = Schema.Literals(["string", "bool", "float64", "int64", "number", ""])
 export type TelemetrytypesGettableFieldKeys = { readonly "complete": boolean, readonly "keys": {  } }
@@ -438,22 +496,14 @@ export type TypesAlertStatus = { readonly "inhibitedBy"?: ReadonlyArray<string>,
 export const TypesAlertStatus = Schema.Struct({ "inhibitedBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "silencedBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "state": Schema.optionalKey(Schema.String) })
 export type TypesChangePasswordRequest = { readonly "newPassword"?: string, readonly "oldPassword"?: string }
 export const TypesChangePasswordRequest = Schema.Struct({ "newPassword": Schema.optionalKey(Schema.String), "oldPassword": Schema.optionalKey(Schema.String) })
-export type TypesDeprecatedUser = { readonly "createdAt"?: string, readonly "displayName"?: string, readonly "email"?: string, readonly "id": string, readonly "isRoot"?: boolean, readonly "orgId"?: string, readonly "role"?: string, readonly "status"?: string, readonly "updatedAt"?: string }
-export const TypesDeprecatedUser = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "displayName": Schema.optionalKey(Schema.String), "email": Schema.optionalKey(Schema.String), "id": Schema.String, "isRoot": Schema.optionalKey(Schema.Boolean), "orgId": Schema.optionalKey(Schema.String), "role": Schema.optionalKey(Schema.String), "status": Schema.optionalKey(Schema.String), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
 export type TypesIdentifiable = { readonly "id": string }
 export const TypesIdentifiable = Schema.Struct({ "id": Schema.String })
-export type TypesInvite = { readonly "createdAt"?: string, readonly "email"?: string, readonly "id": string, readonly "inviteLink"?: string, readonly "name"?: string, readonly "orgId"?: string, readonly "role"?: string, readonly "token"?: string, readonly "updatedAt"?: string }
-export const TypesInvite = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "email": Schema.optionalKey(Schema.String), "id": Schema.String, "inviteLink": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String), "orgId": Schema.optionalKey(Schema.String), "role": Schema.optionalKey(Schema.String), "token": Schema.optionalKey(Schema.String), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
 export type TypesOrganization = { readonly "alias"?: string, readonly "createdAt"?: string, readonly "displayName"?: string, readonly "id": string, readonly "key"?: number, readonly "name"?: string, readonly "updatedAt"?: string }
 export const TypesOrganization = Schema.Struct({ "alias": Schema.optionalKey(Schema.String), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "displayName": Schema.optionalKey(Schema.String), "id": Schema.String, "key": Schema.optionalKey(Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0))), "name": Schema.optionalKey(Schema.String), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
 export type TypesPostableForgotPassword = { readonly "email": string, readonly "frontendBaseURL"?: string, readonly "orgId": string }
 export const TypesPostableForgotPassword = Schema.Struct({ "email": Schema.String, "frontendBaseURL": Schema.optionalKey(Schema.String), "orgId": Schema.String })
-export type TypesPostableInvite = { readonly "email"?: string, readonly "frontendBaseUrl"?: string, readonly "name"?: string, readonly "role"?: string }
-export const TypesPostableInvite = Schema.Struct({ "email": Schema.optionalKey(Schema.String), "frontendBaseUrl": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String), "role": Schema.optionalKey(Schema.String) })
 export type TypesPostableResetPassword = { readonly "password"?: string, readonly "token"?: string }
 export const TypesPostableResetPassword = Schema.Struct({ "password": Schema.optionalKey(Schema.String), "token": Schema.optionalKey(Schema.String) })
-export type TypesPostableRole = { readonly "name": string }
-export const TypesPostableRole = Schema.Struct({ "name": Schema.String })
 export type TypesPostableVerifyResetPasswordToken = { readonly "token": string }
 export const TypesPostableVerifyResetPasswordToken = Schema.Struct({ "token": Schema.String })
 export type TypesResetPasswordToken = { readonly "expiresAt"?: string, readonly "id": string, readonly "passwordId"?: string, readonly "token"?: string }
@@ -472,16 +522,18 @@ export type SignoztypesInt64 = number | string
 export const SignoztypesInt64 = Schema.Union([Schema.Number.check(Schema.isFinite()).check(Schema.isGreaterThanOrEqualTo(0)).check(Schema.isMultipleOf(1)), Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+$")))], { mode: "oneOf" }).annotate({ "description": "A non-negative int64 value. JSON numbers may already have lost precision; strings preserve the exact value." })
 export type SignoztypesFloat64 = number | "NaN" | "Inf" | "+Inf" | "-Inf" | "Infinity" | "+Infinity" | "-Infinity"
 export const SignoztypesFloat64 = Schema.Union([Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), Schema.Literals(["NaN", "Inf", "+Inf", "-Inf", "Infinity", "+Infinity", "-Infinity"])], { mode: "oneOf" }).annotate({ "description": "A float64 value. Finite values are numbers; non-finite values are serialized by the SigNoz API as one of these JSON string tokens (JSON has no NaN/Infinity literal)." })
+export type AlertmanagertypesChannelConfig = { readonly "kind": "slack", readonly "spec": AlertmanagertypesChannelSlackConfig } | { readonly "kind": "email", readonly "spec": AlertmanagertypesChannelEmailConfig } | { readonly "kind": "webhook", readonly "spec": AlertmanagertypesChannelWebhookConfig } | { readonly "kind": "pagerduty", readonly "spec": AlertmanagertypesChannelPagerdutyConfig } | { readonly "kind": "opsgenie", readonly "spec": AlertmanagertypesChannelOpsgenieConfig } | { readonly "kind": "msteams", readonly "spec": AlertmanagertypesChannelMSTeamsConfig } | { readonly "kind": "googlechat", readonly "spec": AlertmanagertypesChannelGoogleChatConfig } | { readonly "kind": "jira", readonly "spec": AlertmanagertypesChannelJiraConfig } | { readonly "kind": "jsmops", readonly "spec": AlertmanagertypesChannelJSMOpsConfig } | { readonly "kind": "incidentio", readonly "spec": AlertmanagertypesChannelIncidentIOConfig }
+export const AlertmanagertypesChannelConfig = Schema.Union([Schema.Struct({ "kind": Schema.Literal("slack"), "spec": AlertmanagertypesChannelSlackConfig }), Schema.Struct({ "kind": Schema.Literal("email"), "spec": AlertmanagertypesChannelEmailConfig }), Schema.Struct({ "kind": Schema.Literal("webhook"), "spec": AlertmanagertypesChannelWebhookConfig }), Schema.Struct({ "kind": Schema.Literal("pagerduty"), "spec": AlertmanagertypesChannelPagerdutyConfig }), Schema.Struct({ "kind": Schema.Literal("opsgenie"), "spec": AlertmanagertypesChannelOpsgenieConfig }), Schema.Struct({ "kind": Schema.Literal("msteams"), "spec": AlertmanagertypesChannelMSTeamsConfig }), Schema.Struct({ "kind": Schema.Literal("googlechat"), "spec": AlertmanagertypesChannelGoogleChatConfig }), Schema.Struct({ "kind": Schema.Literal("jira"), "spec": AlertmanagertypesChannelJiraConfig }), Schema.Struct({ "kind": Schema.Literal("jsmops"), "spec": AlertmanagertypesChannelJSMOpsConfig }), Schema.Struct({ "kind": Schema.Literal("incidentio"), "spec": AlertmanagertypesChannelIncidentIOConfig })], { mode: "oneOf" })
 export type AlertmanagertypesGettableRoutePolicy = { readonly "channels": ReadonlyArray<string>, readonly "createdAt": string, readonly "createdBy"?: string | null, readonly "description"?: string, readonly "expression": string, readonly "id": string, readonly "kind"?: AlertmanagertypesExpressionKind, readonly "name": string, readonly "tags"?: ReadonlyArray<string>, readonly "updatedAt": string, readonly "updatedBy"?: string | null }
 export const AlertmanagertypesGettableRoutePolicy = Schema.Struct({ "channels": Schema.Union([Schema.Array(Schema.String)]), "createdAt": Schema.String.annotate({ "format": "date-time" }), "createdBy": Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])), "description": Schema.optionalKey(Schema.String), "expression": Schema.String, "id": Schema.String, "kind": Schema.optionalKey(AlertmanagertypesExpressionKind), "name": Schema.String, "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updatedAt": Schema.String.annotate({ "format": "date-time" }), "updatedBy": Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])) })
 export type AlertmanagertypesPostableRoutePolicy = { readonly "channels": ReadonlyArray<string>, readonly "description"?: string, readonly "expression": string, readonly "kind"?: AlertmanagertypesExpressionKind, readonly "name": string, readonly "tags"?: ReadonlyArray<string> }
 export const AlertmanagertypesPostableRoutePolicy = Schema.Struct({ "channels": Schema.Union([Schema.Array(Schema.String)]), "description": Schema.optionalKey(Schema.String), "expression": Schema.String, "kind": Schema.optionalKey(AlertmanagertypesExpressionKind), "name": Schema.String, "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])) })
 export type AlertmanagertypesRecurrence = { readonly "duration": string, readonly "repeatOn"?: ReadonlyArray<"sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday">, readonly "repeatType": AlertmanagertypesRepeatType }
 export const AlertmanagertypesRecurrence = Schema.Struct({ "duration": Schema.String, "repeatOn": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Literals(["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]))])), "repeatType": AlertmanagertypesRepeatType })
-export type AuthtypesOIDCConfig = { readonly "claimMapping"?: AuthtypesAttributeMapping, readonly "clientId"?: string, readonly "clientSecret"?: string, readonly "getUserInfo"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "issuer"?: string, readonly "issuerAlias"?: string }
-export const AuthtypesOIDCConfig = Schema.Struct({ "claimMapping": Schema.optionalKey(AuthtypesAttributeMapping), "clientId": Schema.optionalKey(Schema.String), "clientSecret": Schema.optionalKey(Schema.String), "getUserInfo": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "issuer": Schema.optionalKey(Schema.String), "issuerAlias": Schema.optionalKey(Schema.String) })
-export type AuthtypesSamlConfig = { readonly "attributeMapping"?: AuthtypesAttributeMapping, readonly "insecureSkipAuthNRequestsSigned"?: boolean, readonly "samlCert"?: string, readonly "samlEntity"?: string, readonly "samlIdp"?: string }
-export const AuthtypesSamlConfig = Schema.Struct({ "attributeMapping": Schema.optionalKey(AuthtypesAttributeMapping), "insecureSkipAuthNRequestsSigned": Schema.optionalKey(Schema.Boolean), "samlCert": Schema.optionalKey(Schema.String), "samlEntity": Schema.optionalKey(Schema.String), "samlIdp": Schema.optionalKey(Schema.String) })
+export type AuthtypesOIDCConfig = { readonly "claimMapping"?: AuthtypesAttributeMapping, readonly "clientId": string, readonly "clientSecret": string, readonly "getUserInfo"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "issuer": string, readonly "issuerAlias"?: string }
+export const AuthtypesOIDCConfig = Schema.Struct({ "claimMapping": Schema.optionalKey(AuthtypesAttributeMapping), "clientId": Schema.String, "clientSecret": Schema.String.annotate({ "format": "password" }), "getUserInfo": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "issuer": Schema.String, "issuerAlias": Schema.optionalKey(Schema.String) })
+export type AuthtypesSamlConfig = { readonly "attributeMapping"?: AuthtypesAttributeMapping, readonly "certificate": string, readonly "entityId": string, readonly "insecureSkipAuthNRequestsSigned"?: boolean, readonly "location": string }
+export const AuthtypesSamlConfig = Schema.Struct({ "attributeMapping": Schema.optionalKey(AuthtypesAttributeMapping), "certificate": Schema.String, "entityId": Schema.String, "insecureSkipAuthNRequestsSigned": Schema.optionalKey(Schema.Boolean), "location": Schema.String })
 export type AuthtypesAuthNSupport = { readonly "callback"?: ReadonlyArray<{ readonly "provider"?: AuthtypesAuthNProvider, readonly "url"?: string }>, readonly "password"?: ReadonlyArray<{ readonly "provider"?: AuthtypesAuthNProvider }> }
 export const AuthtypesAuthNSupport = Schema.Struct({ "callback": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "provider": Schema.optionalKey(AuthtypesAuthNProvider), "url": Schema.optionalKey(Schema.String) }))])), "password": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "provider": Schema.optionalKey(AuthtypesAuthNProvider) }))])) })
 export type AuthtypesPostableUser = { readonly "displayName"?: string, readonly "email": string, readonly "frontendBaseUrl"?: string, readonly "userRoles"?: ReadonlyArray<AuthtypesDeprecatedPostableUserRole> }
@@ -528,6 +580,8 @@ export type DashboardtypesListedDashboardV2Spec = { readonly "display"?: Dashboa
 export const DashboardtypesListedDashboardV2Spec = Schema.Struct({ "display": Schema.optionalKey(DashboardtypesDisplay) })
 export type DashboardtypesTextVariableSpec = { readonly "constant"?: boolean, readonly "display": DashboardtypesDisplay, readonly "name": string, readonly "value": string }
 export const DashboardtypesTextVariableSpec = Schema.Struct({ "constant": Schema.optionalKey(Schema.Boolean), "display": DashboardtypesDisplay, "name": Schema.String.check(Schema.isMinLength(1)), "value": Schema.String })
+export type DashboardtypesDynamicVariableSpec = { readonly "name": string, readonly "signal": DashboardtypesDynamicVariableSignal }
+export const DashboardtypesDynamicVariableSpec = Schema.Struct({ "name": Schema.String, "signal": DashboardtypesDynamicVariableSignal })
 export type DashboardtypesLegend = { readonly "customColors"?: {  }, readonly "mode"?: DashboardtypesLegendMode, readonly "position"?: DashboardtypesLegendPosition }
 export const DashboardtypesLegend = Schema.Struct({ "customColors": Schema.optionalKey(Schema.Union([Schema.Struct({  })])), "mode": Schema.optionalKey(DashboardtypesLegendMode), "position": Schema.optionalKey(DashboardtypesLegendPosition) })
 export type DashboardtypesDashboardViewData = { readonly "order"?: DashboardtypesListOrder, readonly "query"?: string, readonly "sort"?: DashboardtypesListSort, readonly "version": string }
@@ -538,8 +592,6 @@ export type DashboardtypesPanelFormatting = { readonly "decimalPrecision"?: Dash
 export const DashboardtypesPanelFormatting = Schema.Struct({ "decimalPrecision": Schema.optionalKey(DashboardtypesPrecisionOption), "unit": Schema.optionalKey(Schema.String) })
 export type DashboardtypesTableFormatting = { readonly "columnUnits"?: {  }, readonly "decimalPrecision"?: DashboardtypesPrecisionOption }
 export const DashboardtypesTableFormatting = Schema.Struct({ "columnUnits": Schema.optionalKey(Schema.Union([Schema.Struct({  })])), "decimalPrecision": Schema.optionalKey(DashboardtypesPrecisionOption) })
-export type DashboardtypesDatasourcePlugin = { readonly "kind": "signoz/Datasource", readonly "spec": DashboardtypesSigNozDatasourceSpec }
-export const DashboardtypesDatasourcePlugin = Schema.Union([Schema.Struct({ "kind": Schema.Literal("signoz/Datasource"), "spec": DashboardtypesSigNozDatasourceSpec })], { mode: "oneOf" })
 export type DashboardtypesTimeSeriesChartAppearance = { readonly "fillMode"?: DashboardtypesFillMode, readonly "lineInterpolation"?: DashboardtypesLineInterpolation, readonly "lineStyle"?: DashboardtypesLineStyle, readonly "showPoints"?: boolean, readonly "spanGaps"?: DashboardtypesSpanGaps }
 export const DashboardtypesTimeSeriesChartAppearance = Schema.Struct({ "fillMode": Schema.optionalKey(DashboardtypesFillMode), "lineInterpolation": Schema.optionalKey(DashboardtypesLineInterpolation), "lineStyle": Schema.optionalKey(DashboardtypesLineStyle), "showPoints": Schema.optionalKey(Schema.Boolean), "spanGaps": Schema.optionalKey(DashboardtypesSpanGaps) })
 export type DashboardtypesDashboard = { readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "data"?: DashboardtypesStorableDashboardData, readonly "id"?: string, readonly "locked"?: boolean, readonly "org_id"?: string, readonly "source"?: DashboardtypesSource, readonly "updatedAt"?: string, readonly "updatedBy"?: string }
@@ -564,22 +616,28 @@ export type InframonitoringtypesHostFilter = { readonly "expression"?: string, r
 export const InframonitoringtypesHostFilter = Schema.Struct({ "expression": Schema.optionalKey(Schema.String), "filterByStatus": Schema.optionalKey(InframonitoringtypesHostStatus) })
 export type InframonitoringtypesHostRecord = { readonly "activeHostCount": number, readonly "cpu": number, readonly "diskUsage": number, readonly "hostName": string, readonly "inactiveHostCount": number, readonly "load15": number, readonly "memory": number, readonly "meta": {  }, readonly "status": InframonitoringtypesHostStatus, readonly "wait": number }
 export const InframonitoringtypesHostRecord = Schema.Struct({ "activeHostCount": Schema.Number.check(Schema.isInt()), "cpu": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "diskUsage": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "hostName": Schema.String, "inactiveHostCount": Schema.Number.check(Schema.isInt()), "load15": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "memory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "meta": Schema.Union([Schema.Struct({  })]), "status": InframonitoringtypesHostStatus, "wait": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) })
-export type InframonitoringtypesClusterRecord = { readonly "clusterCPU": number, readonly "clusterCPUAllocatable": number, readonly "clusterMemory": number, readonly "clusterMemoryAllocatable": number, readonly "clusterName": string, readonly "counts": { readonly "daemonSets": number, readonly "deployments": number, readonly "jobs": number, readonly "namespaces": number, readonly "nodes": number, readonly "statefulSets": number }, readonly "meta": {  }, readonly "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
-export const InframonitoringtypesClusterRecord = Schema.Struct({ "clusterCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterCPUAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterMemoryAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterName": Schema.String, "counts": Schema.Struct({ "daemonSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "deployments": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "jobs": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "namespaces": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "nodes": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "statefulSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) }), "meta": Schema.Union([Schema.Struct({  })]), "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
-export type InframonitoringtypesDaemonSetRecord = { readonly "currentNodes": number, readonly "daemonSetCPU": number, readonly "daemonSetCPULimit": number, readonly "daemonSetCPURequest": number, readonly "daemonSetMemory": number, readonly "daemonSetMemoryLimit": number, readonly "daemonSetMemoryRequest": number, readonly "daemonSetName": string, readonly "desiredNodes": number, readonly "meta": {  }, readonly "misscheduledNodes": number, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "readyNodes": number }
-export const InframonitoringtypesDaemonSetRecord = Schema.Struct({ "currentNodes": Schema.Number.check(Schema.isInt()), "daemonSetCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetName": Schema.String, "desiredNodes": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "misscheduledNodes": Schema.Number.check(Schema.isInt()), "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "readyNodes": Schema.Number.check(Schema.isInt()) })
-export type InframonitoringtypesDeploymentRecord = { readonly "availablePods": number, readonly "deploymentCPU": number, readonly "deploymentCPULimit": number, readonly "deploymentCPURequest": number, readonly "deploymentMemory": number, readonly "deploymentMemoryLimit": number, readonly "deploymentMemoryRequest": number, readonly "deploymentName": string, readonly "desiredPods": number, readonly "meta": {  }, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
-export const InframonitoringtypesDeploymentRecord = Schema.Struct({ "availablePods": Schema.Number.check(Schema.isInt()), "deploymentCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentName": Schema.String, "desiredPods": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
-export type InframonitoringtypesJobRecord = { readonly "activePods": number, readonly "desiredSuccessfulPods": number, readonly "failedPods": number, readonly "jobCPU": number, readonly "jobCPULimit": number, readonly "jobCPURequest": number, readonly "jobMemory": number, readonly "jobMemoryLimit": number, readonly "jobMemoryRequest": number, readonly "jobName": string, readonly "meta": {  }, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "successfulPods": number }
-export const InframonitoringtypesJobRecord = Schema.Struct({ "activePods": Schema.Number.check(Schema.isInt()), "desiredSuccessfulPods": Schema.Number.check(Schema.isInt()), "failedPods": Schema.Number.check(Schema.isInt()), "jobCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobName": Schema.String, "meta": Schema.Union([Schema.Struct({  })]), "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "successfulPods": Schema.Number.check(Schema.isInt()) })
-export type InframonitoringtypesNamespaceRecord = { readonly "counts": { readonly "daemonSets": number, readonly "deployments": number, readonly "jobs": number, readonly "statefulSets": number }, readonly "meta": {  }, readonly "namespaceCPU": number, readonly "namespaceMemory": number, readonly "namespaceName": string, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
-export const InframonitoringtypesNamespaceRecord = Schema.Struct({ "counts": Schema.Struct({ "daemonSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "deployments": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "jobs": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "statefulSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) }), "meta": Schema.Union([Schema.Struct({  })]), "namespaceCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "namespaceMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "namespaceName": Schema.String, "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
-export type InframonitoringtypesNodeRecord = { readonly "condition": InframonitoringtypesNodeCondition, readonly "meta": {  }, readonly "nodeCPU": number, readonly "nodeCPUAllocatable": number, readonly "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, readonly "nodeMemory": number, readonly "nodeMemoryAllocatable": number, readonly "nodeName": string, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
-export const InframonitoringtypesNodeRecord = Schema.Struct({ "condition": InframonitoringtypesNodeCondition, "meta": Schema.Union([Schema.Struct({  })]), "nodeCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeCPUAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, "nodeMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeMemoryAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeName": Schema.String, "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
-export type InframonitoringtypesStatefulSetRecord = { readonly "currentPods": number, readonly "desiredPods": number, readonly "meta": {  }, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "statefulSetCPU": number, readonly "statefulSetCPULimit": number, readonly "statefulSetCPURequest": number, readonly "statefulSetMemory": number, readonly "statefulSetMemoryLimit": number, readonly "statefulSetMemoryRequest": number, readonly "statefulSetName": string }
-export const InframonitoringtypesStatefulSetRecord = Schema.Struct({ "currentPods": Schema.Number.check(Schema.isInt()), "desiredPods": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "statefulSetCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetName": Schema.String })
-export type InframonitoringtypesPodRecord = { readonly "meta": {  }, readonly "podAge": number, readonly "podCPU": number, readonly "podCPULimit": number, readonly "podCPURequest": number, readonly "podCountsByPhase": InframonitoringtypesPodCountsByPhase, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "podMemory": number, readonly "podMemoryLimit": number, readonly "podMemoryRequest": number, readonly "podPhase": InframonitoringtypesPodPhase, readonly "podRestarts": number, readonly "podStatus": InframonitoringtypesPodStatus, readonly "podUID": string }
-export const InframonitoringtypesPodRecord = Schema.Struct({ "meta": Schema.Union([Schema.Struct({  })]), "podAge": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "podCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCountsByPhase": InframonitoringtypesPodCountsByPhase, "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "podMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podPhase": InframonitoringtypesPodPhase, "podRestarts": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "podStatus": InframonitoringtypesPodStatus, "podUID": Schema.String })
+export type InframonitoringtypesClusterRecord = { readonly "clusterCPU": number, readonly "clusterCPUAllocatable": number, readonly "clusterMemory": number, readonly "clusterMemoryAllocatable": number, readonly "clusterName": string, readonly "counts": { readonly "daemonSets": number, readonly "deployments": number, readonly "jobs": number, readonly "namespaces": number, readonly "nodes": number, readonly "statefulSets": number }, readonly "meta": {  }, readonly "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
+export const InframonitoringtypesClusterRecord = Schema.Struct({ "clusterCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterCPUAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterMemoryAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "clusterName": Schema.String, "counts": Schema.Struct({ "daemonSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "deployments": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "jobs": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "namespaces": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "nodes": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "statefulSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) }), "meta": Schema.Union([Schema.Struct({  })]), "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
+export type InframonitoringtypesDaemonSetRecord = { readonly "currentNodes": number, readonly "daemonSetCPU": number, readonly "daemonSetCPULimit": number, readonly "daemonSetCPURequest": number, readonly "daemonSetMemory": number, readonly "daemonSetMemoryLimit": number, readonly "daemonSetMemoryRequest": number, readonly "daemonSetName": string, readonly "desiredNodes": number, readonly "meta": {  }, readonly "misscheduledNodes": number, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "readyNodes": number }
+export const InframonitoringtypesDaemonSetRecord = Schema.Struct({ "currentNodes": Schema.Number.check(Schema.isInt()), "daemonSetCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "daemonSetName": Schema.String, "desiredNodes": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "misscheduledNodes": Schema.Number.check(Schema.isInt()), "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "readyNodes": Schema.Number.check(Schema.isInt()) })
+export type InframonitoringtypesDeploymentRecord = { readonly "availablePods": number, readonly "deploymentCPU": number, readonly "deploymentCPULimit": number, readonly "deploymentCPURequest": number, readonly "deploymentMemory": number, readonly "deploymentMemoryLimit": number, readonly "deploymentMemoryRequest": number, readonly "deploymentName": string, readonly "desiredPods": number, readonly "meta": {  }, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
+export const InframonitoringtypesDeploymentRecord = Schema.Struct({ "availablePods": Schema.Number.check(Schema.isInt()), "deploymentCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "deploymentName": Schema.String, "desiredPods": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
+export type InframonitoringtypesJobRecord = { readonly "activePods": number, readonly "desiredSuccessfulPods": number, readonly "failedPods": number, readonly "jobCPU": number, readonly "jobCPULimit": number, readonly "jobCPURequest": number, readonly "jobMemory": number, readonly "jobMemoryLimit": number, readonly "jobMemoryRequest": number, readonly "jobName": string, readonly "meta": {  }, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "successfulPods": number }
+export const InframonitoringtypesJobRecord = Schema.Struct({ "activePods": Schema.Number.check(Schema.isInt()), "desiredSuccessfulPods": Schema.Number.check(Schema.isInt()), "failedPods": Schema.Number.check(Schema.isInt()), "jobCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "jobName": Schema.String, "meta": Schema.Union([Schema.Struct({  })]), "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "successfulPods": Schema.Number.check(Schema.isInt()) })
+export type InframonitoringtypesNamespaceRecord = { readonly "counts": { readonly "daemonSets": number, readonly "deployments": number, readonly "jobs": number, readonly "statefulSets": number }, readonly "meta": {  }, readonly "namespaceCPU": number, readonly "namespaceMemory": number, readonly "namespaceName": string, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
+export const InframonitoringtypesNamespaceRecord = Schema.Struct({ "counts": Schema.Struct({ "daemonSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "deployments": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "jobs": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "statefulSets": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) }), "meta": Schema.Union([Schema.Struct({  })]), "namespaceCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "namespaceMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "namespaceName": Schema.String, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
+export type InframonitoringtypesNodeRecord = { readonly "condition": InframonitoringtypesNodeCondition, readonly "meta": {  }, readonly "nodeCPU": number, readonly "nodeCPUAllocatable": number, readonly "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, readonly "nodeMemory": number, readonly "nodeMemoryAllocatable": number, readonly "nodeName": string, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus }
+export const InframonitoringtypesNodeRecord = Schema.Struct({ "condition": InframonitoringtypesNodeCondition, "meta": Schema.Union([Schema.Struct({  })]), "nodeCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeCPUAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeCountsByReadiness": InframonitoringtypesNodeCountsByReadiness, "nodeMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeMemoryAllocatable": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "nodeName": Schema.String, "podCountsByStatus": InframonitoringtypesPodCountsByStatus })
+export type InframonitoringtypesStatefulSetRecord = { readonly "currentPods": number, readonly "desiredPods": number, readonly "meta": {  }, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "statefulSetCPU": number, readonly "statefulSetCPULimit": number, readonly "statefulSetCPURequest": number, readonly "statefulSetMemory": number, readonly "statefulSetMemoryLimit": number, readonly "statefulSetMemoryRequest": number, readonly "statefulSetName": string }
+export const InframonitoringtypesStatefulSetRecord = Schema.Struct({ "currentPods": Schema.Number.check(Schema.isInt()), "desiredPods": Schema.Number.check(Schema.isInt()), "meta": Schema.Union([Schema.Struct({  })]), "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "statefulSetCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "statefulSetName": Schema.String })
+export type InframonitoringtypesPodRecord = { readonly "meta": {  }, readonly "podAge": number, readonly "podCPU": number, readonly "podCPULimit": number, readonly "podCPURequest": number, readonly "podCountsByStatus": InframonitoringtypesPodCountsByStatus, readonly "podMemory": number, readonly "podMemoryLimit": number, readonly "podMemoryRequest": number, readonly "podRestarts": number, readonly "podStatus": InframonitoringtypesPodStatus, readonly "podUID": string }
+export const InframonitoringtypesPodRecord = Schema.Struct({ "meta": Schema.Union([Schema.Struct({  })]), "podAge": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "podCPU": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCPULimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCPURequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podCountsByStatus": InframonitoringtypesPodCountsByStatus, "podMemory": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podMemoryLimit": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podMemoryRequest": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "podRestarts": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "podStatus": InframonitoringtypesPodStatus, "podUID": Schema.String })
+export type LicensetypesGettableActiveLicense = { readonly "createdAt": string, readonly "eventQueue": LicensetypesLicenseEventQueue, readonly "features": ReadonlyArray<LicensetypesFeature>, readonly "freeUntil": string, readonly "id": string, readonly "plan": LicensetypesLicensePlan, readonly "platform": string, readonly "state": string, readonly "status": string, readonly "updatedAt": string, readonly "validFrom": number, readonly "validUntil": number }
+export const LicensetypesGettableActiveLicense = Schema.Struct({ "createdAt": Schema.String.annotate({ "format": "date-time" }), "eventQueue": LicensetypesLicenseEventQueue, "features": Schema.Array(LicensetypesFeature), "freeUntil": Schema.String.annotate({ "format": "date-time" }), "id": Schema.String, "plan": LicensetypesLicensePlan, "platform": Schema.String, "state": Schema.String, "status": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }), "validFrom": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "validUntil": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type LicensetypesGettableLicense = { readonly "createdAt": string, readonly "eventQueue": LicensetypesLicenseEventQueue, readonly "features": ReadonlyArray<LicensetypesFeature>, readonly "freeUntil": string, readonly "id": string, readonly "plan": LicensetypesLicensePlan, readonly "platform": string, readonly "state": string, readonly "status": string, readonly "updatedAt": string, readonly "validFrom": number, readonly "validUntil": number }
+export const LicensetypesGettableLicense = Schema.Struct({ "createdAt": Schema.String.annotate({ "format": "date-time" }), "eventQueue": LicensetypesLicenseEventQueue, "features": Schema.Array(LicensetypesFeature), "freeUntil": Schema.String.annotate({ "format": "date-time" }), "id": Schema.String, "plan": LicensetypesLicensePlan, "platform": Schema.String, "state": Schema.String, "status": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }), "validFrom": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "validUntil": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type LicensetypesGettableLicenseWithKey = { readonly "createdAt": string, readonly "eventQueue": LicensetypesLicenseEventQueue, readonly "features": ReadonlyArray<LicensetypesFeature>, readonly "freeUntil": string, readonly "id": string, readonly "key": string, readonly "plan": LicensetypesLicensePlan, readonly "platform": string, readonly "state": string, readonly "status": string, readonly "updatedAt": string, readonly "validFrom": number, readonly "validUntil": number }
+export const LicensetypesGettableLicenseWithKey = Schema.Struct({ "createdAt": Schema.String.annotate({ "format": "date-time" }), "eventQueue": LicensetypesLicenseEventQueue, "features": Schema.Array(LicensetypesFeature), "freeUntil": Schema.String.annotate({ "format": "date-time" }), "id": Schema.String, "key": Schema.String.annotate({ "format": "password" }), "plan": LicensetypesLicensePlan, "platform": Schema.String, "state": Schema.String, "status": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }), "validFrom": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "validUntil": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type LlmpricingruletypesLLMPricingCacheCosts = { readonly "mode": LlmpricingruletypesLLMPricingRuleCacheMode, readonly "read"?: number, readonly "write"?: number }
 export const LlmpricingruletypesLLMPricingCacheCosts = Schema.Struct({ "mode": LlmpricingruletypesLLMPricingRuleCacheMode, "read": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "write": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())) })
 export type MetricreductionruletypesGettableReductionRulePreview = { readonly "affectedAssets": ReadonlyArray<{ readonly "id": string, readonly "impactedLabels": ReadonlyArray<string>, readonly "name": string, readonly "type": MetricreductionruletypesAssetType, readonly "widget"?: MetricreductionruletypesAffectedWidget }>, readonly "currentRetainedSeries": number, readonly "droppedLabels": ReadonlyArray<string>, readonly "effectiveFrom": string, readonly "ingestedSeries": number, readonly "reductionPercent": number, readonly "retainedSeries": number }
@@ -604,6 +662,8 @@ export type MetricsexplorertypesUpdateMetricMetadataRequest = { readonly "descri
 export const MetricsexplorertypesUpdateMetricMetadataRequest = Schema.Struct({ "description": Schema.String, "isMonotonic": Schema.Boolean, "metricName": Schema.String, "temporality": MetrictypesTemporality, "type": MetrictypesType, "unit": Schema.String })
 export type PreferencetypesPreference = { readonly "allowedScopes"?: ReadonlyArray<string>, readonly "allowedValues"?: ReadonlyArray<string>, readonly "defaultValue"?: PreferencetypesValue, readonly "description"?: string, readonly "name"?: string, readonly "value"?: PreferencetypesValue, readonly "valueType"?: string }
 export const PreferencetypesPreference = Schema.Struct({ "allowedScopes": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "allowedValues": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "defaultValue": Schema.optionalKey(PreferencetypesValue), "description": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String), "value": Schema.optionalKey(PreferencetypesValue), "valueType": Schema.optionalKey(Schema.String) })
+export type PrometheusQueryDataSchema = { readonly "result": ReadonlyArray<{ readonly "metric": {  }, readonly "values": ReadonlyArray<ReadonlyArray<number | string>> }>, readonly "resultType": "matrix" } | { readonly "result": ReadonlyArray<{ readonly "metric": {  }, readonly "value": PrometheusSamplePairSchema }>, readonly "resultType": "vector" } | { readonly "result": PrometheusSamplePairSchema, readonly "resultType": "scalar" } | { readonly "result": PrometheusSamplePairSchema, readonly "resultType": "string" }
+export const PrometheusQueryDataSchema = Schema.Union([Schema.Struct({ "result": Schema.Union([Schema.Array(Schema.Struct({ "metric": Schema.Union([Schema.Struct({  })]), "values": Schema.Union([Schema.Array(Schema.Union([Schema.Array(Schema.Union([Schema.Number.check(Schema.isFinite()), Schema.String], { mode: "oneOf" })).check(Schema.makeFilterGroup([Schema.isMinLength(2), Schema.isMaxLength(2)], { "description": "A [timestamp, value] pair: float unix seconds, then the string-encoded sample value (\"NaN\", \"+Inf\", \"-Inf\" included)." }))]))]) }))]), "resultType": Schema.Literal("matrix") }), Schema.Struct({ "result": Schema.Union([Schema.Array(Schema.Struct({ "metric": Schema.Union([Schema.Struct({  })]), "value": PrometheusSamplePairSchema }))]), "resultType": Schema.Literal("vector") }), Schema.Struct({ "result": PrometheusSamplePairSchema, "resultType": Schema.Literal("scalar") }), Schema.Struct({ "result": PrometheusSamplePairSchema, "resultType": Schema.Literal("string") })], { mode: "oneOf" })
 export type MetricsexplorertypesInspectMetricsRequest = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "metricName": string, readonly "start": number }
 export const MetricsexplorertypesInspectMetricsRequest = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "metricName": Schema.String, "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type MetricsexplorertypesTreemapRequest = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "limit": number, readonly "mode": MetricsexplorertypesTreemapMode, readonly "start": number }
@@ -630,12 +690,12 @@ export type SpantypesUpdatableSpanMapperGroup = { readonly "condition"?: Spantyp
 export const SpantypesUpdatableSpanMapperGroup = Schema.Struct({ "condition": Schema.optionalKey(SpantypesSpanMapperGroupCondition), "enabled": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "name": Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])) })
 export type SpantypesSpanMapperConfig = { readonly "sources": ReadonlyArray<{ readonly "context": SpantypesFieldContext, readonly "key": string, readonly "operation": SpantypesSpanMapperOperation, readonly "priority": number }> }
 export const SpantypesSpanMapperConfig = Schema.Struct({ "sources": Schema.Union([Schema.Array(Schema.Struct({ "context": SpantypesFieldContext, "key": Schema.String, "operation": SpantypesSpanMapperOperation, "priority": Schema.Number.check(Schema.isInt()) }))]) })
+export type SubscriptiontypesSubscriptionUsageDetails = { readonly "baseFee"?: number, readonly "billTotal"?: number, readonly "breakdown"?: ReadonlyArray<{ readonly "dayWiseBreakdown"?: SubscriptiontypesSubscriptionUsageDayWiseBreakdown, readonly "tiers"?: ReadonlyArray<{ readonly "quantity"?: number, readonly "tierCost"?: number, readonly "tierEnd"?: number, readonly "tierStart"?: number, readonly "unitPrice"?: number }>, readonly "type"?: string, readonly "unit"?: string }>, readonly "total"?: number }
+export const SubscriptiontypesSubscriptionUsageDetails = Schema.Struct({ "baseFee": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "billTotal": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "breakdown": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "dayWiseBreakdown": Schema.optionalKey(SubscriptiontypesSubscriptionUsageDayWiseBreakdown), "tiers": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "quantity": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "tierCost": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "tierEnd": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "tierStart": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "unitPrice": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())) }))])), "type": Schema.optionalKey(Schema.String), "unit": Schema.optionalKey(Schema.String) }))])), "total": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())) })
 export type TelemetrystoretypesMergeTreeRead = { readonly "steps": ReadonlyArray<TelemetrystoretypesIndexStep>, readonly "table": string }
 export const TelemetrystoretypesMergeTreeRead = Schema.Struct({ "steps": Schema.Array(TelemetrystoretypesIndexStep), "table": Schema.String })
 export type PromotetypesWrappedIndex = { readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "granularity"?: number, readonly "type"?: string }
 export const PromotetypesWrappedIndex = Schema.Struct({ "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "granularity": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "type": Schema.optionalKey(Schema.String) })
-export type DashboardtypesDynamicVariableSpec = { readonly "name": string, readonly "signal"?: TelemetrytypesSignal }
-export const DashboardtypesDynamicVariableSpec = Schema.Struct({ "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal) })
 export type DashboardtypesListPanelSpec = { readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }> }
 export const DashboardtypesListPanelSpec = Schema.Struct({ "selectFields": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])) })
 export type Querybuildertypesv5ColumnDescriptor = { readonly "aggregationIndex"?: number, readonly "columnType"?: Querybuildertypesv5ColumnType, readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "meta"?: { readonly "unit"?: string }, readonly "name": string, readonly "queryName"?: string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }
@@ -650,14 +710,16 @@ export type ErrorsResponseretryjson = { readonly "delay": TimeDuration }
 export const ErrorsResponseretryjson = Schema.Struct({ "delay": TimeDuration })
 export type AlertmanagertypesDeprecatedGettableAlert = { readonly "annotations"?: ModelLabelSet, readonly "endsAt"?: string, readonly "fingerprint"?: string, readonly "generatorURL"?: string, readonly "labels"?: ModelLabelSet, readonly "receivers"?: ReadonlyArray<string>, readonly "startsAt"?: string, readonly "status"?: TypesAlertStatus }
 export const AlertmanagertypesDeprecatedGettableAlert = Schema.Struct({ "annotations": Schema.optionalKey(ModelLabelSet), "endsAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "fingerprint": Schema.optionalKey(Schema.String), "generatorURL": Schema.optionalKey(Schema.String), "labels": Schema.optionalKey(ModelLabelSet), "receivers": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "startsAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "status": Schema.optionalKey(TypesAlertStatus) })
-export type TypesPostableBulkInviteRequest = { readonly "invites": ReadonlyArray<TypesPostableInvite> }
-export const TypesPostableBulkInviteRequest = Schema.Struct({ "invites": Schema.Array(TypesPostableInvite) })
 export type SpantypesEvent = { readonly "attributeMap"?: { readonly [x: string]: Schema.Json }, readonly "isError"?: boolean, readonly "name"?: string, readonly "timeUnixNano"?: SignoztypesInt64 }
 export const SpantypesEvent = Schema.Struct({ "attributeMap": Schema.optionalKey(Schema.Record(Schema.String, Schema.Json)), "isError": Schema.optionalKey(Schema.Boolean), "name": Schema.optionalKey(Schema.String), "timeUnixNano": Schema.optionalKey(SignoztypesInt64) })
+export type AlertmanagertypesGettableNotificationChannel = { readonly "config": AlertmanagertypesChannelConfig, readonly "createdAt": string, readonly "displayName": string, readonly "id": string, readonly "name": string, readonly "updatedAt": string }
+export const AlertmanagertypesGettableNotificationChannel = Schema.Struct({ "config": AlertmanagertypesChannelConfig, "createdAt": Schema.String.annotate({ "format": "date-time" }), "displayName": Schema.String, "id": Schema.String, "name": Schema.String, "updatedAt": Schema.String.annotate({ "format": "date-time" }) })
+export type AlertmanagertypesPostableNotificationChannel = { readonly "config": AlertmanagertypesChannelConfig, readonly "displayName"?: string, readonly "generateName"?: boolean, readonly "name"?: string }
+export const AlertmanagertypesPostableNotificationChannel = Schema.Struct({ "config": AlertmanagertypesChannelConfig, "displayName": Schema.optionalKey(Schema.String), "generateName": Schema.optionalKey(Schema.Boolean), "name": Schema.optionalKey(Schema.String) })
 export type AlertmanagertypesSchedule = { readonly "endTime"?: string, readonly "recurrence"?: AlertmanagertypesRecurrence, readonly "startTime": string, readonly "timezone": string }
 export const AlertmanagertypesSchedule = Schema.Struct({ "endTime": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "recurrence": Schema.optionalKey(AlertmanagertypesRecurrence), "startTime": Schema.String.annotate({ "format": "date-time" }), "timezone": Schema.String })
-export type AuthtypesAuthDomainConfig = { readonly "attributeMapping"?: AuthtypesAttributeMapping, readonly "insecureSkipAuthNRequestsSigned"?: boolean, readonly "samlCert"?: string, readonly "samlEntity"?: string, readonly "samlIdp"?: string, readonly "googleAuthConfig"?: AuthtypesGoogleConfig, readonly "oidcConfig"?: AuthtypesOIDCConfig, readonly "roleMapping"?: AuthtypesRoleMapping, readonly "samlConfig"?: AuthtypesSamlConfig, readonly "ssoEnabled"?: boolean, readonly "ssoType"?: AuthtypesAuthNProvider } | { readonly "allowedGroups"?: ReadonlyArray<string>, readonly "clientId"?: string, readonly "clientSecret"?: string, readonly "domainToAdminEmail"?: { readonly [x: string]: string }, readonly "fetchGroups"?: boolean, readonly "fetchTransitiveGroupMembership"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "redirectURI"?: string, readonly "serviceAccountJson"?: string, readonly "googleAuthConfig"?: AuthtypesGoogleConfig, readonly "oidcConfig"?: AuthtypesOIDCConfig, readonly "roleMapping"?: AuthtypesRoleMapping, readonly "samlConfig"?: AuthtypesSamlConfig, readonly "ssoEnabled"?: boolean, readonly "ssoType"?: AuthtypesAuthNProvider } | { readonly "claimMapping"?: AuthtypesAttributeMapping, readonly "clientId"?: string, readonly "clientSecret"?: string, readonly "getUserInfo"?: boolean, readonly "insecureSkipEmailVerified"?: boolean, readonly "issuer"?: string, readonly "issuerAlias"?: string, readonly "googleAuthConfig"?: AuthtypesGoogleConfig, readonly "oidcConfig"?: AuthtypesOIDCConfig, readonly "roleMapping"?: AuthtypesRoleMapping, readonly "samlConfig"?: AuthtypesSamlConfig, readonly "ssoEnabled"?: boolean, readonly "ssoType"?: AuthtypesAuthNProvider }
-export const AuthtypesAuthDomainConfig = Schema.Union([Schema.Struct({ "attributeMapping": Schema.optionalKey(AuthtypesAttributeMapping), "insecureSkipAuthNRequestsSigned": Schema.optionalKey(Schema.Boolean), "samlCert": Schema.optionalKey(Schema.String), "samlEntity": Schema.optionalKey(Schema.String), "samlIdp": Schema.optionalKey(Schema.String), "googleAuthConfig": Schema.optionalKey(AuthtypesGoogleConfig), "oidcConfig": Schema.optionalKey(AuthtypesOIDCConfig), "roleMapping": Schema.optionalKey(AuthtypesRoleMapping), "samlConfig": Schema.optionalKey(AuthtypesSamlConfig), "ssoEnabled": Schema.optionalKey(Schema.Boolean), "ssoType": Schema.optionalKey(AuthtypesAuthNProvider) }), Schema.Struct({ "allowedGroups": Schema.optionalKey(Schema.Array(Schema.String)), "clientId": Schema.optionalKey(Schema.String), "clientSecret": Schema.optionalKey(Schema.String), "domainToAdminEmail": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "fetchGroups": Schema.optionalKey(Schema.Boolean), "fetchTransitiveGroupMembership": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "redirectURI": Schema.optionalKey(Schema.String), "serviceAccountJson": Schema.optionalKey(Schema.String), "googleAuthConfig": Schema.optionalKey(AuthtypesGoogleConfig), "oidcConfig": Schema.optionalKey(AuthtypesOIDCConfig), "roleMapping": Schema.optionalKey(AuthtypesRoleMapping), "samlConfig": Schema.optionalKey(AuthtypesSamlConfig), "ssoEnabled": Schema.optionalKey(Schema.Boolean), "ssoType": Schema.optionalKey(AuthtypesAuthNProvider) }), Schema.Struct({ "claimMapping": Schema.optionalKey(AuthtypesAttributeMapping), "clientId": Schema.optionalKey(Schema.String), "clientSecret": Schema.optionalKey(Schema.String), "getUserInfo": Schema.optionalKey(Schema.Boolean), "insecureSkipEmailVerified": Schema.optionalKey(Schema.Boolean), "issuer": Schema.optionalKey(Schema.String), "issuerAlias": Schema.optionalKey(Schema.String), "googleAuthConfig": Schema.optionalKey(AuthtypesGoogleConfig), "oidcConfig": Schema.optionalKey(AuthtypesOIDCConfig), "roleMapping": Schema.optionalKey(AuthtypesRoleMapping), "samlConfig": Schema.optionalKey(AuthtypesSamlConfig), "ssoEnabled": Schema.optionalKey(Schema.Boolean), "ssoType": Schema.optionalKey(AuthtypesAuthNProvider) })], { mode: "oneOf" })
+export type AuthtypesAuthDomainConfig = { readonly "kind": AuthtypesAuthNProvider, readonly "spec": AuthtypesSamlConfig } | { readonly "kind": AuthtypesAuthNProvider, readonly "spec": AuthtypesGoogleConfig } | { readonly "kind": AuthtypesAuthNProvider, readonly "spec": AuthtypesOIDCConfig }
+export const AuthtypesAuthDomainConfig = Schema.Union([Schema.Struct({ "kind": AuthtypesAuthNProvider, "spec": AuthtypesSamlConfig }), Schema.Struct({ "kind": AuthtypesAuthNProvider, "spec": AuthtypesGoogleConfig }), Schema.Struct({ "kind": AuthtypesAuthNProvider, "spec": AuthtypesOIDCConfig })], { mode: "oneOf" })
 export type CloudintegrationtypesAWSTelemetryCollectionStrategy = { readonly "logs"?: CloudintegrationtypesAWSLogsCollectionStrategy, readonly "metrics"?: CloudintegrationtypesAWSMetricsCollectionStrategy, readonly "s3Buckets"?: { readonly [x: string]: ReadonlyArray<string> } }
 export const CloudintegrationtypesAWSTelemetryCollectionStrategy = Schema.Struct({ "logs": Schema.optionalKey(CloudintegrationtypesAWSLogsCollectionStrategy), "metrics": Schema.optionalKey(CloudintegrationtypesAWSMetricsCollectionStrategy), "s3Buckets": Schema.optionalKey(Schema.Record(Schema.String, Schema.Array(Schema.String))) })
 export type CloudintegrationtypesAzureIntegrationConfig = { readonly "deploymentRegion": string, readonly "resourceGroups": ReadonlyArray<string>, readonly "telemetryCollectionStrategy": ReadonlyArray<CloudintegrationtypesAzureTelemetryCollectionStrategy> }
@@ -688,6 +750,8 @@ export type DashboardtypesListedDashboardForUserV2 = { readonly "createdAt"?: st
 export const DashboardtypesListedDashboardForUserV2 = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "id": Schema.String, "image": Schema.optionalKey(Schema.String), "legacy": Schema.Boolean, "locked": Schema.Boolean, "name": Schema.String, "orgId": Schema.String, "pinned": Schema.Boolean, "schemaVersion": Schema.String, "source": DashboardtypesSource, "spec": DashboardtypesListedDashboardV2Spec, "tags": Schema.Array(TagtypesGettableTag), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
 export type DashboardtypesListedDashboardV2 = { readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "id": string, readonly "image"?: string, readonly "legacy": boolean, readonly "locked": boolean, readonly "name": string, readonly "orgId": string, readonly "schemaVersion": string, readonly "source": DashboardtypesSource, readonly "spec": DashboardtypesListedDashboardV2Spec, readonly "tags": ReadonlyArray<TagtypesGettableTag>, readonly "updatedAt"?: string, readonly "updatedBy"?: string }
 export const DashboardtypesListedDashboardV2 = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "id": Schema.String, "image": Schema.optionalKey(Schema.String), "legacy": Schema.Boolean, "locked": Schema.Boolean, "name": Schema.String, "orgId": Schema.String, "schemaVersion": Schema.String, "source": DashboardtypesSource, "spec": DashboardtypesListedDashboardV2Spec, "tags": Schema.Array(TagtypesGettableTag), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
+export type DashboardtypesVariablePlugin = { readonly "kind": "signoz/DynamicVariable", readonly "spec": DashboardtypesDynamicVariableSpec } | { readonly "kind": "signoz/QueryVariable", readonly "spec": DashboardtypesQueryVariableSpec } | { readonly "kind": "signoz/CustomVariable", readonly "spec": DashboardtypesCustomVariableSpec }
+export const DashboardtypesVariablePlugin = Schema.Union([Schema.Struct({ "kind": Schema.Literal("signoz/DynamicVariable"), "spec": DashboardtypesDynamicVariableSpec }), Schema.Struct({ "kind": Schema.Literal("signoz/QueryVariable"), "spec": DashboardtypesQueryVariableSpec }), Schema.Struct({ "kind": Schema.Literal("signoz/CustomVariable"), "spec": DashboardtypesCustomVariableSpec })], { mode: "oneOf" })
 export type DashboardtypesHistogramPanelSpec = { readonly "histogramBuckets"?: DashboardtypesHistogramBuckets, readonly "legend"?: DashboardtypesLegend }
 export const DashboardtypesHistogramPanelSpec = Schema.Struct({ "histogramBuckets": Schema.optionalKey(DashboardtypesHistogramBuckets), "legend": Schema.optionalKey(DashboardtypesLegend) })
 export type DashboardtypesDashboardView = { readonly "createdAt"?: string, readonly "data": DashboardtypesDashboardViewData, readonly "id": string, readonly "name": string, readonly "orgId": string, readonly "updatedAt"?: string }
@@ -706,10 +770,16 @@ export type DashboardtypesTablePanelSpec = { readonly "formatting"?: Dashboardty
 export const DashboardtypesTablePanelSpec = Schema.Struct({ "formatting": Schema.optionalKey(DashboardtypesTableFormatting), "thresholds": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "color": Schema.String, "columnName": Schema.String, "format": Schema.optionalKey(DashboardtypesThresholdFormat), "operator": Schema.optionalKey(DashboardtypesComparisonOperator), "unit": Schema.optionalKey(Schema.String), "value": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) }))])), "visualization": Schema.optionalKey(DashboardtypesBasicVisualization) })
 export type DashboardtypesTimeSeriesPanelSpec = { readonly "axes"?: DashboardtypesAxes, readonly "chartAppearance"?: DashboardtypesTimeSeriesChartAppearance, readonly "formatting"?: DashboardtypesPanelFormatting, readonly "legend"?: DashboardtypesLegend, readonly "thresholds"?: ReadonlyArray<{ readonly "color": string, readonly "label"?: string, readonly "unit"?: string, readonly "value": number }>, readonly "visualization"?: DashboardtypesTimeSeriesVisualization }
 export const DashboardtypesTimeSeriesPanelSpec = Schema.Struct({ "axes": Schema.optionalKey(DashboardtypesAxes), "chartAppearance": Schema.optionalKey(DashboardtypesTimeSeriesChartAppearance), "formatting": Schema.optionalKey(DashboardtypesPanelFormatting), "legend": Schema.optionalKey(DashboardtypesLegend), "thresholds": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "color": Schema.String, "label": Schema.optionalKey(Schema.String), "unit": Schema.optionalKey(Schema.String), "value": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) }))])), "visualization": Schema.optionalKey(DashboardtypesTimeSeriesVisualization) })
+export type GatewaytypesDeprecatedPostableIngestionKeyLimit = { readonly "config"?: GatewaytypesLimitConfig, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string> }
+export const GatewaytypesDeprecatedPostableIngestionKeyLimit = Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])) })
 export type GatewaytypesGettableIngestionKeys = { readonly "_pagination"?: GatewaytypesPagination, readonly "keys"?: ReadonlyArray<{ readonly "created_at"?: string, readonly "expires_at"?: string, readonly "id"?: string, readonly "limits"?: ReadonlyArray<{ readonly "config"?: GatewaytypesLimitConfig, readonly "created_at"?: string, readonly "id"?: string, readonly "key_id"?: string, readonly "metric"?: GatewaytypesLimitMetric, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string }>, readonly "name"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string, readonly "value"?: string, readonly "workspace_id"?: string }> }
 export const GatewaytypesGettableIngestionKeys = Schema.Struct({ "_pagination": Schema.optionalKey(GatewaytypesPagination), "keys": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "expires_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "limits": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "key_id": Schema.optionalKey(Schema.String), "metric": Schema.optionalKey(GatewaytypesLimitMetric), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) }))])), "name": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "value": Schema.optionalKey(Schema.String), "workspace_id": Schema.optionalKey(Schema.String) }))])) })
-export type GatewaytypesPostableIngestionKeyLimit = { readonly "config"?: GatewaytypesLimitConfig, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string> }
-export const GatewaytypesPostableIngestionKeyLimit = Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])) })
+export type GatewaytypesIngestionKey = { readonly "created_at"?: string, readonly "expires_at"?: string, readonly "id"?: string, readonly "limits"?: ReadonlyArray<{ readonly "config"?: GatewaytypesLimitConfig, readonly "created_at"?: string, readonly "id"?: string, readonly "key_id"?: string, readonly "metric"?: GatewaytypesLimitMetric, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string }>, readonly "name"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string, readonly "value"?: string, readonly "workspace_id"?: string }
+export const GatewaytypesIngestionKey = Schema.Struct({ "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "expires_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "limits": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "key_id": Schema.optionalKey(Schema.String), "metric": Schema.optionalKey(GatewaytypesLimitMetric), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) }))])), "name": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "value": Schema.optionalKey(Schema.String), "workspace_id": Schema.optionalKey(Schema.String) })
+export type GatewaytypesLimit = { readonly "config"?: GatewaytypesLimitConfig, readonly "created_at"?: string, readonly "id"?: string, readonly "key_id"?: string, readonly "metric"?: GatewaytypesLimitMetric, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string }
+export const GatewaytypesLimit = Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "key_id": Schema.optionalKey(Schema.String), "metric": Schema.optionalKey(GatewaytypesLimitMetric), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
+export type GatewaytypesPostableIngestionKeyLimit = { readonly "config"?: GatewaytypesLimitConfig, readonly "keyId": string, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string> }
+export const GatewaytypesPostableIngestionKeyLimit = Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "keyId": Schema.String, "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])) })
 export type GatewaytypesUpdatableIngestionKeyLimit = { readonly "config": GatewaytypesLimitConfig, readonly "tags"?: ReadonlyArray<string> }
 export const GatewaytypesUpdatableIngestionKeyLimit = Schema.Struct({ "config": GatewaytypesLimitConfig, "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])) })
 export type GlobaltypesConfig = { readonly "ai_assistant_url": string | null, readonly "external_url": string, readonly "identN"?: GlobaltypesIdentNConfig, readonly "ingestion_url": string, readonly "mcp_url": string | null }
@@ -718,6 +788,8 @@ export type InframonitoringtypesChecks = { readonly "missingDefaultEnabledMetric
 export const InframonitoringtypesChecks = Schema.Struct({ "missingDefaultEnabledMetrics": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "documentationLink": Schema.String, "message": Schema.String, "metrics": Schema.Union([Schema.Array(Schema.String)]) }))]), "missingOptionalMetrics": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "documentationLink": Schema.String, "message": Schema.String, "metrics": Schema.Union([Schema.Array(Schema.String)]) }))]), "missingRequiredAttributes": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "attributes": Schema.Union([Schema.Array(Schema.String)]), "documentationLink": Schema.String, "message": Schema.String }))]), "presentDefaultEnabledMetrics": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "metrics": Schema.Union([Schema.Array(Schema.String)]) }))]), "presentOptionalMetrics": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "metrics": Schema.Union([Schema.Array(Schema.String)]) }))]), "presentRequiredAttributes": Schema.Union([Schema.Array(Schema.Struct({ "associatedComponent": InframonitoringtypesAssociatedComponent, "attributes": Schema.Union([Schema.Array(Schema.String)]) }))]), "ready": Schema.Boolean, "type": InframonitoringtypesCheckType })
 export type LlmpricingruletypesLLMRulePricing = { readonly "cache"?: LlmpricingruletypesLLMPricingCacheCosts, readonly "input": number, readonly "output": number }
 export const LlmpricingruletypesLLMRulePricing = Schema.Struct({ "cache": Schema.optionalKey(LlmpricingruletypesLLMPricingCacheCosts), "input": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()), "output": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) })
+export type PrometheusSuccessResponseSchema = { readonly "data": PrometheusQueryDataSchema, readonly "infos"?: ReadonlyArray<string>, readonly "status": "success", readonly "warnings"?: ReadonlyArray<string> }
+export const PrometheusSuccessResponseSchema = Schema.Struct({ "data": PrometheusQueryDataSchema, "infos": Schema.optionalKey(Schema.Array(Schema.String)), "status": Schema.Literal("success"), "warnings": Schema.optionalKey(Schema.Array(Schema.String)) })
 export type InframonitoringtypesClusters = { readonly "endTimeBeforeRetention": boolean, readonly "records": ReadonlyArray<InframonitoringtypesClusterRecord>, readonly "total": number, readonly "type": InframonitoringtypesResponseType, readonly "warning"?: Querybuildertypesv5QueryWarnData }
 export const InframonitoringtypesClusters = Schema.Struct({ "endTimeBeforeRetention": Schema.Boolean, "records": Schema.Array(InframonitoringtypesClusterRecord), "total": Schema.Number.check(Schema.isInt()), "type": InframonitoringtypesResponseType, "warning": Schema.optionalKey(Querybuildertypesv5QueryWarnData) })
 export type InframonitoringtypesContainers = { readonly "endTimeBeforeRetention": boolean, readonly "records": ReadonlyArray<InframonitoringtypesContainerRecord>, readonly "total": number, readonly "type": InframonitoringtypesResponseType, readonly "warning"?: Querybuildertypesv5QueryWarnData }
@@ -754,10 +826,10 @@ export type SpantypesSpanMapper = { readonly "config": SpantypesSpanMapperConfig
 export const SpantypesSpanMapper = Schema.Struct({ "config": SpantypesSpanMapperConfig, "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "enabled": Schema.Boolean, "fieldContext": SpantypesFieldContext, "groupId": Schema.String, "id": Schema.String, "name": Schema.String, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
 export type SpantypesUpdatableSpanMapper = { readonly "config"?: SpantypesSpanMapperConfig, readonly "enabled"?: boolean | null, readonly "fieldContext"?: SpantypesFieldContext }
 export const SpantypesUpdatableSpanMapper = Schema.Struct({ "config": Schema.optionalKey(SpantypesSpanMapperConfig), "enabled": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "fieldContext": Schema.optionalKey(SpantypesFieldContext) })
+export type SubscriptiontypesGettableSubscriptionUsage = { readonly "billingPeriodEnd"?: number, readonly "billingPeriodStart"?: number, readonly "details"?: SubscriptiontypesSubscriptionUsageDetails, readonly "discount"?: number, readonly "subscriptionStatus"?: string }
+export const SubscriptiontypesGettableSubscriptionUsage = Schema.Struct({ "billingPeriodEnd": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "billingPeriodStart": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "details": Schema.optionalKey(SubscriptiontypesSubscriptionUsageDetails), "discount": Schema.optionalKey(Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite())), "subscriptionStatus": Schema.optionalKey(Schema.String) })
 export type TelemetrystoretypesGranules = { readonly "initial": number, readonly "reads": ReadonlyArray<TelemetrystoretypesMergeTreeRead>, readonly "selected": number, readonly "skipped": number }
 export const TelemetrystoretypesGranules = Schema.Union([Schema.Struct({ "initial": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "reads": Schema.Array(TelemetrystoretypesMergeTreeRead), "selected": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "skipped": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })])
-export type DashboardtypesVariablePlugin = { readonly "kind": "signoz/DynamicVariable", readonly "spec": DashboardtypesDynamicVariableSpec } | { readonly "kind": "signoz/QueryVariable", readonly "spec": DashboardtypesQueryVariableSpec } | { readonly "kind": "signoz/CustomVariable", readonly "spec": DashboardtypesCustomVariableSpec }
-export const DashboardtypesVariablePlugin = Schema.Union([Schema.Struct({ "kind": Schema.Literal("signoz/DynamicVariable"), "spec": DashboardtypesDynamicVariableSpec }), Schema.Struct({ "kind": Schema.Literal("signoz/QueryVariable"), "spec": DashboardtypesQueryVariableSpec }), Schema.Struct({ "kind": Schema.Literal("signoz/CustomVariable"), "spec": DashboardtypesCustomVariableSpec })], { mode: "oneOf" })
 export type Querybuildertypesv5ScalarData = { readonly "columns"?: ReadonlyArray<Querybuildertypesv5ColumnDescriptor> | null, readonly "data"?: ReadonlyArray<ReadonlyArray<Schema.Json>> | null, readonly "queryName"?: string }
 export const Querybuildertypesv5ScalarData = Schema.Struct({ "columns": Schema.optionalKey(Schema.Union([Schema.Array(Querybuildertypesv5ColumnDescriptor), Schema.Null], { mode: "oneOf" })), "data": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Array(Schema.Json)), Schema.Null], { mode: "oneOf" })), "queryName": Schema.optionalKey(Schema.String) })
 export type DashboardtypesBuilderQuerySpec = { readonly "aggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string }>, readonly "cursor"?: string, readonly "disabled"?: boolean, readonly "filter"?: Querybuildertypesv5Filter, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "name"?: string, readonly "offset"?: number, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "secondaryAggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "stepInterval"?: Querybuildertypesv5Step }>, readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "signal": "logs", readonly "source"?: TelemetrytypesSource, readonly "stepInterval"?: Querybuildertypesv5Step } | { readonly "aggregations"?: ReadonlyArray<{ readonly "comparisonSpaceAggregationParam"?: MetrictypesComparisonSpaceAggregationParam, readonly "metricName"?: string, readonly "reduceTo"?: Querybuildertypesv5ReduceTo, readonly "spaceAggregation"?: MetrictypesSpaceAggregation, readonly "temporality"?: MetrictypesTemporality, readonly "timeAggregation"?: MetrictypesTimeAggregation }>, readonly "cursor"?: string, readonly "disabled"?: boolean, readonly "filter"?: Querybuildertypesv5Filter, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "name"?: string, readonly "offset"?: number, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "secondaryAggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "stepInterval"?: Querybuildertypesv5Step }>, readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "signal": "metrics", readonly "source"?: TelemetrytypesSource, readonly "stepInterval"?: Querybuildertypesv5Step } | { readonly "aggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string }>, readonly "cursor"?: string, readonly "disabled"?: boolean, readonly "filter"?: Querybuildertypesv5Filter, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "name"?: string, readonly "offset"?: number, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "secondaryAggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "stepInterval"?: Querybuildertypesv5Step }>, readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "signal": "traces", readonly "source"?: TelemetrytypesSource, readonly "stepInterval"?: Querybuildertypesv5Step }
@@ -768,12 +840,18 @@ export type Querybuildertypesv5OrderBy = { readonly "direction"?: Querybuilderty
 export const Querybuildertypesv5OrderBy = Schema.Struct({ "direction": Schema.optionalKey(Querybuildertypesv5OrderDirection), "key": Schema.optionalKey(Querybuildertypesv5OrderByKey) })
 export type Querybuildertypesv5QueryBuilderFormula = { readonly "disabled"?: boolean, readonly "expression"?: string, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "name"?: string, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }> }
 export const Querybuildertypesv5QueryBuilderFormula = Schema.Struct({ "disabled": Schema.optionalKey(Schema.Boolean), "expression": Schema.optionalKey(Schema.String), "functions": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "args": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "name": Schema.optionalKey(Schema.String), "value": Schema.optionalKey(Schema.Union([Schema.Number.check(Schema.isFinite()), Schema.String], { mode: "oneOf" })) }))])), "name": Schema.optionalKey(Querybuildertypesv5FunctionName) }))])), "having": Schema.optionalKey(Querybuildertypesv5Having), "legend": Schema.optionalKey(Schema.String), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "name": Schema.optionalKey(Schema.String), "order": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "direction": Schema.optionalKey(Querybuildertypesv5OrderDirection), "key": Schema.optionalKey(Querybuildertypesv5OrderByKey) }))])) })
+export type Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation = { readonly "aggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string }>, readonly "cursor"?: string, readonly "disabled"?: boolean, readonly "filter"?: Querybuildertypesv5Filter, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "name"?: string, readonly "offset"?: number, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "secondaryAggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit"?: number, readonly "limitBy"?: Querybuildertypesv5LimitBy, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "stepInterval"?: Querybuildertypesv5Step }>, readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "signal": "traces", readonly "source"?: TelemetrytypesSource, readonly "stepInterval"?: Querybuildertypesv5Step }
+export const Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation = Schema.Struct({ "aggregations": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "alias": Schema.optionalKey(Schema.String), "expression": Schema.optionalKey(Schema.String) }))])), "cursor": Schema.optionalKey(Schema.String), "disabled": Schema.optionalKey(Schema.Boolean), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "functions": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "args": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "name": Schema.optionalKey(Schema.String), "value": Schema.optionalKey(Schema.Union([Schema.Number.check(Schema.isFinite()), Schema.String], { mode: "oneOf" })) }))])), "name": Schema.optionalKey(Querybuildertypesv5FunctionName) }))])), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "having": Schema.optionalKey(Querybuildertypesv5Having), "legend": Schema.optionalKey(Schema.String), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "limitBy": Schema.optionalKey(Querybuildertypesv5LimitBy), "name": Schema.optionalKey(Schema.String), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "order": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "direction": Schema.optionalKey(Querybuildertypesv5OrderDirection), "key": Schema.optionalKey(Querybuildertypesv5OrderByKey) }))])), "secondaryAggregations": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "alias": Schema.optionalKey(Schema.String), "expression": Schema.optionalKey(Schema.String), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "limitBy": Schema.optionalKey(Querybuildertypesv5LimitBy), "order": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "direction": Schema.optionalKey(Querybuildertypesv5OrderDirection), "key": Schema.optionalKey(Querybuildertypesv5OrderByKey) }))])), "stepInterval": Schema.optionalKey(Querybuildertypesv5Step) }))])), "selectFields": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "signal": Schema.Literal("traces"), "source": Schema.optionalKey(TelemetrytypesSource), "stepInterval": Schema.optionalKey(Querybuildertypesv5Step) })
 export type Querybuildertypesv5QueryBuilderTraceOperator = { readonly "aggregations"?: ReadonlyArray<{ readonly "alias"?: string, readonly "expression"?: string }>, readonly "cursor"?: string, readonly "disabled"?: boolean, readonly "expression"?: string, readonly "filter"?: Querybuildertypesv5Filter, readonly "functions"?: ReadonlyArray<{ readonly "args"?: ReadonlyArray<{ readonly "name"?: string, readonly "value"?: number | string }>, readonly "name"?: Querybuildertypesv5FunctionName }>, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "having"?: Querybuildertypesv5Having, readonly "legend"?: string, readonly "limit"?: number, readonly "name"?: string, readonly "offset"?: number, readonly "order"?: ReadonlyArray<{ readonly "direction"?: Querybuildertypesv5OrderDirection, readonly "key"?: Querybuildertypesv5OrderByKey }>, readonly "returnSpansFrom"?: string, readonly "selectFields"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "stepInterval"?: Querybuildertypesv5Step }
 export const Querybuildertypesv5QueryBuilderTraceOperator = Schema.Struct({ "aggregations": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "alias": Schema.optionalKey(Schema.String), "expression": Schema.optionalKey(Schema.String) }))])), "cursor": Schema.optionalKey(Schema.String), "disabled": Schema.optionalKey(Schema.Boolean), "expression": Schema.optionalKey(Schema.String), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "functions": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "args": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "name": Schema.optionalKey(Schema.String), "value": Schema.optionalKey(Schema.Union([Schema.Number.check(Schema.isFinite()), Schema.String], { mode: "oneOf" })) }))])), "name": Schema.optionalKey(Querybuildertypesv5FunctionName) }))])), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "having": Schema.optionalKey(Querybuildertypesv5Having), "legend": Schema.optionalKey(Schema.String), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "name": Schema.optionalKey(Schema.String), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "order": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "direction": Schema.optionalKey(Querybuildertypesv5OrderDirection), "key": Schema.optionalKey(Querybuildertypesv5OrderByKey) }))])), "returnSpansFrom": Schema.optionalKey(Schema.String), "selectFields": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "stepInterval": Schema.optionalKey(Querybuildertypesv5Step) })
 export type Querybuildertypesv5Label = { readonly "key"?: TelemetrytypesTelemetryFieldKey, readonly "value"?: string | number | boolean }
 export const Querybuildertypesv5Label = Schema.Struct({ "key": Schema.optionalKey(TelemetrytypesTelemetryFieldKey), "value": Schema.optionalKey(Schema.Union([Schema.String, Schema.Number.check(Schema.isFinite()), Schema.Boolean], { mode: "oneOf" })) })
-export type RulestatehistorytypesGettableRuleStateTimeline = { readonly "items": ReadonlyArray<{ readonly "fingerprint": SignoztypesInt64, readonly "labels": ReadonlyArray<{ readonly "key"?: TelemetrytypesTelemetryFieldKey, readonly "value"?: string | number | boolean }>, readonly "overallState": RuletypesAlertState, readonly "overallStateChanged": boolean, readonly "ruleId": string, readonly "ruleName": string, readonly "state": RuletypesAlertState, readonly "stateChanged": boolean, readonly "unixMilli": number, readonly "value": number }>, readonly "nextCursor"?: string, readonly "total": number }
-export const RulestatehistorytypesGettableRuleStateTimeline = Schema.Struct({ "items": Schema.Union([Schema.Array(Schema.Struct({ "fingerprint": SignoztypesInt64, "labels": Schema.Union([Schema.Array(Schema.Struct({ "key": Schema.optionalKey(TelemetrytypesTelemetryFieldKey), "value": Schema.optionalKey(Schema.Union([Schema.String, Schema.Number.check(Schema.isFinite()), Schema.Boolean], { mode: "oneOf" })) }))]), "overallState": RuletypesAlertState, "overallStateChanged": Schema.Boolean, "ruleId": Schema.String, "ruleName": Schema.String, "state": RuletypesAlertState, "stateChanged": Schema.Boolean, "unixMilli": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "value": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) }))]), "nextCursor": Schema.optionalKey(Schema.String), "total": Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0)) })
+export type QuickfiltertypesSourceFilters = { readonly "createdAt"?: string, readonly "filters": ReadonlyArray<TelemetrytypesTelemetryFieldKey>, readonly "id": string, readonly "orgId": string, readonly "source": QuickfiltertypesSource, readonly "updatedAt"?: string }
+export const QuickfiltertypesSourceFilters = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "filters": Schema.Array(TelemetrytypesTelemetryFieldKey), "id": Schema.String, "orgId": Schema.String, "source": QuickfiltertypesSource, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
+export type QuickfiltertypesUpdatableQuickFilters = { readonly "filters": ReadonlyArray<TelemetrytypesTelemetryFieldKey> }
+export const QuickfiltertypesUpdatableQuickFilters = Schema.Struct({ "filters": Schema.Array(TelemetrytypesTelemetryFieldKey) })
+export type RulestatehistorytypesGettableRuleStateTimeline = { readonly "items": ReadonlyArray<{ readonly "fingerprint": SignoztypesInt64, readonly "labels": ReadonlyArray<{ readonly "key"?: TelemetrytypesTelemetryFieldKey, readonly "value"?: string | number | boolean }>, readonly "overallState": RuletypesAlertState, readonly "overallStateChanged": boolean, readonly "relatedLogsLink"?: string, readonly "relatedTracesLink"?: string, readonly "ruleId": string, readonly "ruleName": string, readonly "state": RuletypesAlertState, readonly "stateChanged": boolean, readonly "unixMilli": number, readonly "value": number }>, readonly "nextCursor"?: string, readonly "total": number }
+export const RulestatehistorytypesGettableRuleStateTimeline = Schema.Struct({ "items": Schema.Union([Schema.Array(Schema.Struct({ "fingerprint": SignoztypesInt64, "labels": Schema.Union([Schema.Array(Schema.Struct({ "key": Schema.optionalKey(TelemetrytypesTelemetryFieldKey), "value": Schema.optionalKey(Schema.Union([Schema.String, Schema.Number.check(Schema.isFinite()), Schema.Boolean], { mode: "oneOf" })) }))]), "overallState": RuletypesAlertState, "overallStateChanged": Schema.Boolean, "relatedLogsLink": Schema.optionalKey(Schema.String), "relatedTracesLink": Schema.optionalKey(Schema.String), "ruleId": Schema.String, "ruleName": Schema.String, "state": RuletypesAlertState, "stateChanged": Schema.Boolean, "unixMilli": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "value": Schema.Number.annotate({ "format": "double" }).check(Schema.isFinite()) }))]), "nextCursor": Schema.optionalKey(Schema.String), "total": Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0)) })
 export type SpantypesPostableFlamegraph = { readonly "selectFields"?: ReadonlyArray<TelemetrytypesTelemetryFieldKey>, readonly "selectedSpanId"?: string }
 export const SpantypesPostableFlamegraph = Schema.Struct({ "selectFields": Schema.optionalKey(Schema.Array(TelemetrytypesTelemetryFieldKey)), "selectedSpanId": Schema.optionalKey(Schema.String) })
 export type SpantypesSpanAggregation = { readonly "aggregation": SpantypesSpanAggregationType, readonly "field": TelemetrytypesTelemetryFieldKey }
@@ -790,12 +868,12 @@ export type AlertmanagertypesPlannedMaintenance = { readonly "alertIds"?: Readon
 export const AlertmanagertypesPlannedMaintenance = Schema.Struct({ "alertIds": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "id": Schema.String, "kind": AlertmanagertypesMaintenanceKind, "name": Schema.String, "schedule": AlertmanagertypesSchedule, "scope": Schema.optionalKey(Schema.String), "status": AlertmanagertypesMaintenanceStatus, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
 export type AlertmanagertypesPostablePlannedMaintenance = { readonly "alertIds"?: ReadonlyArray<string>, readonly "description"?: string, readonly "name": string, readonly "schedule": AlertmanagertypesSchedule, readonly "scope"?: string }
 export const AlertmanagertypesPostablePlannedMaintenance = Schema.Struct({ "alertIds": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "description": Schema.optionalKey(Schema.String), "name": Schema.String, "schedule": AlertmanagertypesSchedule, "scope": Schema.optionalKey(Schema.String) })
-export type AuthtypesGettableAuthDomain = { readonly "authNProviderInfo"?: AuthtypesAuthNProviderInfo, readonly "config"?: AuthtypesAuthDomainConfig, readonly "createdAt"?: string, readonly "id": string, readonly "name"?: string, readonly "orgId"?: string, readonly "updatedAt"?: string }
-export const AuthtypesGettableAuthDomain = Schema.Struct({ "authNProviderInfo": Schema.optionalKey(AuthtypesAuthNProviderInfo), "config": Schema.optionalKey(AuthtypesAuthDomainConfig), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.String, "name": Schema.optionalKey(Schema.String), "orgId": Schema.optionalKey(Schema.String), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
-export type AuthtypesPostableAuthDomain = { readonly "config"?: AuthtypesAuthDomainConfig, readonly "name"?: string }
-export const AuthtypesPostableAuthDomain = Schema.Struct({ "config": Schema.optionalKey(AuthtypesAuthDomainConfig), "name": Schema.optionalKey(Schema.String) })
-export type AuthtypesUpdatableAuthDomain = { readonly "config"?: AuthtypesAuthDomainConfig }
-export const AuthtypesUpdatableAuthDomain = Schema.Struct({ "config": Schema.optionalKey(AuthtypesAuthDomainConfig) })
+export type AuthtypesGettableAuthDomain = { readonly "authNProviderInfo"?: AuthtypesAuthNProviderInfo, readonly "config"?: AuthtypesAuthDomainConfig, readonly "createdAt"?: string, readonly "enabled"?: boolean, readonly "id": string, readonly "name"?: string, readonly "orgId"?: string, readonly "roleMapping"?: AuthtypesRoleMapping, readonly "updatedAt"?: string }
+export const AuthtypesGettableAuthDomain = Schema.Struct({ "authNProviderInfo": Schema.optionalKey(AuthtypesAuthNProviderInfo), "config": Schema.optionalKey(AuthtypesAuthDomainConfig), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "enabled": Schema.optionalKey(Schema.Boolean), "id": Schema.String, "name": Schema.optionalKey(Schema.String), "orgId": Schema.optionalKey(Schema.String), "roleMapping": Schema.optionalKey(AuthtypesRoleMapping), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) })
+export type AuthtypesPostableAuthDomain = { readonly "config": AuthtypesAuthDomainConfig, readonly "enabled"?: boolean, readonly "name": string, readonly "roleMapping"?: AuthtypesRoleMapping }
+export const AuthtypesPostableAuthDomain = Schema.Struct({ "config": AuthtypesAuthDomainConfig, "enabled": Schema.optionalKey(Schema.Boolean), "name": Schema.String, "roleMapping": Schema.optionalKey(AuthtypesRoleMapping) })
+export type AuthtypesUpdatableAuthDomain = { readonly "config": AuthtypesAuthDomainConfig, readonly "enabled"?: boolean, readonly "roleMapping"?: AuthtypesRoleMapping }
+export const AuthtypesUpdatableAuthDomain = Schema.Struct({ "config": AuthtypesAuthDomainConfig, "enabled": Schema.optionalKey(Schema.Boolean), "roleMapping": Schema.optionalKey(AuthtypesRoleMapping) })
 export type CloudintegrationtypesAWSIntegrationConfig = { readonly "enabledRegions": ReadonlyArray<string>, readonly "telemetryCollectionStrategy": CloudintegrationtypesAWSTelemetryCollectionStrategy }
 export const CloudintegrationtypesAWSIntegrationConfig = Schema.Struct({ "enabledRegions": Schema.Array(Schema.String), "telemetryCollectionStrategy": CloudintegrationtypesAWSTelemetryCollectionStrategy })
 export type CloudintegrationtypesGettableAccounts = { readonly "accounts": ReadonlyArray<CloudintegrationtypesAccount> }
@@ -806,12 +884,14 @@ export type CloudintegrationtypesUpdatableService = { readonly "config": Cloudin
 export const CloudintegrationtypesUpdatableService = Schema.Struct({ "config": CloudintegrationtypesServiceConfig })
 export type AlertmanagertypesGoogleChatReceiverConfig = { readonly "http_config"?: ConfigHTTPClientConfig, readonly "send_resolved"?: boolean, readonly "text"?: string, readonly "title"?: string, readonly "webhook_url"?: ConfigSecretURL }
 export const AlertmanagertypesGoogleChatReceiverConfig = Schema.Struct({ "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "send_resolved": Schema.optionalKey(Schema.Boolean), "text": Schema.optionalKey(Schema.String), "title": Schema.optionalKey(Schema.String), "webhook_url": Schema.optionalKey(ConfigSecretURL) })
+export type AlertmanagertypesIncidentIOReceiverConfig = { readonly "description"?: string, readonly "http_config"?: ConfigHTTPClientConfig, readonly "metadata"?: { readonly [x: string]: string }, readonly "send_resolved"?: boolean, readonly "title"?: string, readonly "token"?: string, readonly "url"?: string }
+export const AlertmanagertypesIncidentIOReceiverConfig = Schema.Struct({ "description": Schema.optionalKey(Schema.String), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "metadata": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "send_resolved": Schema.optionalKey(Schema.Boolean), "title": Schema.optionalKey(Schema.String), "token": Schema.optionalKey(Schema.String), "url": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesJSMOpsReceiverConfig = { readonly "api_key"?: string, readonly "description"?: string, readonly "http_config"?: ConfigHTTPClientConfig, readonly "message"?: string, readonly "priority"?: string, readonly "send_resolved"?: boolean, readonly "tags"?: string }
+export const AlertmanagertypesJSMOpsReceiverConfig = Schema.Struct({ "api_key": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "message": Schema.optionalKey(Schema.String), "priority": Schema.optionalKey(Schema.String), "send_resolved": Schema.optionalKey(Schema.Boolean), "tags": Schema.optionalKey(Schema.String) })
+export type AlertmanagertypesJiraReceiverConfig = { readonly "custom_fields"?: { readonly [x: string]: Schema.Json }, readonly "description"?: string, readonly "http_config"?: ConfigHTTPClientConfig, readonly "issue_type"?: string, readonly "labels"?: ReadonlyArray<string>, readonly "priority"?: string, readonly "project"?: string, readonly "reopen_duration"?: ModelDuration, readonly "reopen_transition"?: string, readonly "resolve_transition"?: string, readonly "send_resolved"?: boolean, readonly "site"?: string, readonly "summary"?: string, readonly "wont_fix_resolution"?: string }
+export const AlertmanagertypesJiraReceiverConfig = Schema.Struct({ "custom_fields": Schema.optionalKey(Schema.Record(Schema.String, Schema.Json)), "description": Schema.optionalKey(Schema.String), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "issue_type": Schema.optionalKey(Schema.String), "labels": Schema.optionalKey(Schema.Array(Schema.String)), "priority": Schema.optionalKey(Schema.String), "project": Schema.optionalKey(Schema.String), "reopen_duration": Schema.optionalKey(ModelDuration), "reopen_transition": Schema.optionalKey(Schema.String), "resolve_transition": Schema.optionalKey(Schema.String), "send_resolved": Schema.optionalKey(Schema.Boolean), "site": Schema.optionalKey(Schema.String), "summary": Schema.optionalKey(Schema.String), "wont_fix_resolution": Schema.optionalKey(Schema.String) })
 export type ConfigDiscordConfig = { readonly "avatar_url"?: string, readonly "content"?: string, readonly "http_config"?: ConfigHTTPClientConfig, readonly "message"?: string, readonly "send_resolved"?: boolean, readonly "title"?: string, readonly "username"?: string, readonly "webhook_url"?: ConfigSecretURL, readonly "webhook_url_file"?: string }
 export const ConfigDiscordConfig = Schema.Struct({ "avatar_url": Schema.optionalKey(Schema.String), "content": Schema.optionalKey(Schema.String), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "message": Schema.optionalKey(Schema.String), "send_resolved": Schema.optionalKey(Schema.Boolean), "title": Schema.optionalKey(Schema.String), "username": Schema.optionalKey(Schema.String), "webhook_url": Schema.optionalKey(ConfigSecretURL), "webhook_url_file": Schema.optionalKey(Schema.String) })
-export type ConfigIncidentioConfig = { readonly "alert_source_token"?: string, readonly "alert_source_token_file"?: string, readonly "http_config"?: ConfigHTTPClientConfig, readonly "max_alerts"?: number, readonly "send_resolved"?: boolean, readonly "timeout"?: TimeDuration, readonly "url"?: ConfigURLType2, readonly "url_file"?: string }
-export const ConfigIncidentioConfig = Schema.Struct({ "alert_source_token": Schema.optionalKey(Schema.String), "alert_source_token_file": Schema.optionalKey(Schema.String), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "max_alerts": Schema.optionalKey(Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0))), "send_resolved": Schema.optionalKey(Schema.Boolean), "timeout": Schema.optionalKey(TimeDuration), "url": Schema.optionalKey(ConfigURLType2), "url_file": Schema.optionalKey(Schema.String) })
-export type ConfigJiraConfig = { readonly "api_type"?: string, readonly "api_url"?: ConfigURLType2, readonly "custom_fields"?: { readonly [x: string]: Schema.Json }, readonly "description"?: ConfigJiraFieldConfig, readonly "http_config"?: ConfigHTTPClientConfig, readonly "issue_type"?: string, readonly "labels"?: ReadonlyArray<string>, readonly "priority"?: string, readonly "project"?: string, readonly "reopen_duration"?: ModelDuration, readonly "reopen_transition"?: string, readonly "resolve_transition"?: string, readonly "send_resolved"?: boolean, readonly "summary"?: ConfigJiraFieldConfig, readonly "wont_fix_resolution"?: string }
-export const ConfigJiraConfig = Schema.Struct({ "api_type": Schema.optionalKey(Schema.String), "api_url": Schema.optionalKey(ConfigURLType2), "custom_fields": Schema.optionalKey(Schema.Record(Schema.String, Schema.Json)), "description": Schema.optionalKey(ConfigJiraFieldConfig), "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "issue_type": Schema.optionalKey(Schema.String), "labels": Schema.optionalKey(Schema.Array(Schema.String)), "priority": Schema.optionalKey(Schema.String), "project": Schema.optionalKey(Schema.String), "reopen_duration": Schema.optionalKey(ModelDuration), "reopen_transition": Schema.optionalKey(Schema.String), "resolve_transition": Schema.optionalKey(Schema.String), "send_resolved": Schema.optionalKey(Schema.Boolean), "summary": Schema.optionalKey(ConfigJiraFieldConfig), "wont_fix_resolution": Schema.optionalKey(Schema.String) })
 export type ConfigMSTeamsConfig = { readonly "http_config"?: ConfigHTTPClientConfig, readonly "send_resolved"?: boolean, readonly "summary"?: string, readonly "text"?: string, readonly "title"?: string, readonly "webhook_url"?: ConfigSecretURL, readonly "webhook_url_file"?: string }
 export const ConfigMSTeamsConfig = Schema.Struct({ "http_config": Schema.optionalKey(ConfigHTTPClientConfig), "send_resolved": Schema.optionalKey(Schema.Boolean), "summary": Schema.optionalKey(Schema.String), "text": Schema.optionalKey(Schema.String), "title": Schema.optionalKey(Schema.String), "webhook_url": Schema.optionalKey(ConfigSecretURL), "webhook_url_file": Schema.optionalKey(Schema.String) })
 export type ConfigMSTeamsV2Config = { readonly "http_config"?: ConfigHTTPClientConfig, readonly "send_resolved"?: boolean, readonly "text"?: string, readonly "title"?: string, readonly "webhook_url"?: ConfigSecretURL, readonly "webhook_url_file"?: string }
@@ -852,6 +932,8 @@ export type DashboardtypesListableDashboardForUserV2 = { readonly "dashboards": 
 export const DashboardtypesListableDashboardForUserV2 = Schema.Struct({ "dashboards": Schema.Array(DashboardtypesListedDashboardForUserV2), "reservedKeywords": Schema.Array(Schema.String), "tags": Schema.Array(TagtypesGettableTag), "total": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type DashboardtypesListableDashboardV2 = { readonly "dashboards": ReadonlyArray<DashboardtypesListedDashboardV2>, readonly "reservedKeywords": ReadonlyArray<string>, readonly "tags": ReadonlyArray<TagtypesGettableTag>, readonly "total": number }
 export const DashboardtypesListableDashboardV2 = Schema.Struct({ "dashboards": Schema.Array(DashboardtypesListedDashboardV2), "reservedKeywords": Schema.Array(Schema.String), "tags": Schema.Array(TagtypesGettableTag), "total": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type DashboardtypesListVariableSpec = { readonly "allowAllValue"?: boolean, readonly "allowMultiple"?: boolean, readonly "capturingRegexp"?: string, readonly "customAllValue"?: string, readonly "defaultValue"?: DashboardtypesVariableDefaultValue, readonly "display": DashboardtypesDisplay, readonly "name": string, readonly "plugin"?: DashboardtypesVariablePlugin, readonly "sort"?: DashboardtypesListVariableSpecSort }
+export const DashboardtypesListVariableSpec = Schema.Struct({ "allowAllValue": Schema.optionalKey(Schema.Boolean), "allowMultiple": Schema.optionalKey(Schema.Boolean), "capturingRegexp": Schema.optionalKey(Schema.String), "customAllValue": Schema.optionalKey(Schema.String), "defaultValue": Schema.optionalKey(DashboardtypesVariableDefaultValue), "display": DashboardtypesDisplay, "name": Schema.String.check(Schema.isMinLength(1)), "plugin": Schema.optionalKey(DashboardtypesVariablePlugin), "sort": Schema.optionalKey(DashboardtypesListVariableSpecSort) })
 export type DashboardtypesListableDashboardView = { readonly "views": ReadonlyArray<DashboardtypesDashboardView> }
 export const DashboardtypesListableDashboardView = Schema.Struct({ "views": Schema.Array(DashboardtypesDashboardView) })
 export type DashboardtypesPanelPlugin = { readonly "kind": "signoz/TimeSeriesPanel", readonly "spec": DashboardtypesTimeSeriesPanelSpec } | { readonly "kind": "signoz/BarChartPanel", readonly "spec": DashboardtypesBarChartPanelSpec } | { readonly "kind": "signoz/NumberPanel", readonly "spec": DashboardtypesNumberPanelSpec } | { readonly "kind": "signoz/PieChartPanel", readonly "spec": DashboardtypesPieChartPanelSpec } | { readonly "kind": "signoz/TablePanel", readonly "spec": DashboardtypesTablePanelSpec } | { readonly "kind": "signoz/HistogramPanel", readonly "spec": DashboardtypesHistogramPanelSpec } | { readonly "kind": "signoz/ListPanel", readonly "spec": DashboardtypesListPanelSpec }
@@ -868,36 +950,36 @@ export type SpantypesGettableSpanMappers = { readonly "items": ReadonlyArray<Spa
 export const SpantypesGettableSpanMappers = Schema.Struct({ "items": Schema.Array(SpantypesSpanMapper) })
 export type Querybuildertypesv5PreviewStatement = { readonly "db.statement.args": ReadonlyArray<Schema.Json>, readonly "db.statement.query": string, readonly "estimate": ReadonlyArray<TelemetrystoretypesEstimateEntry>, readonly "granules": TelemetrystoretypesGranules }
 export const Querybuildertypesv5PreviewStatement = Schema.Struct({ "db.statement.args": Schema.Array(Schema.Json), "db.statement.query": Schema.String, "estimate": Schema.Array(TelemetrystoretypesEstimateEntry), "granules": TelemetrystoretypesGranules })
-export type DashboardtypesListVariableSpec = { readonly "allowAllValue"?: boolean, readonly "allowMultiple"?: boolean, readonly "capturingRegexp"?: string, readonly "customAllValue"?: string, readonly "defaultValue"?: DashboardtypesVariableDefaultValue, readonly "display": DashboardtypesDisplay, readonly "name": string, readonly "plugin"?: DashboardtypesVariablePlugin, readonly "sort"?: DashboardtypesListVariableSpecSort }
-export const DashboardtypesListVariableSpec = Schema.Struct({ "allowAllValue": Schema.optionalKey(Schema.Boolean), "allowMultiple": Schema.optionalKey(Schema.Boolean), "capturingRegexp": Schema.optionalKey(Schema.String), "customAllValue": Schema.optionalKey(Schema.String), "defaultValue": Schema.optionalKey(DashboardtypesVariableDefaultValue), "display": DashboardtypesDisplay, "name": Schema.String.check(Schema.isMinLength(1)), "plugin": Schema.optionalKey(DashboardtypesVariablePlugin), "sort": Schema.optionalKey(DashboardtypesListVariableSpecSort) })
-export type InframonitoringtypesPostableClusters = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableClusters = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableContainers = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableContainers = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableDaemonSets = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableDaemonSets = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableDeployments = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableDeployments = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableClusters = { readonly "end": number, readonly "filter"?: InframonitoringtypesClusterFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableClusters = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesClusterFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableContainers = { readonly "end": number, readonly "filter"?: InframonitoringtypesContainerFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableContainers = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesContainerFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableDaemonSets = { readonly "end": number, readonly "filter"?: InframonitoringtypesDaemonSetFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableDaemonSets = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesDaemonSetFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableDeployments = { readonly "end": number, readonly "filter"?: InframonitoringtypesDeploymentFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableDeployments = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesDeploymentFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type InframonitoringtypesPostableHosts = { readonly "end": number, readonly "filter"?: InframonitoringtypesHostFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
 export const InframonitoringtypesPostableHosts = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesHostFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableJobs = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableJobs = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableNamespaces = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableNamespaces = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableNodes = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableNodes = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostablePods = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostablePods = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type InframonitoringtypesPostableStatefulSets = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
-export const InframonitoringtypesPostableStatefulSets = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableJobs = { readonly "end": number, readonly "filter"?: InframonitoringtypesJobFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableJobs = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesJobFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableNamespaces = { readonly "end": number, readonly "filter"?: InframonitoringtypesNamespaceFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableNamespaces = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesNamespaceFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableNodes = { readonly "end": number, readonly "filter"?: InframonitoringtypesNodeFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableNodes = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesNodeFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostablePods = { readonly "end": number, readonly "filter"?: InframonitoringtypesPodFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostablePods = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesPodFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
+export type InframonitoringtypesPostableStatefulSets = { readonly "end": number, readonly "filter"?: InframonitoringtypesStatefulSetFilter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
+export const InframonitoringtypesPostableStatefulSets = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(InframonitoringtypesStatefulSetFilter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type InframonitoringtypesPostableVolumes = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "groupBy"?: ReadonlyArray<{ readonly "description"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "name": string, readonly "signal"?: TelemetrytypesSignal, readonly "unit"?: string }>, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
 export const InframonitoringtypesPostableVolumes = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "groupBy": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "description": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "name": Schema.String, "signal": Schema.optionalKey(TelemetrytypesSignal), "unit": Schema.optionalKey(Schema.String) }))])), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
 export type MetricsexplorertypesStatsRequest = { readonly "end": number, readonly "filter"?: Querybuildertypesv5Filter, readonly "limit": number, readonly "offset"?: number, readonly "orderBy"?: Querybuildertypesv5OrderBy, readonly "start": number }
 export const MetricsexplorertypesStatsRequest = Schema.Struct({ "end": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()), "filter": Schema.optionalKey(Querybuildertypesv5Filter), "limit": Schema.Number.check(Schema.isInt()), "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "orderBy": Schema.optionalKey(Querybuildertypesv5OrderBy), "start": Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt()) })
-export type Querybuildertypesv5CompositeQuery = { readonly "queries"?: ReadonlyArray<{ readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }> }
-export const Querybuildertypesv5CompositeQuery = Schema.Struct({ "queries": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))])) }).annotate({ "description": "Composite query containing one or more query envelopes. Each query envelope specifies its type and corresponding spec." })
-export type RuletypesAlertCompositeQuery = { readonly "panelType": RuletypesPanelType, readonly "queries": ReadonlyArray<{ readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }>, readonly "queryType": RuletypesQueryType, readonly "unit"?: string }
-export const RuletypesAlertCompositeQuery = Schema.Struct({ "panelType": RuletypesPanelType, "queries": Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))]), "queryType": RuletypesQueryType, "unit": Schema.optionalKey(Schema.String) })
+export type Querybuildertypesv5CompositeQuery = { readonly "queries"?: ReadonlyArray<{ readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }> }
+export const Querybuildertypesv5CompositeQuery = Schema.Struct({ "queries": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))])) }).annotate({ "description": "Composite query containing one or more query envelopes. Each query envelope specifies its type and corresponding spec." })
+export type Querybuildertypesv5QueryEnvelope = { readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }
+export const Querybuildertypesv5QueryEnvelope = Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" })
+export type RuletypesAlertCompositeQuery = { readonly "panelType": RuletypesPanelType, readonly "queries": ReadonlyArray<{ readonly "spec"?: Querybuildertypesv5BuilderQuerySpec, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderFormula, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5QueryBuilderTraceOperator, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5PromQuery, readonly "type": Querybuildertypesv5QueryType } | { readonly "spec"?: Querybuildertypesv5ClickHouseQuery, readonly "type": Querybuildertypesv5QueryType }>, readonly "queryType": RuletypesQueryType, readonly "unit"?: string }
+export const RuletypesAlertCompositeQuery = Schema.Struct({ "panelType": RuletypesPanelType, "queries": Schema.Union([Schema.Array(Schema.Union([Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5BuilderQuerySpec), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderQueryGithubComSigNozSignozPkgTypesQuerybuildertypesQuerybuildertypesv5TraceAggregation), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderFormula), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5QueryBuilderTraceOperator), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5PromQuery), "type": Querybuildertypesv5QueryType }), Schema.Struct({ "spec": Schema.optionalKey(Querybuildertypesv5ClickHouseQuery), "type": Querybuildertypesv5QueryType })], { mode: "oneOf" }))]), "queryType": RuletypesQueryType, "unit": Schema.optionalKey(Schema.String) })
 export type MetricsexplorertypesInspectMetricsResponse = { readonly "series": ReadonlyArray<{ readonly "labels"?: ReadonlyArray<Querybuildertypesv5Label>, readonly "values"?: ReadonlyArray<{ readonly "bucket"?: Querybuildertypesv5Bucket, readonly "partial"?: boolean, readonly "timestamp"?: number, readonly "value"?: SignoztypesFloat64, readonly "values"?: ReadonlyArray<SignoztypesFloat64> }> }> }
 export const MetricsexplorertypesInspectMetricsResponse = Schema.Struct({ "series": Schema.Union([Schema.Array(Schema.Struct({ "labels": Schema.optionalKey(Schema.Array(Querybuildertypesv5Label)), "values": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "bucket": Schema.optionalKey(Querybuildertypesv5Bucket), "partial": Schema.optionalKey(Schema.Boolean), "timestamp": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "value": Schema.optionalKey(SignoztypesFloat64), "values": Schema.optionalKey(Schema.Array(SignoztypesFloat64)) }))])) }))]) })
 export type Querybuildertypesv5TimeSeries = { readonly "labels"?: ReadonlyArray<Querybuildertypesv5Label>, readonly "values"?: ReadonlyArray<{ readonly "bucket"?: Querybuildertypesv5Bucket, readonly "partial"?: boolean, readonly "timestamp"?: number, readonly "value"?: SignoztypesFloat64, readonly "values"?: ReadonlyArray<SignoztypesFloat64> }> }
@@ -918,20 +1000,22 @@ export type CloudintegrationtypesProviderIntegrationConfig = { readonly "aws"?: 
 export const CloudintegrationtypesProviderIntegrationConfig = Schema.Struct({ "aws": Schema.optionalKey(CloudintegrationtypesAWSIntegrationConfig), "azure": Schema.optionalKey(CloudintegrationtypesAzureIntegrationConfig), "gcp": Schema.optionalKey(CloudintegrationtypesGCPIntegrationConfig) })
 export type CloudintegrationtypesService = { readonly "assets": CloudintegrationtypesServiceAssets, readonly "cloudIntegrationService": CloudintegrationtypesCloudIntegrationService, readonly "dataCollected": CloudintegrationtypesDataCollected, readonly "icon": string, readonly "id": string, readonly "overview": string, readonly "supportedSignals": CloudintegrationtypesSupportedSignals, readonly "title": string }
 export const CloudintegrationtypesService = Schema.Struct({ "assets": CloudintegrationtypesServiceAssets, "cloudIntegrationService": CloudintegrationtypesCloudIntegrationService, "dataCollected": CloudintegrationtypesDataCollected, "icon": Schema.String, "id": Schema.String, "overview": Schema.String, "supportedSignals": CloudintegrationtypesSupportedSignals, "title": Schema.String })
-export type AlertmanagertypesPostableChannel = { readonly "discord_configs"?: ReadonlyArray<ConfigDiscordConfig>, readonly "email_configs"?: ReadonlyArray<ConfigEmailConfig>, readonly "googlechat_configs"?: ReadonlyArray<AlertmanagertypesGoogleChatReceiverConfig>, readonly "incidentio_configs"?: ReadonlyArray<ConfigIncidentioConfig>, readonly "jira_configs"?: ReadonlyArray<ConfigJiraConfig>, readonly "mattermost_configs"?: ReadonlyArray<ConfigMattermostConfig>, readonly "msteams_configs"?: ReadonlyArray<ConfigMSTeamsConfig>, readonly "msteamsv2_configs"?: ReadonlyArray<ConfigMSTeamsV2Config>, readonly "name": string, readonly "opsgenie_configs"?: ReadonlyArray<ConfigOpsGenieConfig>, readonly "pagerduty_configs"?: ReadonlyArray<ConfigPagerdutyConfig>, readonly "pushover_configs"?: ReadonlyArray<ConfigPushoverConfig>, readonly "rocketchat_configs"?: ReadonlyArray<ConfigRocketchatConfig>, readonly "slack_configs"?: ReadonlyArray<ConfigSlackConfig>, readonly "sns_configs"?: ReadonlyArray<ConfigSNSConfig>, readonly "telegram_configs"?: ReadonlyArray<ConfigTelegramConfig>, readonly "victorops_configs"?: ReadonlyArray<ConfigVictorOpsConfig>, readonly "webex_configs"?: ReadonlyArray<ConfigWebexConfig>, readonly "webhook_configs"?: ReadonlyArray<ConfigWebhookConfig>, readonly "wechat_configs"?: ReadonlyArray<ConfigWechatConfig> }
-export const AlertmanagertypesPostableChannel = Schema.Struct({ "discord_configs": Schema.optionalKey(Schema.Array(ConfigDiscordConfig)), "email_configs": Schema.optionalKey(Schema.Array(ConfigEmailConfig)), "googlechat_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesGoogleChatReceiverConfig)), "incidentio_configs": Schema.optionalKey(Schema.Array(ConfigIncidentioConfig)), "jira_configs": Schema.optionalKey(Schema.Array(ConfigJiraConfig)), "mattermost_configs": Schema.optionalKey(Schema.Array(ConfigMattermostConfig)), "msteams_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsConfig)), "msteamsv2_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsV2Config)), "name": Schema.String, "opsgenie_configs": Schema.optionalKey(Schema.Array(ConfigOpsGenieConfig)), "pagerduty_configs": Schema.optionalKey(Schema.Array(ConfigPagerdutyConfig)), "pushover_configs": Schema.optionalKey(Schema.Array(ConfigPushoverConfig)), "rocketchat_configs": Schema.optionalKey(Schema.Array(ConfigRocketchatConfig)), "slack_configs": Schema.optionalKey(Schema.Array(ConfigSlackConfig)), "sns_configs": Schema.optionalKey(Schema.Array(ConfigSNSConfig)), "telegram_configs": Schema.optionalKey(Schema.Array(ConfigTelegramConfig)), "victorops_configs": Schema.optionalKey(Schema.Array(ConfigVictorOpsConfig)), "webex_configs": Schema.optionalKey(Schema.Array(ConfigWebexConfig)), "webhook_configs": Schema.optionalKey(Schema.Array(ConfigWebhookConfig)), "wechat_configs": Schema.optionalKey(Schema.Array(ConfigWechatConfig)) })
-export type AlertmanagertypesReceiver = { readonly "discord_configs"?: ReadonlyArray<ConfigDiscordConfig>, readonly "email_configs"?: ReadonlyArray<ConfigEmailConfig>, readonly "googlechat_configs"?: ReadonlyArray<AlertmanagertypesGoogleChatReceiverConfig>, readonly "incidentio_configs"?: ReadonlyArray<ConfigIncidentioConfig>, readonly "jira_configs"?: ReadonlyArray<ConfigJiraConfig>, readonly "mattermost_configs"?: ReadonlyArray<ConfigMattermostConfig>, readonly "msteams_configs"?: ReadonlyArray<ConfigMSTeamsConfig>, readonly "msteamsv2_configs"?: ReadonlyArray<ConfigMSTeamsV2Config>, readonly "name"?: string, readonly "opsgenie_configs"?: ReadonlyArray<ConfigOpsGenieConfig>, readonly "pagerduty_configs"?: ReadonlyArray<ConfigPagerdutyConfig>, readonly "pushover_configs"?: ReadonlyArray<ConfigPushoverConfig>, readonly "rocketchat_configs"?: ReadonlyArray<ConfigRocketchatConfig>, readonly "slack_configs"?: ReadonlyArray<ConfigSlackConfig>, readonly "sns_configs"?: ReadonlyArray<ConfigSNSConfig>, readonly "telegram_configs"?: ReadonlyArray<ConfigTelegramConfig>, readonly "victorops_configs"?: ReadonlyArray<ConfigVictorOpsConfig>, readonly "webex_configs"?: ReadonlyArray<ConfigWebexConfig>, readonly "webhook_configs"?: ReadonlyArray<ConfigWebhookConfig>, readonly "wechat_configs"?: ReadonlyArray<ConfigWechatConfig> }
-export const AlertmanagertypesReceiver = Schema.Struct({ "discord_configs": Schema.optionalKey(Schema.Array(ConfigDiscordConfig)), "email_configs": Schema.optionalKey(Schema.Array(ConfigEmailConfig)), "googlechat_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesGoogleChatReceiverConfig)), "incidentio_configs": Schema.optionalKey(Schema.Array(ConfigIncidentioConfig)), "jira_configs": Schema.optionalKey(Schema.Array(ConfigJiraConfig)), "mattermost_configs": Schema.optionalKey(Schema.Array(ConfigMattermostConfig)), "msteams_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsConfig)), "msteamsv2_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsV2Config)), "name": Schema.optionalKey(Schema.String), "opsgenie_configs": Schema.optionalKey(Schema.Array(ConfigOpsGenieConfig)), "pagerduty_configs": Schema.optionalKey(Schema.Array(ConfigPagerdutyConfig)), "pushover_configs": Schema.optionalKey(Schema.Array(ConfigPushoverConfig)), "rocketchat_configs": Schema.optionalKey(Schema.Array(ConfigRocketchatConfig)), "slack_configs": Schema.optionalKey(Schema.Array(ConfigSlackConfig)), "sns_configs": Schema.optionalKey(Schema.Array(ConfigSNSConfig)), "telegram_configs": Schema.optionalKey(Schema.Array(ConfigTelegramConfig)), "victorops_configs": Schema.optionalKey(Schema.Array(ConfigVictorOpsConfig)), "webex_configs": Schema.optionalKey(Schema.Array(ConfigWebexConfig)), "webhook_configs": Schema.optionalKey(Schema.Array(ConfigWebhookConfig)), "wechat_configs": Schema.optionalKey(Schema.Array(ConfigWechatConfig)) })
+export type AlertmanagertypesPostableChannel = { readonly "discord_configs"?: ReadonlyArray<ConfigDiscordConfig>, readonly "email_configs"?: ReadonlyArray<ConfigEmailConfig>, readonly "googlechat_configs"?: ReadonlyArray<AlertmanagertypesGoogleChatReceiverConfig>, readonly "incidentio_configs"?: ReadonlyArray<AlertmanagertypesIncidentIOReceiverConfig>, readonly "jira_configs"?: ReadonlyArray<AlertmanagertypesJiraReceiverConfig>, readonly "jsmops_configs"?: ReadonlyArray<AlertmanagertypesJSMOpsReceiverConfig>, readonly "mattermost_configs"?: ReadonlyArray<ConfigMattermostConfig>, readonly "msteams_configs"?: ReadonlyArray<ConfigMSTeamsConfig>, readonly "msteamsv2_configs"?: ReadonlyArray<ConfigMSTeamsV2Config>, readonly "name": string, readonly "opsgenie_configs"?: ReadonlyArray<ConfigOpsGenieConfig>, readonly "pagerduty_configs"?: ReadonlyArray<ConfigPagerdutyConfig>, readonly "pushover_configs"?: ReadonlyArray<ConfigPushoverConfig>, readonly "rocketchat_configs"?: ReadonlyArray<ConfigRocketchatConfig>, readonly "slack_configs"?: ReadonlyArray<ConfigSlackConfig>, readonly "sns_configs"?: ReadonlyArray<ConfigSNSConfig>, readonly "telegram_configs"?: ReadonlyArray<ConfigTelegramConfig>, readonly "victorops_configs"?: ReadonlyArray<ConfigVictorOpsConfig>, readonly "webex_configs"?: ReadonlyArray<ConfigWebexConfig>, readonly "webhook_configs"?: ReadonlyArray<ConfigWebhookConfig>, readonly "wechat_configs"?: ReadonlyArray<ConfigWechatConfig> }
+export const AlertmanagertypesPostableChannel = Schema.Struct({ "discord_configs": Schema.optionalKey(Schema.Array(ConfigDiscordConfig)), "email_configs": Schema.optionalKey(Schema.Array(ConfigEmailConfig)), "googlechat_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesGoogleChatReceiverConfig)), "incidentio_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesIncidentIOReceiverConfig)), "jira_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesJiraReceiverConfig)), "jsmops_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesJSMOpsReceiverConfig)), "mattermost_configs": Schema.optionalKey(Schema.Array(ConfigMattermostConfig)), "msteams_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsConfig)), "msteamsv2_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsV2Config)), "name": Schema.String, "opsgenie_configs": Schema.optionalKey(Schema.Array(ConfigOpsGenieConfig)), "pagerduty_configs": Schema.optionalKey(Schema.Array(ConfigPagerdutyConfig)), "pushover_configs": Schema.optionalKey(Schema.Array(ConfigPushoverConfig)), "rocketchat_configs": Schema.optionalKey(Schema.Array(ConfigRocketchatConfig)), "slack_configs": Schema.optionalKey(Schema.Array(ConfigSlackConfig)), "sns_configs": Schema.optionalKey(Schema.Array(ConfigSNSConfig)), "telegram_configs": Schema.optionalKey(Schema.Array(ConfigTelegramConfig)), "victorops_configs": Schema.optionalKey(Schema.Array(ConfigVictorOpsConfig)), "webex_configs": Schema.optionalKey(Schema.Array(ConfigWebexConfig)), "webhook_configs": Schema.optionalKey(Schema.Array(ConfigWebhookConfig)), "wechat_configs": Schema.optionalKey(Schema.Array(ConfigWechatConfig)) })
+export type AlertmanagertypesReceiver = { readonly "discord_configs"?: ReadonlyArray<ConfigDiscordConfig>, readonly "email_configs"?: ReadonlyArray<ConfigEmailConfig>, readonly "googlechat_configs"?: ReadonlyArray<AlertmanagertypesGoogleChatReceiverConfig>, readonly "incidentio_configs"?: ReadonlyArray<AlertmanagertypesIncidentIOReceiverConfig>, readonly "jira_configs"?: ReadonlyArray<AlertmanagertypesJiraReceiverConfig>, readonly "jsmops_configs"?: ReadonlyArray<AlertmanagertypesJSMOpsReceiverConfig>, readonly "mattermost_configs"?: ReadonlyArray<ConfigMattermostConfig>, readonly "msteams_configs"?: ReadonlyArray<ConfigMSTeamsConfig>, readonly "msteamsv2_configs"?: ReadonlyArray<ConfigMSTeamsV2Config>, readonly "name"?: string, readonly "opsgenie_configs"?: ReadonlyArray<ConfigOpsGenieConfig>, readonly "pagerduty_configs"?: ReadonlyArray<ConfigPagerdutyConfig>, readonly "pushover_configs"?: ReadonlyArray<ConfigPushoverConfig>, readonly "rocketchat_configs"?: ReadonlyArray<ConfigRocketchatConfig>, readonly "slack_configs"?: ReadonlyArray<ConfigSlackConfig>, readonly "sns_configs"?: ReadonlyArray<ConfigSNSConfig>, readonly "telegram_configs"?: ReadonlyArray<ConfigTelegramConfig>, readonly "victorops_configs"?: ReadonlyArray<ConfigVictorOpsConfig>, readonly "webex_configs"?: ReadonlyArray<ConfigWebexConfig>, readonly "webhook_configs"?: ReadonlyArray<ConfigWebhookConfig>, readonly "wechat_configs"?: ReadonlyArray<ConfigWechatConfig> }
+export const AlertmanagertypesReceiver = Schema.Struct({ "discord_configs": Schema.optionalKey(Schema.Array(ConfigDiscordConfig)), "email_configs": Schema.optionalKey(Schema.Array(ConfigEmailConfig)), "googlechat_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesGoogleChatReceiverConfig)), "incidentio_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesIncidentIOReceiverConfig)), "jira_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesJiraReceiverConfig)), "jsmops_configs": Schema.optionalKey(Schema.Array(AlertmanagertypesJSMOpsReceiverConfig)), "mattermost_configs": Schema.optionalKey(Schema.Array(ConfigMattermostConfig)), "msteams_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsConfig)), "msteamsv2_configs": Schema.optionalKey(Schema.Array(ConfigMSTeamsV2Config)), "name": Schema.optionalKey(Schema.String), "opsgenie_configs": Schema.optionalKey(Schema.Array(ConfigOpsGenieConfig)), "pagerduty_configs": Schema.optionalKey(Schema.Array(ConfigPagerdutyConfig)), "pushover_configs": Schema.optionalKey(Schema.Array(ConfigPushoverConfig)), "rocketchat_configs": Schema.optionalKey(Schema.Array(ConfigRocketchatConfig)), "slack_configs": Schema.optionalKey(Schema.Array(ConfigSlackConfig)), "sns_configs": Schema.optionalKey(Schema.Array(ConfigSNSConfig)), "telegram_configs": Schema.optionalKey(Schema.Array(ConfigTelegramConfig)), "victorops_configs": Schema.optionalKey(Schema.Array(ConfigVictorOpsConfig)), "webex_configs": Schema.optionalKey(Schema.Array(ConfigWebexConfig)), "webhook_configs": Schema.optionalKey(Schema.Array(ConfigWebhookConfig)), "wechat_configs": Schema.optionalKey(Schema.Array(ConfigWechatConfig)) })
 export type AuthtypesTransactionGroups = ReadonlyArray<AuthtypesTransactionGroup>
 export const AuthtypesTransactionGroups = Schema.Array(AuthtypesTransactionGroup)
-export type RuletypesRule = { readonly "alert": string, readonly "alertType": RuletypesAlertType, readonly "annotations"?: { readonly [x: string]: string }, readonly "condition": { readonly [x: string]: Schema.Json }, readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "description"?: string, readonly "disabled"?: boolean, readonly "evalWindow"?: string, readonly "evaluation"?: RuletypesEvaluationEnvelope, readonly "frequency"?: string, readonly "id": string, readonly "labels"?: { readonly [x: string]: string }, readonly "notificationSettings"?: RuletypesNotificationSettings, readonly "preferredChannels"?: ReadonlyArray<string>, readonly "ruleType": RuletypesRuleType, readonly "schemaVersion"?: string, readonly "source"?: string, readonly "state": RuletypesAlertState, readonly "updatedAt"?: string, readonly "updatedBy"?: string, readonly "version"?: string }
-export const RuletypesRule = Schema.Struct({ "alert": Schema.String, "alertType": RuletypesAlertType, "annotations": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "condition": Schema.Record(Schema.String, Schema.Json), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "disabled": Schema.optionalKey(Schema.Boolean), "evalWindow": Schema.optionalKey(Schema.String), "evaluation": Schema.optionalKey(RuletypesEvaluationEnvelope), "frequency": Schema.optionalKey(Schema.String), "id": Schema.String, "labels": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "notificationSettings": Schema.optionalKey(RuletypesNotificationSettings), "preferredChannels": Schema.optionalKey(Schema.Array(Schema.String)), "ruleType": RuletypesRuleType, "schemaVersion": Schema.optionalKey(Schema.String), "source": Schema.optionalKey(Schema.String), "state": RuletypesAlertState, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String), "version": Schema.optionalKey(Schema.String) })
 export type DashboardtypesVariable = { readonly "kind": "ListVariable", readonly "spec": DashboardtypesListVariableSpec } | { readonly "kind": "TextVariable", readonly "spec": DashboardtypesTextVariableSpec }
 export const DashboardtypesVariable = Schema.Union([Schema.Struct({ "kind": Schema.Literal("ListVariable"), "spec": DashboardtypesListVariableSpec }), Schema.Struct({ "kind": Schema.Literal("TextVariable"), "spec": DashboardtypesTextVariableSpec })], { mode: "oneOf" })
+export type RuletypesRule = { readonly "alert": string, readonly "alertType": RuletypesAlertType, readonly "annotations"?: { readonly [x: string]: string }, readonly "condition": { readonly [x: string]: Schema.Json }, readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "description"?: string, readonly "disabled"?: boolean, readonly "evalWindow"?: string, readonly "evaluation"?: RuletypesEvaluationEnvelope, readonly "frequency"?: string, readonly "id": string, readonly "labels"?: { readonly [x: string]: string }, readonly "notificationSettings"?: RuletypesNotificationSettings, readonly "preferredChannels"?: ReadonlyArray<string>, readonly "ruleType": RuletypesRuleType, readonly "schemaVersion"?: string, readonly "source"?: string, readonly "state": RuletypesAlertState, readonly "updatedAt"?: string, readonly "updatedBy"?: string, readonly "version"?: string }
+export const RuletypesRule = Schema.Struct({ "alert": Schema.String, "alertType": RuletypesAlertType, "annotations": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "condition": Schema.Record(Schema.String, Schema.Json), "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "description": Schema.optionalKey(Schema.String), "disabled": Schema.optionalKey(Schema.Boolean), "evalWindow": Schema.optionalKey(Schema.String), "evaluation": Schema.optionalKey(RuletypesEvaluationEnvelope), "frequency": Schema.optionalKey(Schema.String), "id": Schema.String, "labels": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "notificationSettings": Schema.optionalKey(RuletypesNotificationSettings), "preferredChannels": Schema.optionalKey(Schema.Array(Schema.String)), "ruleType": RuletypesRuleType, "schemaVersion": Schema.optionalKey(Schema.String), "source": Schema.optionalKey(Schema.String), "state": RuletypesAlertState, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String), "version": Schema.optionalKey(Schema.String) })
 export type DashboardtypesQueryPlugin = { readonly "kind": "signoz/BuilderQuery", readonly "spec": DashboardtypesBuilderQuerySpec } | { readonly "kind": "signoz/CompositeQuery", readonly "spec": Querybuildertypesv5CompositeQuery } | { readonly "kind": "signoz/Formula", readonly "spec": Querybuildertypesv5QueryBuilderFormula } | { readonly "kind": "signoz/PromQLQuery", readonly "spec": Querybuildertypesv5PromQuery } | { readonly "kind": "signoz/ClickHouseSQL", readonly "spec": Querybuildertypesv5ClickHouseQuery } | { readonly "kind": "signoz/TraceOperator", readonly "spec": Querybuildertypesv5QueryBuilderTraceOperator }
 export const DashboardtypesQueryPlugin = Schema.Union([Schema.Struct({ "kind": Schema.Literal("signoz/BuilderQuery"), "spec": DashboardtypesBuilderQuerySpec }), Schema.Struct({ "kind": Schema.Literal("signoz/CompositeQuery"), "spec": Querybuildertypesv5CompositeQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/Formula"), "spec": Querybuildertypesv5QueryBuilderFormula }), Schema.Struct({ "kind": Schema.Literal("signoz/PromQLQuery"), "spec": Querybuildertypesv5PromQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/ClickHouseSQL"), "spec": Querybuildertypesv5ClickHouseQuery }), Schema.Struct({ "kind": Schema.Literal("signoz/TraceOperator"), "spec": Querybuildertypesv5QueryBuilderTraceOperator })], { mode: "oneOf" })
 export type Querybuildertypesv5QueryRangeRequest = { readonly "compositeQuery"?: Querybuildertypesv5CompositeQuery, readonly "end"?: number, readonly "formatOptions"?: Querybuildertypesv5FormatOptions, readonly "noCache"?: boolean, readonly "requestType"?: Querybuildertypesv5RequestType, readonly "schemaVersion"?: string, readonly "start"?: number, readonly "variables"?: { readonly [x: string]: Querybuildertypesv5VariableItem } }
 export const Querybuildertypesv5QueryRangeRequest = Schema.Struct({ "compositeQuery": Schema.optionalKey(Querybuildertypesv5CompositeQuery), "end": Schema.optionalKey(Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0))), "formatOptions": Schema.optionalKey(Querybuildertypesv5FormatOptions), "noCache": Schema.optionalKey(Schema.Boolean), "requestType": Schema.optionalKey(Querybuildertypesv5RequestType), "schemaVersion": Schema.optionalKey(Schema.String), "start": Schema.optionalKey(Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0))), "variables": Schema.optionalKey(Schema.Record(Schema.String, Querybuildertypesv5VariableItem)) }).annotate({ "description": "Request body for the v5 query range endpoint. Supports builder queries (traces, logs, metrics), formulas, joins, trace operators, PromQL, and ClickHouse SQL queries." })
+export type SavedviewtypesSavedViewSpec = { readonly "display"?: SavedviewtypesDisplay, readonly "displayName": string, readonly "panelType": SavedviewtypesPanelType, readonly "queries": ReadonlyArray<Querybuildertypesv5QueryEnvelope>, readonly "requestType": Querybuildertypesv5RequestType, readonly "selectedFields"?: ReadonlyArray<TelemetrytypesTelemetryFieldKey> }
+export const SavedviewtypesSavedViewSpec = Schema.Struct({ "display": Schema.optionalKey(SavedviewtypesDisplay), "displayName": Schema.String, "panelType": SavedviewtypesPanelType, "queries": Schema.Array(Querybuildertypesv5QueryEnvelope).check(Schema.isMinLength(1)), "requestType": Querybuildertypesv5RequestType, "selectedFields": Schema.optionalKey(Schema.Array(TelemetrytypesTelemetryFieldKey)) })
 export type RuletypesRuleCondition = { readonly "absentFor"?: number, readonly "alertOnAbsent"?: boolean, readonly "algorithm"?: string, readonly "compositeQuery": RuletypesAlertCompositeQuery, readonly "matchType"?: RuletypesMatchType, readonly "op"?: RuletypesCompareOperator, readonly "requireMinPoints"?: boolean, readonly "requiredNumPoints"?: number, readonly "seasonality"?: RuletypesSeasonality, readonly "selectedQueryName"?: string, readonly "target"?: never, readonly "targetUnit"?: string, readonly "thresholds"?: RuletypesRuleThresholdData }
 export const RuletypesRuleCondition = Schema.Struct({ "absentFor": Schema.optionalKey(Schema.Number.check(Schema.isInt()).check(Schema.isGreaterThanOrEqualTo(0))), "alertOnAbsent": Schema.optionalKey(Schema.Boolean), "algorithm": Schema.optionalKey(Schema.String), "compositeQuery": RuletypesAlertCompositeQuery, "matchType": Schema.optionalKey(RuletypesMatchType), "op": Schema.optionalKey(RuletypesCompareOperator), "requireMinPoints": Schema.optionalKey(Schema.Boolean), "requiredNumPoints": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "seasonality": Schema.optionalKey(RuletypesSeasonality), "selectedQueryName": Schema.optionalKey(Schema.String), "target": Schema.optionalKey(Schema.Never), "targetUnit": Schema.optionalKey(Schema.String), "thresholds": Schema.optionalKey(RuletypesRuleThresholdData) })
 export type Querybuildertypesv5AggregationBucket = { readonly "alias"?: string, readonly "anomalyScores"?: ReadonlyArray<Querybuildertypesv5TimeSeries>, readonly "index"?: number, readonly "lowerBoundSeries"?: ReadonlyArray<Querybuildertypesv5TimeSeries>, readonly "meta"?: { readonly "unit"?: string }, readonly "predictedSeries"?: ReadonlyArray<Querybuildertypesv5TimeSeries>, readonly "series"?: ReadonlyArray<Querybuildertypesv5TimeSeries> | null, readonly "upperBoundSeries"?: ReadonlyArray<Querybuildertypesv5TimeSeries> }
@@ -948,6 +1032,12 @@ export type AuthtypesUpdatableRole = { readonly "description": string, readonly 
 export const AuthtypesUpdatableRole = Schema.Struct({ "description": Schema.String, "transactionGroups": AuthtypesTransactionGroups })
 export type DashboardtypesQuerySpec = { readonly "name"?: string, readonly "plugin": DashboardtypesQueryPlugin }
 export const DashboardtypesQuerySpec = Schema.Struct({ "name": Schema.optionalKey(Schema.String), "plugin": DashboardtypesQueryPlugin })
+export type SavedviewtypesPostableSavedView = { readonly "generateName"?: boolean, readonly "name"?: string, readonly "schemaVersion": SavedviewtypesSchemaVersion, readonly "source": SavedviewtypesSource, readonly "spec": SavedviewtypesSavedViewSpec }
+export const SavedviewtypesPostableSavedView = Schema.Struct({ "generateName": Schema.optionalKey(Schema.Boolean), "name": Schema.optionalKey(Schema.String), "schemaVersion": SavedviewtypesSchemaVersion, "source": SavedviewtypesSource, "spec": SavedviewtypesSavedViewSpec })
+export type SavedviewtypesSavedView = { readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "id": string, readonly "name"?: string, readonly "schemaVersion": SavedviewtypesSchemaVersion, readonly "source"?: SavedviewtypesSource, readonly "spec": SavedviewtypesSavedViewSpec, readonly "updatedAt"?: string, readonly "updatedBy"?: string }
+export const SavedviewtypesSavedView = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "id": Schema.String, "name": Schema.optionalKey(Schema.String), "schemaVersion": SavedviewtypesSchemaVersion, "source": Schema.optionalKey(SavedviewtypesSource), "spec": SavedviewtypesSavedViewSpec, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
+export type SavedviewtypesUpdatableSavedView = { readonly "schemaVersion": SavedviewtypesSchemaVersion, readonly "source": SavedviewtypesSource, readonly "spec": SavedviewtypesSavedViewSpec }
+export const SavedviewtypesUpdatableSavedView = Schema.Struct({ "schemaVersion": SavedviewtypesSchemaVersion, "source": SavedviewtypesSource, "spec": SavedviewtypesSavedViewSpec })
 export type RuletypesPostableRule = { readonly "alert": string, readonly "alertType": RuletypesAlertType, readonly "annotations"?: { readonly [x: string]: string }, readonly "condition": RuletypesRuleCondition, readonly "description"?: string, readonly "disabled"?: boolean, readonly "evalWindow"?: string, readonly "evaluation"?: RuletypesEvaluationEnvelope, readonly "frequency"?: string, readonly "labels"?: { readonly [x: string]: string }, readonly "notificationSettings"?: RuletypesNotificationSettings, readonly "preferredChannels"?: ReadonlyArray<string>, readonly "ruleType": RuletypesRuleType, readonly "schemaVersion"?: string, readonly "source"?: string, readonly "version"?: string }
 export const RuletypesPostableRule = Schema.Struct({ "alert": Schema.String, "alertType": RuletypesAlertType, "annotations": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "condition": RuletypesRuleCondition, "description": Schema.optionalKey(Schema.String), "disabled": Schema.optionalKey(Schema.Boolean), "evalWindow": Schema.optionalKey(Schema.String), "evaluation": Schema.optionalKey(RuletypesEvaluationEnvelope), "frequency": Schema.optionalKey(Schema.String), "labels": Schema.optionalKey(Schema.Record(Schema.String, Schema.String)), "notificationSettings": Schema.optionalKey(RuletypesNotificationSettings), "preferredChannels": Schema.optionalKey(Schema.Array(Schema.String)), "ruleType": RuletypesRuleType, "schemaVersion": Schema.optionalKey(Schema.String), "source": Schema.optionalKey(Schema.String), "version": Schema.optionalKey(Schema.String) })
 export type Querybuildertypesv5TimeSeriesData = { readonly "aggregations"?: ReadonlyArray<Querybuildertypesv5AggregationBucket> | null, readonly "queryName"?: string }
@@ -995,10 +1085,12 @@ export type Querybuildertypesv5QueryRangeResponse = { readonly "data"?: Querybui
 export const Querybuildertypesv5QueryRangeResponse = Schema.Struct({ "data": Schema.optionalKey(Querybuildertypesv5QueryData), "meta": Schema.optionalKey(Querybuildertypesv5ExecStats), "type": Schema.optionalKey(Querybuildertypesv5RequestType), "warning": Schema.optionalKey(Querybuildertypesv5QueryWarnData) }).annotate({ "description": "Response from the v5 query range endpoint. The data.results array contains typed results depending on the requestType: TimeSeriesData for time_series, ScalarData for scalar, or RawData for raw requests." })
 export type DashboardtypesPanel = { readonly "kind": DashboardtypesPanelKind, readonly "spec": DashboardtypesPanelSpec }
 export const DashboardtypesPanel = Schema.Struct({ "kind": DashboardtypesPanelKind, "spec": DashboardtypesPanelSpec })
-export type DashboardtypesDashboardSpec = { readonly "datasources"?: {  }, readonly "display": DashboardtypesDisplay, readonly "duration"?: string, readonly "layouts": ReadonlyArray<DashboardtypesLayout>, readonly "links"?: ReadonlyArray<{ readonly "name"?: string, readonly "renderVariables"?: boolean, readonly "targetBlank"?: boolean, readonly "tooltip"?: string, readonly "url"?: string }>, readonly "panels": { readonly [x: string]: DashboardtypesPanel }, readonly "refreshInterval"?: string, readonly "variables": ReadonlyArray<DashboardtypesVariable> }
-export const DashboardtypesDashboardSpec = Schema.Struct({ "datasources": Schema.optionalKey(Schema.Union([Schema.Struct({  })])), "display": DashboardtypesDisplay, "duration": Schema.optionalKey(Schema.String), "layouts": Schema.Array(DashboardtypesLayout), "links": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "name": Schema.optionalKey(Schema.String), "renderVariables": Schema.optionalKey(Schema.Boolean), "targetBlank": Schema.optionalKey(Schema.Boolean), "tooltip": Schema.optionalKey(Schema.String), "url": Schema.optionalKey(Schema.String) }))])), "panels": Schema.Record(Schema.String, DashboardtypesPanel), "refreshInterval": Schema.optionalKey(Schema.String), "variables": Schema.Array(DashboardtypesVariable) })
+export type DashboardtypesDashboardSpec = { readonly "display": DashboardtypesDisplay, readonly "duration"?: string, readonly "layouts": ReadonlyArray<DashboardtypesLayout>, readonly "links"?: ReadonlyArray<{ readonly "name"?: string, readonly "renderVariables"?: boolean, readonly "targetBlank"?: boolean, readonly "tooltip"?: string, readonly "url"?: string }>, readonly "panels": { readonly [x: string]: DashboardtypesPanel }, readonly "refreshInterval"?: string, readonly "variables": ReadonlyArray<DashboardtypesVariable> }
+export const DashboardtypesDashboardSpec = Schema.Struct({ "display": DashboardtypesDisplay, "duration": Schema.optionalKey(Schema.String), "layouts": Schema.Array(DashboardtypesLayout), "links": Schema.optionalKey(Schema.Union([Schema.Array(Schema.Struct({ "name": Schema.optionalKey(Schema.String), "renderVariables": Schema.optionalKey(Schema.Boolean), "targetBlank": Schema.optionalKey(Schema.Boolean), "tooltip": Schema.optionalKey(Schema.String), "url": Schema.optionalKey(Schema.String) }))])), "panels": Schema.Record(Schema.String, DashboardtypesPanel), "refreshInterval": Schema.optionalKey(Schema.String), "variables": Schema.Array(DashboardtypesVariable) })
 export type DashboardtypesGettableDashboardV2 = { readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "id": string, readonly "image"?: string, readonly "locked": boolean, readonly "name": string, readonly "orgId": string, readonly "schemaVersion": string, readonly "source": DashboardtypesSource, readonly "spec": DashboardtypesDashboardSpec, readonly "tags": ReadonlyArray<{ readonly "key": string, readonly "value": string }>, readonly "updatedAt"?: string, readonly "updatedBy"?: string }
 export const DashboardtypesGettableDashboardV2 = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "id": Schema.String, "image": Schema.optionalKey(Schema.String), "locked": Schema.Boolean, "name": Schema.String, "orgId": Schema.String, "schemaVersion": Schema.String, "source": DashboardtypesSource, "spec": DashboardtypesDashboardSpec, "tags": Schema.Union([Schema.Array(Schema.Struct({ "key": Schema.String, "value": Schema.String }))]), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
+export type DashboardtypesGettableSystemDashboard = { readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "image"?: string, readonly "locked": boolean, readonly "name": string, readonly "orgId": string, readonly "schemaVersion": string, readonly "source": DashboardtypesSource, readonly "spec": DashboardtypesDashboardSpec, readonly "tags": ReadonlyArray<{ readonly "key": string, readonly "value": string }>, readonly "updatedAt"?: string, readonly "updatedBy"?: string }
+export const DashboardtypesGettableSystemDashboard = Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "image": Schema.optionalKey(Schema.String), "locked": Schema.Boolean, "name": Schema.String, "orgId": Schema.String, "schemaVersion": Schema.String, "source": DashboardtypesSource, "spec": DashboardtypesDashboardSpec, "tags": Schema.Union([Schema.Array(Schema.Struct({ "key": Schema.String, "value": Schema.String }))]), "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) })
 export type DashboardtypesPostableDashboardV2 = { readonly "generateName"?: boolean, readonly "image"?: string, readonly "name"?: string, readonly "schemaVersion": string, readonly "spec": DashboardtypesDashboardSpec, readonly "tags": ReadonlyArray<{ readonly "key": string, readonly "value": string }> }
 export const DashboardtypesPostableDashboardV2 = Schema.Struct({ "generateName": Schema.optionalKey(Schema.Boolean), "image": Schema.optionalKey(Schema.String), "name": Schema.optionalKey(Schema.String), "schemaVersion": Schema.String, "spec": DashboardtypesDashboardSpec, "tags": Schema.Union([Schema.Array(Schema.Struct({ "key": Schema.String, "value": Schema.String }))]) })
 export type DashboardtypesUpdatableDashboardV2 = { readonly "image"?: string, readonly "name": string, readonly "schemaVersion": string, readonly "spec": DashboardtypesDashboardSpec, readonly "tags": ReadonlyArray<{ readonly "key": string, readonly "value": string }> }
@@ -1006,6 +1098,26 @@ export const DashboardtypesUpdatableDashboardV2 = Schema.Struct({ "image": Schem
 export type DashboardtypesGettablePublicDashboardDataV2 = { readonly "dashboard"?: DashboardtypesGettableDashboardV2, readonly "publicDashboard"?: DashboardtypesGettablePublicDasbhboard }
 export const DashboardtypesGettablePublicDashboardDataV2 = Schema.Struct({ "dashboard": Schema.optionalKey(DashboardtypesGettableDashboardV2), "publicDashboard": Schema.optionalKey(DashboardtypesGettablePublicDasbhboard) })
 // schemas
+export type GetAIObservabilityFieldsKeysParams = { readonly "searchText"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "startUnixMilli"?: number, readonly "endUnixMilli"?: number, readonly "limit"?: number }
+export const GetAIObservabilityFieldsKeysParams = Schema.Struct({ "searchText": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "startUnixMilli": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "endUnixMilli": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())) })
+export type GetAIObservabilityFieldsKeys200 = { readonly "data": TelemetrytypesGettableFieldKeys, readonly "status": string }
+export const GetAIObservabilityFieldsKeys200 = Schema.Struct({ "data": TelemetrytypesGettableFieldKeys, "status": Schema.String })
+export type GetAIObservabilityFieldsKeys401 = RenderErrorResponse
+export const GetAIObservabilityFieldsKeys401 = RenderErrorResponse
+export type GetAIObservabilityFieldsKeys403 = RenderErrorResponse
+export const GetAIObservabilityFieldsKeys403 = RenderErrorResponse
+export type GetAIObservabilityFieldsKeys500 = RenderErrorResponse
+export const GetAIObservabilityFieldsKeys500 = RenderErrorResponse
+export type GetAIObservabilityFieldsValuesParams = { readonly "searchText"?: string, readonly "fieldContext"?: TelemetrytypesFieldContext, readonly "fieldDataType"?: TelemetrytypesFieldDataType, readonly "startUnixMilli"?: number, readonly "endUnixMilli"?: number, readonly "limit"?: number, readonly "name"?: string, readonly "existingQuery"?: string }
+export const GetAIObservabilityFieldsValuesParams = Schema.Struct({ "searchText": Schema.optionalKey(Schema.String), "fieldContext": Schema.optionalKey(TelemetrytypesFieldContext), "fieldDataType": Schema.optionalKey(TelemetrytypesFieldDataType), "startUnixMilli": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "endUnixMilli": Schema.optionalKey(Schema.Number.annotate({ "format": "int64" }).check(Schema.isInt())), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "name": Schema.optionalKey(Schema.String), "existingQuery": Schema.optionalKey(Schema.String) })
+export type GetAIObservabilityFieldsValues200 = { readonly "data": TelemetrytypesGettableFieldValues, readonly "status": string }
+export const GetAIObservabilityFieldsValues200 = Schema.Struct({ "data": TelemetrytypesGettableFieldValues, "status": Schema.String })
+export type GetAIObservabilityFieldsValues401 = RenderErrorResponse
+export const GetAIObservabilityFieldsValues401 = RenderErrorResponse
+export type GetAIObservabilityFieldsValues403 = RenderErrorResponse
+export const GetAIObservabilityFieldsValues403 = RenderErrorResponse
+export type GetAIObservabilityFieldsValues500 = RenderErrorResponse
+export const GetAIObservabilityFieldsValues500 = RenderErrorResponse
 export type GetAlerts200 = { readonly "data": ReadonlyArray<AlertmanagertypesDeprecatedGettableAlert>, readonly "status": string }
 export const GetAlerts200 = Schema.Struct({ "data": Schema.Array(AlertmanagertypesDeprecatedGettableAlert), "status": Schema.String })
 export type GetAlerts401 = RenderErrorResponse
@@ -1180,8 +1292,6 @@ export type GetConnectionCredentials403 = RenderErrorResponse
 export const GetConnectionCredentials403 = RenderErrorResponse
 export type GetConnectionCredentials500 = RenderErrorResponse
 export const GetConnectionCredentials500 = RenderErrorResponse
-export type ListServicesMetadataParams = { readonly "cloud_integration_id"?: string }
-export const ListServicesMetadataParams = Schema.Struct({ "cloud_integration_id": Schema.optionalKey(Schema.String) })
 export type ListServicesMetadata200 = { readonly "data": CloudintegrationtypesGettableServicesMetadata, readonly "status": string }
 export const ListServicesMetadata200 = Schema.Struct({ "data": CloudintegrationtypesGettableServicesMetadata, "status": Schema.String })
 export type ListServicesMetadata401 = RenderErrorResponse
@@ -1190,8 +1300,6 @@ export type ListServicesMetadata403 = RenderErrorResponse
 export const ListServicesMetadata403 = RenderErrorResponse
 export type ListServicesMetadata500 = RenderErrorResponse
 export const ListServicesMetadata500 = RenderErrorResponse
-export type GetServiceParams = { readonly "cloud_integration_id"?: string }
-export const GetServiceParams = Schema.Struct({ "cloud_integration_id": Schema.optionalKey(Schema.String) })
 export type GetService200 = { readonly "data": CloudintegrationtypesService, readonly "status": string }
 export const GetService200 = Schema.Struct({ "data": CloudintegrationtypesService, "status": Schema.String })
 export type GetService401 = RenderErrorResponse
@@ -1264,58 +1372,6 @@ export type DeletePublicDashboard403 = RenderErrorResponse
 export const DeletePublicDashboard403 = RenderErrorResponse
 export type DeletePublicDashboard500 = RenderErrorResponse
 export const DeletePublicDashboard500 = RenderErrorResponse
-export type ListAuthDomains200 = { readonly "data": ReadonlyArray<AuthtypesGettableAuthDomain>, readonly "status": string }
-export const ListAuthDomains200 = Schema.Struct({ "data": Schema.Array(AuthtypesGettableAuthDomain), "status": Schema.String })
-export type ListAuthDomains401 = RenderErrorResponse
-export const ListAuthDomains401 = RenderErrorResponse
-export type ListAuthDomains403 = RenderErrorResponse
-export const ListAuthDomains403 = RenderErrorResponse
-export type ListAuthDomains500 = RenderErrorResponse
-export const ListAuthDomains500 = RenderErrorResponse
-export type CreateAuthDomainRequestJson = AuthtypesPostableAuthDomain
-export const CreateAuthDomainRequestJson = AuthtypesPostableAuthDomain
-export type CreateAuthDomain201 = { readonly "data": TypesIdentifiable, readonly "status": string }
-export const CreateAuthDomain201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
-export type CreateAuthDomain400 = RenderErrorResponse
-export const CreateAuthDomain400 = RenderErrorResponse
-export type CreateAuthDomain401 = RenderErrorResponse
-export const CreateAuthDomain401 = RenderErrorResponse
-export type CreateAuthDomain403 = RenderErrorResponse
-export const CreateAuthDomain403 = RenderErrorResponse
-export type CreateAuthDomain409 = RenderErrorResponse
-export const CreateAuthDomain409 = RenderErrorResponse
-export type CreateAuthDomain500 = RenderErrorResponse
-export const CreateAuthDomain500 = RenderErrorResponse
-export type GetAuthDomain200 = { readonly "data": AuthtypesGettableAuthDomain, readonly "status": string }
-export const GetAuthDomain200 = Schema.Struct({ "data": AuthtypesGettableAuthDomain, "status": Schema.String })
-export type GetAuthDomain401 = RenderErrorResponse
-export const GetAuthDomain401 = RenderErrorResponse
-export type GetAuthDomain403 = RenderErrorResponse
-export const GetAuthDomain403 = RenderErrorResponse
-export type GetAuthDomain404 = RenderErrorResponse
-export const GetAuthDomain404 = RenderErrorResponse
-export type GetAuthDomain500 = RenderErrorResponse
-export const GetAuthDomain500 = RenderErrorResponse
-export type UpdateAuthDomainRequestJson = AuthtypesUpdatableAuthDomain
-export const UpdateAuthDomainRequestJson = AuthtypesUpdatableAuthDomain
-export type UpdateAuthDomain400 = RenderErrorResponse
-export const UpdateAuthDomain400 = RenderErrorResponse
-export type UpdateAuthDomain401 = RenderErrorResponse
-export const UpdateAuthDomain401 = RenderErrorResponse
-export type UpdateAuthDomain403 = RenderErrorResponse
-export const UpdateAuthDomain403 = RenderErrorResponse
-export type UpdateAuthDomain409 = RenderErrorResponse
-export const UpdateAuthDomain409 = RenderErrorResponse
-export type UpdateAuthDomain500 = RenderErrorResponse
-export const UpdateAuthDomain500 = RenderErrorResponse
-export type DeleteAuthDomain400 = RenderErrorResponse
-export const DeleteAuthDomain400 = RenderErrorResponse
-export type DeleteAuthDomain401 = RenderErrorResponse
-export const DeleteAuthDomain401 = RenderErrorResponse
-export type DeleteAuthDomain403 = RenderErrorResponse
-export const DeleteAuthDomain403 = RenderErrorResponse
-export type DeleteAuthDomain500 = RenderErrorResponse
-export const DeleteAuthDomain500 = RenderErrorResponse
 export type ListDowntimeSchedulesParams = { readonly "active"?: boolean | null, readonly "recurring"?: boolean | null }
 export const ListDowntimeSchedulesParams = Schema.Struct({ "active": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])), "recurring": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])) })
 export type ListDowntimeSchedules200 = { readonly "data": ReadonlyArray<AlertmanagertypesPlannedMaintenance>, readonly "status": string }
@@ -1400,48 +1456,10 @@ export type GetFieldsValues403 = RenderErrorResponse
 export const GetFieldsValues403 = RenderErrorResponse
 export type GetFieldsValues500 = RenderErrorResponse
 export const GetFieldsValues500 = RenderErrorResponse
-export type GetResetPasswordTokenDeprecated200 = { readonly "data": TypesResetPasswordToken, readonly "status": string }
-export const GetResetPasswordTokenDeprecated200 = Schema.Struct({ "data": TypesResetPasswordToken, "status": Schema.String })
-export type GetResetPasswordTokenDeprecated400 = RenderErrorResponse
-export const GetResetPasswordTokenDeprecated400 = RenderErrorResponse
-export type GetResetPasswordTokenDeprecated401 = RenderErrorResponse
-export const GetResetPasswordTokenDeprecated401 = RenderErrorResponse
-export type GetResetPasswordTokenDeprecated403 = RenderErrorResponse
-export const GetResetPasswordTokenDeprecated403 = RenderErrorResponse
-export type GetResetPasswordTokenDeprecated404 = RenderErrorResponse
-export const GetResetPasswordTokenDeprecated404 = RenderErrorResponse
-export type GetResetPasswordTokenDeprecated500 = RenderErrorResponse
-export const GetResetPasswordTokenDeprecated500 = RenderErrorResponse
 export type GetGlobalConfig200 = { readonly "data": GlobaltypesConfig, readonly "status": string }
 export const GetGlobalConfig200 = Schema.Struct({ "data": GlobaltypesConfig, "status": Schema.String })
 export type GetGlobalConfig500 = RenderErrorResponse
 export const GetGlobalConfig500 = RenderErrorResponse
-export type CreateInviteRequestJson = TypesPostableInvite
-export const CreateInviteRequestJson = TypesPostableInvite
-export type CreateInvite201 = { readonly "data": TypesInvite, readonly "status": string }
-export const CreateInvite201 = Schema.Struct({ "data": TypesInvite, "status": Schema.String })
-export type CreateInvite400 = RenderErrorResponse
-export const CreateInvite400 = RenderErrorResponse
-export type CreateInvite401 = RenderErrorResponse
-export const CreateInvite401 = RenderErrorResponse
-export type CreateInvite403 = RenderErrorResponse
-export const CreateInvite403 = RenderErrorResponse
-export type CreateInvite409 = RenderErrorResponse
-export const CreateInvite409 = RenderErrorResponse
-export type CreateInvite500 = RenderErrorResponse
-export const CreateInvite500 = RenderErrorResponse
-export type CreateBulkInviteRequestJson = TypesPostableBulkInviteRequest
-export const CreateBulkInviteRequestJson = TypesPostableBulkInviteRequest
-export type CreateBulkInvite400 = RenderErrorResponse
-export const CreateBulkInvite400 = RenderErrorResponse
-export type CreateBulkInvite401 = RenderErrorResponse
-export const CreateBulkInvite401 = RenderErrorResponse
-export type CreateBulkInvite403 = RenderErrorResponse
-export const CreateBulkInvite403 = RenderErrorResponse
-export type CreateBulkInvite409 = RenderErrorResponse
-export const CreateBulkInvite409 = RenderErrorResponse
-export type CreateBulkInvite500 = RenderErrorResponse
-export const CreateBulkInvite500 = RenderErrorResponse
 export type ListLLMPricingRulesParams = { readonly "offset"?: number, readonly "limit"?: number, readonly "q"?: string, readonly "isOverride"?: boolean | null }
 export const ListLLMPricingRulesParams = Schema.Struct({ "offset": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "limit": Schema.optionalKey(Schema.Number.check(Schema.isInt())), "q": Schema.optionalKey(Schema.String), "isOverride": Schema.optionalKey(Schema.Union([Schema.Boolean, Schema.Null])) })
 export type ListLLMPricingRules200 = { readonly "data": LlmpricingruletypesGettablePricingRules, readonly "status": string }
@@ -1560,14 +1578,6 @@ export type GetPublicDashboardWidgetQueryRange403 = RenderErrorResponse
 export const GetPublicDashboardWidgetQueryRange403 = RenderErrorResponse
 export type GetPublicDashboardWidgetQueryRange500 = RenderErrorResponse
 export const GetPublicDashboardWidgetQueryRange500 = RenderErrorResponse
-export type ResetPasswordRequestJson = TypesPostableResetPassword
-export const ResetPasswordRequestJson = TypesPostableResetPassword
-export type ResetPassword400 = RenderErrorResponse
-export const ResetPassword400 = RenderErrorResponse
-export type ResetPassword409 = RenderErrorResponse
-export const ResetPassword409 = RenderErrorResponse
-export type ResetPassword500 = RenderErrorResponse
-export const ResetPassword500 = RenderErrorResponse
 export type ListRoles200 = { readonly "data": ReadonlyArray<AuthtypesGettableRole>, readonly "status": string }
 export const ListRoles200 = Schema.Struct({ "data": Schema.Array(AuthtypesGettableRole), "status": Schema.String })
 export type ListRoles401 = RenderErrorResponse
@@ -1820,24 +1830,6 @@ export type GetServiceAccountRoles404 = RenderErrorResponse
 export const GetServiceAccountRoles404 = RenderErrorResponse
 export type GetServiceAccountRoles500 = RenderErrorResponse
 export const GetServiceAccountRoles500 = RenderErrorResponse
-export type CreateServiceAccountRoleDeprecatedRequestJson = ServiceaccounttypesDeprecatedPostableServiceAccountRole
-export const CreateServiceAccountRoleDeprecatedRequestJson = ServiceaccounttypesDeprecatedPostableServiceAccountRole
-export type CreateServiceAccountRoleDeprecated201 = { readonly "data": TypesIdentifiable, readonly "status": string }
-export const CreateServiceAccountRoleDeprecated201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
-export type CreateServiceAccountRoleDeprecated400 = RenderErrorResponse
-export const CreateServiceAccountRoleDeprecated400 = RenderErrorResponse
-export type CreateServiceAccountRoleDeprecated401 = RenderErrorResponse
-export const CreateServiceAccountRoleDeprecated401 = RenderErrorResponse
-export type CreateServiceAccountRoleDeprecated403 = RenderErrorResponse
-export const CreateServiceAccountRoleDeprecated403 = RenderErrorResponse
-export type CreateServiceAccountRoleDeprecated500 = RenderErrorResponse
-export const CreateServiceAccountRoleDeprecated500 = RenderErrorResponse
-export type DeleteServiceAccountRoleDeprecated401 = RenderErrorResponse
-export const DeleteServiceAccountRoleDeprecated401 = RenderErrorResponse
-export type DeleteServiceAccountRoleDeprecated403 = RenderErrorResponse
-export const DeleteServiceAccountRoleDeprecated403 = RenderErrorResponse
-export type DeleteServiceAccountRoleDeprecated500 = RenderErrorResponse
-export const DeleteServiceAccountRoleDeprecated500 = RenderErrorResponse
 export type GetMyServiceAccount200 = { readonly "data": ServiceaccounttypesServiceAccountWithRoles, readonly "status": string }
 export const GetMyServiceAccount200 = Schema.Struct({ "data": ServiceaccounttypesServiceAccountWithRoles, "status": Schema.String })
 export type GetMyServiceAccount404 = RenderErrorResponse
@@ -1966,6 +1958,48 @@ export type GetStats403 = RenderErrorResponse
 export const GetStats403 = RenderErrorResponse
 export type GetStats500 = RenderErrorResponse
 export const GetStats500 = RenderErrorResponse
+export type GetSubscription200 = { readonly "data": SubscriptiontypesGettableSubscriptionUsage, readonly "status": string }
+export const GetSubscription200 = Schema.Struct({ "data": SubscriptiontypesGettableSubscriptionUsage, "status": Schema.String })
+export type GetSubscription400 = RenderErrorResponse
+export const GetSubscription400 = RenderErrorResponse
+export type GetSubscription401 = RenderErrorResponse
+export const GetSubscription401 = RenderErrorResponse
+export type GetSubscription403 = RenderErrorResponse
+export const GetSubscription403 = RenderErrorResponse
+export type GetSubscription404 = RenderErrorResponse
+export const GetSubscription404 = RenderErrorResponse
+export type GetSubscription500 = RenderErrorResponse
+export const GetSubscription500 = RenderErrorResponse
+export type UpdateSubscriptionRequestJson = SubscriptiontypesPostableSubscription
+export const UpdateSubscriptionRequestJson = SubscriptiontypesPostableSubscription
+export type UpdateSubscription200 = { readonly "data": SubscriptiontypesGettableSubscription, readonly "status": string }
+export const UpdateSubscription200 = Schema.Struct({ "data": SubscriptiontypesGettableSubscription, "status": Schema.String })
+export type UpdateSubscription400 = RenderErrorResponse
+export const UpdateSubscription400 = RenderErrorResponse
+export type UpdateSubscription401 = RenderErrorResponse
+export const UpdateSubscription401 = RenderErrorResponse
+export type UpdateSubscription403 = RenderErrorResponse
+export const UpdateSubscription403 = RenderErrorResponse
+export type UpdateSubscription404 = RenderErrorResponse
+export const UpdateSubscription404 = RenderErrorResponse
+export type UpdateSubscription500 = RenderErrorResponse
+export const UpdateSubscription500 = RenderErrorResponse
+export type CreateSubscriptionRequestJson = SubscriptiontypesPostableSubscription
+export const CreateSubscriptionRequestJson = SubscriptiontypesPostableSubscription
+export type CreateSubscription201 = { readonly "data": SubscriptiontypesGettableSubscription, readonly "status": string }
+export const CreateSubscription201 = Schema.Struct({ "data": SubscriptiontypesGettableSubscription, "status": Schema.String })
+export type CreateSubscription400 = RenderErrorResponse
+export const CreateSubscription400 = RenderErrorResponse
+export type CreateSubscription401 = RenderErrorResponse
+export const CreateSubscription401 = RenderErrorResponse
+export type CreateSubscription403 = RenderErrorResponse
+export const CreateSubscription403 = RenderErrorResponse
+export type CreateSubscription404 = RenderErrorResponse
+export const CreateSubscription404 = RenderErrorResponse
+export type CreateSubscription409 = RenderErrorResponse
+export const CreateSubscription409 = RenderErrorResponse
+export type CreateSubscription500 = RenderErrorResponse
+export const CreateSubscription500 = RenderErrorResponse
 export type TestChannelDeprecatedRequestJson = AlertmanagertypesReceiver
 export const TestChannelDeprecatedRequestJson = AlertmanagertypesReceiver
 export type TestChannelDeprecated400 = RenderErrorResponse
@@ -1990,54 +2024,14 @@ export type GetTraceAggregations404 = RenderErrorResponse
 export const GetTraceAggregations404 = RenderErrorResponse
 export type GetTraceAggregations500 = RenderErrorResponse
 export const GetTraceAggregations500 = RenderErrorResponse
-export type ListUsersDeprecated200 = { readonly "data": ReadonlyArray<TypesDeprecatedUser>, readonly "status": string }
-export const ListUsersDeprecated200 = Schema.Struct({ "data": Schema.Array(TypesDeprecatedUser), "status": Schema.String })
-export type ListUsersDeprecated401 = RenderErrorResponse
-export const ListUsersDeprecated401 = RenderErrorResponse
-export type ListUsersDeprecated403 = RenderErrorResponse
-export const ListUsersDeprecated403 = RenderErrorResponse
-export type ListUsersDeprecated500 = RenderErrorResponse
-export const ListUsersDeprecated500 = RenderErrorResponse
-export type GetUserDeprecated200 = { readonly "data": TypesDeprecatedUser, readonly "status": string }
-export const GetUserDeprecated200 = Schema.Struct({ "data": TypesDeprecatedUser, "status": Schema.String })
-export type GetUserDeprecated401 = RenderErrorResponse
-export const GetUserDeprecated401 = RenderErrorResponse
-export type GetUserDeprecated403 = RenderErrorResponse
-export const GetUserDeprecated403 = RenderErrorResponse
-export type GetUserDeprecated404 = RenderErrorResponse
-export const GetUserDeprecated404 = RenderErrorResponse
-export type GetUserDeprecated500 = RenderErrorResponse
-export const GetUserDeprecated500 = RenderErrorResponse
-export type UpdateUserDeprecatedRequestJson = TypesDeprecatedUser
-export const UpdateUserDeprecatedRequestJson = TypesDeprecatedUser
-export type UpdateUserDeprecated200 = { readonly "data": TypesDeprecatedUser, readonly "status": string }
-export const UpdateUserDeprecated200 = Schema.Struct({ "data": TypesDeprecatedUser, "status": Schema.String })
-export type UpdateUserDeprecated400 = RenderErrorResponse
-export const UpdateUserDeprecated400 = RenderErrorResponse
-export type UpdateUserDeprecated401 = RenderErrorResponse
-export const UpdateUserDeprecated401 = RenderErrorResponse
-export type UpdateUserDeprecated403 = RenderErrorResponse
-export const UpdateUserDeprecated403 = RenderErrorResponse
-export type UpdateUserDeprecated404 = RenderErrorResponse
-export const UpdateUserDeprecated404 = RenderErrorResponse
-export type UpdateUserDeprecated500 = RenderErrorResponse
-export const UpdateUserDeprecated500 = RenderErrorResponse
-export type DeleteUserDeprecated401 = RenderErrorResponse
-export const DeleteUserDeprecated401 = RenderErrorResponse
-export type DeleteUserDeprecated403 = RenderErrorResponse
-export const DeleteUserDeprecated403 = RenderErrorResponse
-export type DeleteUserDeprecated404 = RenderErrorResponse
-export const DeleteUserDeprecated404 = RenderErrorResponse
-export type DeleteUserDeprecated500 = RenderErrorResponse
-export const DeleteUserDeprecated500 = RenderErrorResponse
-export type GetMyUserDeprecated200 = { readonly "data": TypesDeprecatedUser, readonly "status": string }
-export const GetMyUserDeprecated200 = Schema.Struct({ "data": TypesDeprecatedUser, "status": Schema.String })
 export type GetMyUserDeprecated401 = RenderErrorResponse
 export const GetMyUserDeprecated401 = RenderErrorResponse
 export type GetMyUserDeprecated403 = RenderErrorResponse
 export const GetMyUserDeprecated403 = RenderErrorResponse
 export type GetMyUserDeprecated500 = RenderErrorResponse
 export const GetMyUserDeprecated500 = RenderErrorResponse
+export type GetMyUserDeprecated501 = RenderErrorResponse
+export const GetMyUserDeprecated501 = RenderErrorResponse
 export type ListUserPreferences200 = { readonly "data": ReadonlyArray<PreferencetypesPreference>, readonly "status": string }
 export const ListUserPreferences200 = Schema.Struct({ "data": Schema.Array(PreferencetypesPreference), "status": Schema.String })
 export type ListUserPreferences401 = RenderErrorResponse
@@ -2068,6 +2062,58 @@ export type UpdateUserPreference404 = RenderErrorResponse
 export const UpdateUserPreference404 = RenderErrorResponse
 export type UpdateUserPreference500 = RenderErrorResponse
 export const UpdateUserPreference500 = RenderErrorResponse
+export type ListAuthDomains200 = { readonly "data": ReadonlyArray<AuthtypesGettableAuthDomain>, readonly "status": string }
+export const ListAuthDomains200 = Schema.Struct({ "data": Schema.Array(AuthtypesGettableAuthDomain), "status": Schema.String })
+export type ListAuthDomains401 = RenderErrorResponse
+export const ListAuthDomains401 = RenderErrorResponse
+export type ListAuthDomains403 = RenderErrorResponse
+export const ListAuthDomains403 = RenderErrorResponse
+export type ListAuthDomains500 = RenderErrorResponse
+export const ListAuthDomains500 = RenderErrorResponse
+export type CreateAuthDomainRequestJson = AuthtypesPostableAuthDomain
+export const CreateAuthDomainRequestJson = AuthtypesPostableAuthDomain
+export type CreateAuthDomain201 = { readonly "data": TypesIdentifiable, readonly "status": string }
+export const CreateAuthDomain201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
+export type CreateAuthDomain400 = RenderErrorResponse
+export const CreateAuthDomain400 = RenderErrorResponse
+export type CreateAuthDomain401 = RenderErrorResponse
+export const CreateAuthDomain401 = RenderErrorResponse
+export type CreateAuthDomain403 = RenderErrorResponse
+export const CreateAuthDomain403 = RenderErrorResponse
+export type CreateAuthDomain409 = RenderErrorResponse
+export const CreateAuthDomain409 = RenderErrorResponse
+export type CreateAuthDomain500 = RenderErrorResponse
+export const CreateAuthDomain500 = RenderErrorResponse
+export type GetAuthDomain200 = { readonly "data": AuthtypesGettableAuthDomain, readonly "status": string }
+export const GetAuthDomain200 = Schema.Struct({ "data": AuthtypesGettableAuthDomain, "status": Schema.String })
+export type GetAuthDomain401 = RenderErrorResponse
+export const GetAuthDomain401 = RenderErrorResponse
+export type GetAuthDomain403 = RenderErrorResponse
+export const GetAuthDomain403 = RenderErrorResponse
+export type GetAuthDomain404 = RenderErrorResponse
+export const GetAuthDomain404 = RenderErrorResponse
+export type GetAuthDomain500 = RenderErrorResponse
+export const GetAuthDomain500 = RenderErrorResponse
+export type UpdateAuthDomainRequestJson = AuthtypesUpdatableAuthDomain
+export const UpdateAuthDomainRequestJson = AuthtypesUpdatableAuthDomain
+export type UpdateAuthDomain400 = RenderErrorResponse
+export const UpdateAuthDomain400 = RenderErrorResponse
+export type UpdateAuthDomain401 = RenderErrorResponse
+export const UpdateAuthDomain401 = RenderErrorResponse
+export type UpdateAuthDomain403 = RenderErrorResponse
+export const UpdateAuthDomain403 = RenderErrorResponse
+export type UpdateAuthDomain409 = RenderErrorResponse
+export const UpdateAuthDomain409 = RenderErrorResponse
+export type UpdateAuthDomain500 = RenderErrorResponse
+export const UpdateAuthDomain500 = RenderErrorResponse
+export type DeleteAuthDomain400 = RenderErrorResponse
+export const DeleteAuthDomain400 = RenderErrorResponse
+export type DeleteAuthDomain401 = RenderErrorResponse
+export const DeleteAuthDomain401 = RenderErrorResponse
+export type DeleteAuthDomain403 = RenderErrorResponse
+export const DeleteAuthDomain403 = RenderErrorResponse
+export type DeleteAuthDomain500 = RenderErrorResponse
+export const DeleteAuthDomain500 = RenderErrorResponse
 export type ListDashboardViews200 = { readonly "data": DashboardtypesListableDashboardView, readonly "status": string }
 export const ListDashboardViews200 = Schema.Struct({ "data": DashboardtypesListableDashboardView, "status": Schema.String })
 export type ListDashboardViews401 = RenderErrorResponse
@@ -2218,6 +2264,30 @@ export type UnlockDashboardV2404 = RenderErrorResponse
 export const UnlockDashboardV2404 = RenderErrorResponse
 export type UnlockDashboardV2500 = RenderErrorResponse
 export const UnlockDashboardV2500 = RenderErrorResponse
+export type MigrateDashboardV2200 = { readonly "data": DashboardtypesGettableDashboardV2, readonly "status": string }
+export const MigrateDashboardV2200 = Schema.Struct({ "data": DashboardtypesGettableDashboardV2, "status": Schema.String })
+export type MigrateDashboardV2400 = RenderErrorResponse
+export const MigrateDashboardV2400 = RenderErrorResponse
+export type MigrateDashboardV2401 = RenderErrorResponse
+export const MigrateDashboardV2401 = RenderErrorResponse
+export type MigrateDashboardV2403 = RenderErrorResponse
+export const MigrateDashboardV2403 = RenderErrorResponse
+export type MigrateDashboardV2404 = RenderErrorResponse
+export const MigrateDashboardV2404 = RenderErrorResponse
+export type MigrateDashboardV2500 = RenderErrorResponse
+export const MigrateDashboardV2500 = RenderErrorResponse
+export type GetSystemDashboard200 = { readonly "data": DashboardtypesGettableSystemDashboard, readonly "status": string }
+export const GetSystemDashboard200 = Schema.Struct({ "data": DashboardtypesGettableSystemDashboard, "status": Schema.String })
+export type GetSystemDashboard400 = RenderErrorResponse
+export const GetSystemDashboard400 = RenderErrorResponse
+export type GetSystemDashboard401 = RenderErrorResponse
+export const GetSystemDashboard401 = RenderErrorResponse
+export type GetSystemDashboard403 = RenderErrorResponse
+export const GetSystemDashboard403 = RenderErrorResponse
+export type GetSystemDashboard404 = RenderErrorResponse
+export const GetSystemDashboard404 = RenderErrorResponse
+export type GetSystemDashboard500 = RenderErrorResponse
+export const GetSystemDashboard500 = RenderErrorResponse
 export type ForgotPasswordRequestJson = TypesPostableForgotPassword
 export const ForgotPasswordRequestJson = TypesPostableForgotPassword
 export type ForgotPassword400 = RenderErrorResponse
@@ -2226,6 +2296,14 @@ export type ForgotPassword422 = RenderErrorResponse
 export const ForgotPassword422 = RenderErrorResponse
 export type ForgotPassword500 = RenderErrorResponse
 export const ForgotPassword500 = RenderErrorResponse
+export type ResetPasswordRequestJson = TypesPostableResetPassword
+export const ResetPasswordRequestJson = TypesPostableResetPassword
+export type ResetPassword400 = RenderErrorResponse
+export const ResetPassword400 = RenderErrorResponse
+export type ResetPassword404 = RenderErrorResponse
+export const ResetPassword404 = RenderErrorResponse
+export type ResetPassword500 = RenderErrorResponse
+export const ResetPassword500 = RenderErrorResponse
 export type GetFeatures200 = { readonly "data": ReadonlyArray<FeaturetypesGettableFeature>, readonly "status": string }
 export const GetFeatures200 = Schema.Struct({ "data": Schema.Array(FeaturetypesGettableFeature), "status": Schema.String })
 export type GetFeatures401 = RenderErrorResponse
@@ -2254,6 +2332,16 @@ export type CreateIngestionKey403 = RenderErrorResponse
 export const CreateIngestionKey403 = RenderErrorResponse
 export type CreateIngestionKey500 = RenderErrorResponse
 export const CreateIngestionKey500 = RenderErrorResponse
+export type GetIngestionKey200 = { readonly "data": GatewaytypesIngestionKey, readonly "status": string }
+export const GetIngestionKey200 = Schema.Struct({ "data": GatewaytypesIngestionKey, "status": Schema.String })
+export type GetIngestionKey401 = RenderErrorResponse
+export const GetIngestionKey401 = RenderErrorResponse
+export type GetIngestionKey403 = RenderErrorResponse
+export const GetIngestionKey403 = RenderErrorResponse
+export type GetIngestionKey404 = RenderErrorResponse
+export const GetIngestionKey404 = RenderErrorResponse
+export type GetIngestionKey500 = RenderErrorResponse
+export const GetIngestionKey500 = RenderErrorResponse
 export type DeleteIngestionKey401 = RenderErrorResponse
 export const DeleteIngestionKey401 = RenderErrorResponse
 export type DeleteIngestionKey403 = RenderErrorResponse
@@ -2268,8 +2356,18 @@ export type UpdateIngestionKey403 = RenderErrorResponse
 export const UpdateIngestionKey403 = RenderErrorResponse
 export type UpdateIngestionKey500 = RenderErrorResponse
 export const UpdateIngestionKey500 = RenderErrorResponse
-export type CreateIngestionKeyLimitRequestJson = GatewaytypesPostableIngestionKeyLimit
-export const CreateIngestionKeyLimitRequestJson = GatewaytypesPostableIngestionKeyLimit
+export type GetIngestionKeyLimits200 = { readonly "data": ReadonlyArray<{ readonly "config"?: GatewaytypesLimitConfig, readonly "created_at"?: string, readonly "id"?: string, readonly "key_id"?: string, readonly "metric"?: GatewaytypesLimitMetric, readonly "signal"?: string, readonly "tags"?: ReadonlyArray<string>, readonly "updated_at"?: string }>, readonly "status": string }
+export const GetIngestionKeyLimits200 = Schema.Struct({ "data": Schema.Union([Schema.Array(Schema.Struct({ "config": Schema.optionalKey(GatewaytypesLimitConfig), "created_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "id": Schema.optionalKey(Schema.String), "key_id": Schema.optionalKey(Schema.String), "metric": Schema.optionalKey(GatewaytypesLimitMetric), "signal": Schema.optionalKey(Schema.String), "tags": Schema.optionalKey(Schema.Union([Schema.Array(Schema.String)])), "updated_at": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })) }))]), "status": Schema.String })
+export type GetIngestionKeyLimits401 = RenderErrorResponse
+export const GetIngestionKeyLimits401 = RenderErrorResponse
+export type GetIngestionKeyLimits403 = RenderErrorResponse
+export const GetIngestionKeyLimits403 = RenderErrorResponse
+export type GetIngestionKeyLimits404 = RenderErrorResponse
+export const GetIngestionKeyLimits404 = RenderErrorResponse
+export type GetIngestionKeyLimits500 = RenderErrorResponse
+export const GetIngestionKeyLimits500 = RenderErrorResponse
+export type CreateIngestionKeyLimitRequestJson = GatewaytypesDeprecatedPostableIngestionKeyLimit
+export const CreateIngestionKeyLimitRequestJson = GatewaytypesDeprecatedPostableIngestionKeyLimit
 export type CreateIngestionKeyLimit201 = { readonly "data": GatewaytypesGettableCreatedIngestionKeyLimit, readonly "status": string }
 export const CreateIngestionKeyLimit201 = Schema.Struct({ "data": GatewaytypesGettableCreatedIngestionKeyLimit, "status": Schema.String })
 export type CreateIngestionKeyLimit401 = RenderErrorResponse
@@ -2302,6 +2400,42 @@ export type SearchIngestionKeys403 = RenderErrorResponse
 export const SearchIngestionKeys403 = RenderErrorResponse
 export type SearchIngestionKeys500 = RenderErrorResponse
 export const SearchIngestionKeys500 = RenderErrorResponse
+export type CreateIngestionLimitRequestJson = GatewaytypesPostableIngestionKeyLimit
+export const CreateIngestionLimitRequestJson = GatewaytypesPostableIngestionKeyLimit
+export type CreateIngestionLimit201 = { readonly "data": TypesIdentifiable, readonly "status": string }
+export const CreateIngestionLimit201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
+export type CreateIngestionLimit400 = RenderErrorResponse
+export const CreateIngestionLimit400 = RenderErrorResponse
+export type CreateIngestionLimit401 = RenderErrorResponse
+export const CreateIngestionLimit401 = RenderErrorResponse
+export type CreateIngestionLimit403 = RenderErrorResponse
+export const CreateIngestionLimit403 = RenderErrorResponse
+export type CreateIngestionLimit500 = RenderErrorResponse
+export const CreateIngestionLimit500 = RenderErrorResponse
+export type GetIngestionLimit200 = { readonly "data": GatewaytypesLimit, readonly "status": string }
+export const GetIngestionLimit200 = Schema.Struct({ "data": GatewaytypesLimit, "status": Schema.String })
+export type GetIngestionLimit401 = RenderErrorResponse
+export const GetIngestionLimit401 = RenderErrorResponse
+export type GetIngestionLimit403 = RenderErrorResponse
+export const GetIngestionLimit403 = RenderErrorResponse
+export type GetIngestionLimit404 = RenderErrorResponse
+export const GetIngestionLimit404 = RenderErrorResponse
+export type GetIngestionLimit500 = RenderErrorResponse
+export const GetIngestionLimit500 = RenderErrorResponse
+export type DeleteIngestionLimit401 = RenderErrorResponse
+export const DeleteIngestionLimit401 = RenderErrorResponse
+export type DeleteIngestionLimit403 = RenderErrorResponse
+export const DeleteIngestionLimit403 = RenderErrorResponse
+export type DeleteIngestionLimit500 = RenderErrorResponse
+export const DeleteIngestionLimit500 = RenderErrorResponse
+export type UpdateIngestionLimitRequestJson = GatewaytypesUpdatableIngestionKeyLimit
+export const UpdateIngestionLimitRequestJson = GatewaytypesUpdatableIngestionKeyLimit
+export type UpdateIngestionLimit401 = RenderErrorResponse
+export const UpdateIngestionLimit401 = RenderErrorResponse
+export type UpdateIngestionLimit403 = RenderErrorResponse
+export const UpdateIngestionLimit403 = RenderErrorResponse
+export type UpdateIngestionLimit500 = RenderErrorResponse
+export const UpdateIngestionLimit500 = RenderErrorResponse
 export type Healthz200 = { readonly "data": FactoryResponse, readonly "status": string }
 export const Healthz200 = Schema.Struct({ "data": FactoryResponse, "status": Schema.String })
 export type Healthz503 = { readonly "data": FactoryResponse, readonly "status": string }
@@ -2708,6 +2842,20 @@ export type GetMetricsTreemap403 = RenderErrorResponse
 export const GetMetricsTreemap403 = RenderErrorResponse
 export type GetMetricsTreemap500 = RenderErrorResponse
 export const GetMetricsTreemap500 = RenderErrorResponse
+export type CreateNotificationChannelRequestJson = AlertmanagertypesPostableNotificationChannel
+export const CreateNotificationChannelRequestJson = AlertmanagertypesPostableNotificationChannel
+export type CreateNotificationChannel201 = { readonly "data": AlertmanagertypesGettableNotificationChannel, readonly "status": string }
+export const CreateNotificationChannel201 = Schema.Struct({ "data": AlertmanagertypesGettableNotificationChannel, "status": Schema.String })
+export type CreateNotificationChannel400 = RenderErrorResponse
+export const CreateNotificationChannel400 = RenderErrorResponse
+export type CreateNotificationChannel401 = RenderErrorResponse
+export const CreateNotificationChannel401 = RenderErrorResponse
+export type CreateNotificationChannel403 = RenderErrorResponse
+export const CreateNotificationChannel403 = RenderErrorResponse
+export type CreateNotificationChannel409 = RenderErrorResponse
+export const CreateNotificationChannel409 = RenderErrorResponse
+export type CreateNotificationChannel500 = RenderErrorResponse
+export const CreateNotificationChannel500 = RenderErrorResponse
 export type GetMyOrganization200 = { readonly "data": TypesOrganization, readonly "status": string }
 export const GetMyOrganization200 = Schema.Struct({ "data": TypesOrganization, "status": Schema.String })
 export type GetMyOrganization401 = RenderErrorResponse
@@ -2754,6 +2902,36 @@ export type GetPublicDashboardPanelQueryRangeV2404 = RenderErrorResponse
 export const GetPublicDashboardPanelQueryRangeV2404 = RenderErrorResponse
 export type GetPublicDashboardPanelQueryRangeV2500 = RenderErrorResponse
 export const GetPublicDashboardPanelQueryRangeV2500 = RenderErrorResponse
+export type ListQuickFilters200 = { readonly "data": ReadonlyArray<QuickfiltertypesSourceFilters>, readonly "status": string }
+export const ListQuickFilters200 = Schema.Struct({ "data": Schema.Array(QuickfiltertypesSourceFilters), "status": Schema.String })
+export type ListQuickFilters400 = RenderErrorResponse
+export const ListQuickFilters400 = RenderErrorResponse
+export type ListQuickFilters401 = RenderErrorResponse
+export const ListQuickFilters401 = RenderErrorResponse
+export type ListQuickFilters403 = RenderErrorResponse
+export const ListQuickFilters403 = RenderErrorResponse
+export type ListQuickFilters500 = RenderErrorResponse
+export const ListQuickFilters500 = RenderErrorResponse
+export type GetQuickFilters200 = { readonly "data": QuickfiltertypesSourceFilters, readonly "status": string }
+export const GetQuickFilters200 = Schema.Struct({ "data": QuickfiltertypesSourceFilters, "status": Schema.String })
+export type GetQuickFilters400 = RenderErrorResponse
+export const GetQuickFilters400 = RenderErrorResponse
+export type GetQuickFilters401 = RenderErrorResponse
+export const GetQuickFilters401 = RenderErrorResponse
+export type GetQuickFilters403 = RenderErrorResponse
+export const GetQuickFilters403 = RenderErrorResponse
+export type GetQuickFilters500 = RenderErrorResponse
+export const GetQuickFilters500 = RenderErrorResponse
+export type UpdateQuickFiltersRequestJson = QuickfiltertypesUpdatableQuickFilters
+export const UpdateQuickFiltersRequestJson = QuickfiltertypesUpdatableQuickFilters
+export type UpdateQuickFilters400 = RenderErrorResponse
+export const UpdateQuickFilters400 = RenderErrorResponse
+export type UpdateQuickFilters401 = RenderErrorResponse
+export const UpdateQuickFilters401 = RenderErrorResponse
+export type UpdateQuickFilters403 = RenderErrorResponse
+export const UpdateQuickFilters403 = RenderErrorResponse
+export type UpdateQuickFilters500 = RenderErrorResponse
+export const UpdateQuickFilters500 = RenderErrorResponse
 export type Readyz200 = { readonly "data": FactoryResponse, readonly "status": string }
 export const Readyz200 = Schema.Struct({ "data": FactoryResponse, "status": Schema.String })
 export type Readyz503 = { readonly "data": FactoryResponse, readonly "status": string }
@@ -2924,6 +3102,66 @@ export type TestRule403 = RenderErrorResponse
 export const TestRule403 = RenderErrorResponse
 export type TestRule500 = RenderErrorResponse
 export const TestRule500 = RenderErrorResponse
+export type ListSavedViewsParams = { readonly "source"?: SavedviewtypesSource, readonly "name"?: string }
+export const ListSavedViewsParams = Schema.Struct({ "source": Schema.optionalKey(SavedviewtypesSource), "name": Schema.optionalKey(Schema.String) })
+export type ListSavedViews200 = { readonly "data": ReadonlyArray<{ readonly "createdAt"?: string, readonly "createdBy"?: string, readonly "id": string, readonly "name"?: string, readonly "schemaVersion": SavedviewtypesSchemaVersion, readonly "source"?: SavedviewtypesSource, readonly "spec": SavedviewtypesSavedViewSpec, readonly "updatedAt"?: string, readonly "updatedBy"?: string }>, readonly "status": string }
+export const ListSavedViews200 = Schema.Struct({ "data": Schema.Union([Schema.Array(Schema.Struct({ "createdAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "createdBy": Schema.optionalKey(Schema.String), "id": Schema.String, "name": Schema.optionalKey(Schema.String), "schemaVersion": SavedviewtypesSchemaVersion, "source": Schema.optionalKey(SavedviewtypesSource), "spec": SavedviewtypesSavedViewSpec, "updatedAt": Schema.optionalKey(Schema.String.annotate({ "format": "date-time" })), "updatedBy": Schema.optionalKey(Schema.String) }))]), "status": Schema.String })
+export type ListSavedViews400 = RenderErrorResponse
+export const ListSavedViews400 = RenderErrorResponse
+export type ListSavedViews401 = RenderErrorResponse
+export const ListSavedViews401 = RenderErrorResponse
+export type ListSavedViews403 = RenderErrorResponse
+export const ListSavedViews403 = RenderErrorResponse
+export type ListSavedViews500 = RenderErrorResponse
+export const ListSavedViews500 = RenderErrorResponse
+export type CreateSavedViewRequestJson = SavedviewtypesPostableSavedView
+export const CreateSavedViewRequestJson = SavedviewtypesPostableSavedView
+export type CreateSavedView201 = { readonly "data": TypesIdentifiable, readonly "status": string }
+export const CreateSavedView201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
+export type CreateSavedView400 = RenderErrorResponse
+export const CreateSavedView400 = RenderErrorResponse
+export type CreateSavedView401 = RenderErrorResponse
+export const CreateSavedView401 = RenderErrorResponse
+export type CreateSavedView403 = RenderErrorResponse
+export const CreateSavedView403 = RenderErrorResponse
+export type CreateSavedView409 = RenderErrorResponse
+export const CreateSavedView409 = RenderErrorResponse
+export type CreateSavedView500 = RenderErrorResponse
+export const CreateSavedView500 = RenderErrorResponse
+export type GetSavedView200 = { readonly "data": SavedviewtypesSavedView, readonly "status": string }
+export const GetSavedView200 = Schema.Struct({ "data": SavedviewtypesSavedView, "status": Schema.String })
+export type GetSavedView400 = RenderErrorResponse
+export const GetSavedView400 = RenderErrorResponse
+export type GetSavedView401 = RenderErrorResponse
+export const GetSavedView401 = RenderErrorResponse
+export type GetSavedView403 = RenderErrorResponse
+export const GetSavedView403 = RenderErrorResponse
+export type GetSavedView404 = RenderErrorResponse
+export const GetSavedView404 = RenderErrorResponse
+export type GetSavedView500 = RenderErrorResponse
+export const GetSavedView500 = RenderErrorResponse
+export type UpdateSavedViewRequestJson = SavedviewtypesUpdatableSavedView
+export const UpdateSavedViewRequestJson = SavedviewtypesUpdatableSavedView
+export type UpdateSavedView400 = RenderErrorResponse
+export const UpdateSavedView400 = RenderErrorResponse
+export type UpdateSavedView401 = RenderErrorResponse
+export const UpdateSavedView401 = RenderErrorResponse
+export type UpdateSavedView403 = RenderErrorResponse
+export const UpdateSavedView403 = RenderErrorResponse
+export type UpdateSavedView404 = RenderErrorResponse
+export const UpdateSavedView404 = RenderErrorResponse
+export type UpdateSavedView500 = RenderErrorResponse
+export const UpdateSavedView500 = RenderErrorResponse
+export type DeleteSavedView400 = RenderErrorResponse
+export const DeleteSavedView400 = RenderErrorResponse
+export type DeleteSavedView401 = RenderErrorResponse
+export const DeleteSavedView401 = RenderErrorResponse
+export type DeleteSavedView403 = RenderErrorResponse
+export const DeleteSavedView403 = RenderErrorResponse
+export type DeleteSavedView404 = RenderErrorResponse
+export const DeleteSavedView404 = RenderErrorResponse
+export type DeleteSavedView500 = RenderErrorResponse
+export const DeleteSavedView500 = RenderErrorResponse
 export type DeleteSession400 = RenderErrorResponse
 export const DeleteSession400 = RenderErrorResponse
 export type DeleteSession401 = RenderErrorResponse
@@ -3076,24 +3314,6 @@ export type GetRolesByUserID404 = RenderErrorResponse
 export const GetRolesByUserID404 = RenderErrorResponse
 export type GetRolesByUserID500 = RenderErrorResponse
 export const GetRolesByUserID500 = RenderErrorResponse
-export type SetRoleByUserIDRequestJson = TypesPostableRole
-export const SetRoleByUserIDRequestJson = TypesPostableRole
-export type SetRoleByUserID401 = RenderErrorResponse
-export const SetRoleByUserID401 = RenderErrorResponse
-export type SetRoleByUserID403 = RenderErrorResponse
-export const SetRoleByUserID403 = RenderErrorResponse
-export type SetRoleByUserID404 = RenderErrorResponse
-export const SetRoleByUserID404 = RenderErrorResponse
-export type SetRoleByUserID500 = RenderErrorResponse
-export const SetRoleByUserID500 = RenderErrorResponse
-export type RemoveUserRoleByUserIDAndRoleID401 = RenderErrorResponse
-export const RemoveUserRoleByUserIDAndRoleID401 = RenderErrorResponse
-export type RemoveUserRoleByUserIDAndRoleID403 = RenderErrorResponse
-export const RemoveUserRoleByUserIDAndRoleID403 = RenderErrorResponse
-export type RemoveUserRoleByUserIDAndRoleID404 = RenderErrorResponse
-export const RemoveUserRoleByUserIDAndRoleID404 = RenderErrorResponse
-export type RemoveUserRoleByUserIDAndRoleID500 = RenderErrorResponse
-export const RemoveUserRoleByUserIDAndRoleID500 = RenderErrorResponse
 export type GetMyUser200 = { readonly "data": AuthtypesUserWithRoles, readonly "status": string }
 export const GetMyUser200 = Schema.Struct({ "data": AuthtypesUserWithRoles, "status": Schema.String })
 export type GetMyUser401 = RenderErrorResponse
@@ -3194,6 +3414,30 @@ export type PutProfile409 = RenderErrorResponse
 export const PutProfile409 = RenderErrorResponse
 export type PutProfile500 = RenderErrorResponse
 export const PutProfile500 = RenderErrorResponse
+export type RefreshLicenseDeprecated400 = RenderErrorResponse
+export const RefreshLicenseDeprecated400 = RenderErrorResponse
+export type RefreshLicenseDeprecated401 = RenderErrorResponse
+export const RefreshLicenseDeprecated401 = RenderErrorResponse
+export type RefreshLicenseDeprecated403 = RenderErrorResponse
+export const RefreshLicenseDeprecated403 = RenderErrorResponse
+export type RefreshLicenseDeprecated404 = RenderErrorResponse
+export const RefreshLicenseDeprecated404 = RenderErrorResponse
+export type RefreshLicenseDeprecated500 = RenderErrorResponse
+export const RefreshLicenseDeprecated500 = RenderErrorResponse
+export type ActivateLicenseDeprecatedRequestJson = LicensetypesPostableLicense
+export const ActivateLicenseDeprecatedRequestJson = LicensetypesPostableLicense
+export type ActivateLicenseDeprecated400 = RenderErrorResponse
+export const ActivateLicenseDeprecated400 = RenderErrorResponse
+export type ActivateLicenseDeprecated401 = RenderErrorResponse
+export const ActivateLicenseDeprecated401 = RenderErrorResponse
+export type ActivateLicenseDeprecated403 = RenderErrorResponse
+export const ActivateLicenseDeprecated403 = RenderErrorResponse
+export type ActivateLicenseDeprecated404 = RenderErrorResponse
+export const ActivateLicenseDeprecated404 = RenderErrorResponse
+export type ActivateLicenseDeprecated409 = RenderErrorResponse
+export const ActivateLicenseDeprecated409 = RenderErrorResponse
+export type ActivateLicenseDeprecated500 = RenderErrorResponse
+export const ActivateLicenseDeprecated500 = RenderErrorResponse
 export type GetMetricDashboardsV2Params = { readonly "metricName": string }
 export const GetMetricDashboardsV2Params = Schema.Struct({ "metricName": Schema.String.annotate({ "description": "The name of the metric. May contain slashes (e.g. cloud-provider metrics like run.googleapis.com/request_latencies)." }) })
 export type GetMetricDashboardsV2200 = { readonly "data": MetricsexplorertypesMetricDashboardPanelsResponse, readonly "status": string }
@@ -3222,6 +3466,78 @@ export type GetFlamegraph404 = RenderErrorResponse
 export const GetFlamegraph404 = RenderErrorResponse
 export type GetFlamegraph500 = RenderErrorResponse
 export const GetFlamegraph500 = RenderErrorResponse
+export type ListLicenses200 = { readonly "data": ReadonlyArray<LicensetypesGettableLicense>, readonly "status": string }
+export const ListLicenses200 = Schema.Struct({ "data": Schema.Array(LicensetypesGettableLicense), "status": Schema.String })
+export type ListLicenses400 = RenderErrorResponse
+export const ListLicenses400 = RenderErrorResponse
+export type ListLicenses401 = RenderErrorResponse
+export const ListLicenses401 = RenderErrorResponse
+export type ListLicenses403 = RenderErrorResponse
+export const ListLicenses403 = RenderErrorResponse
+export type ListLicenses500 = RenderErrorResponse
+export const ListLicenses500 = RenderErrorResponse
+export type ActivateLicenseRequestJson = LicensetypesPostableLicense
+export const ActivateLicenseRequestJson = LicensetypesPostableLicense
+export type ActivateLicense201 = { readonly "data": TypesIdentifiable, readonly "status": string }
+export const ActivateLicense201 = Schema.Struct({ "data": TypesIdentifiable, "status": Schema.String })
+export type ActivateLicense400 = RenderErrorResponse
+export const ActivateLicense400 = RenderErrorResponse
+export type ActivateLicense401 = RenderErrorResponse
+export const ActivateLicense401 = RenderErrorResponse
+export type ActivateLicense403 = RenderErrorResponse
+export const ActivateLicense403 = RenderErrorResponse
+export type ActivateLicense404 = RenderErrorResponse
+export const ActivateLicense404 = RenderErrorResponse
+export type ActivateLicense409 = RenderErrorResponse
+export const ActivateLicense409 = RenderErrorResponse
+export type ActivateLicense500 = RenderErrorResponse
+export const ActivateLicense500 = RenderErrorResponse
+export type GetLicense200 = { readonly "data": LicensetypesGettableLicenseWithKey, readonly "status": string }
+export const GetLicense200 = Schema.Struct({ "data": LicensetypesGettableLicenseWithKey, "status": Schema.String })
+export type GetLicense400 = RenderErrorResponse
+export const GetLicense400 = RenderErrorResponse
+export type GetLicense401 = RenderErrorResponse
+export const GetLicense401 = RenderErrorResponse
+export type GetLicense403 = RenderErrorResponse
+export const GetLicense403 = RenderErrorResponse
+export type GetLicense404 = RenderErrorResponse
+export const GetLicense404 = RenderErrorResponse
+export type GetLicense500 = RenderErrorResponse
+export const GetLicense500 = RenderErrorResponse
+export type RefreshLicense400 = RenderErrorResponse
+export const RefreshLicense400 = RenderErrorResponse
+export type RefreshLicense401 = RenderErrorResponse
+export const RefreshLicense401 = RenderErrorResponse
+export type RefreshLicense403 = RenderErrorResponse
+export const RefreshLicense403 = RenderErrorResponse
+export type RefreshLicense404 = RenderErrorResponse
+export const RefreshLicense404 = RenderErrorResponse
+export type RefreshLicense500 = RenderErrorResponse
+export const RefreshLicense500 = RenderErrorResponse
+export type DeleteLicense400 = RenderErrorResponse
+export const DeleteLicense400 = RenderErrorResponse
+export type DeleteLicense401 = RenderErrorResponse
+export const DeleteLicense401 = RenderErrorResponse
+export type DeleteLicense403 = RenderErrorResponse
+export const DeleteLicense403 = RenderErrorResponse
+export type DeleteLicense404 = RenderErrorResponse
+export const DeleteLicense404 = RenderErrorResponse
+export type DeleteLicense500 = RenderErrorResponse
+export const DeleteLicense500 = RenderErrorResponse
+export type GetActiveLicense200 = { readonly "data": LicensetypesGettableActiveLicense, readonly "status": string }
+export const GetActiveLicense200 = Schema.Struct({ "data": LicensetypesGettableActiveLicense, "status": Schema.String })
+export type GetActiveLicense400 = RenderErrorResponse
+export const GetActiveLicense400 = RenderErrorResponse
+export type GetActiveLicense401 = RenderErrorResponse
+export const GetActiveLicense401 = RenderErrorResponse
+export type GetActiveLicense403 = RenderErrorResponse
+export const GetActiveLicense403 = RenderErrorResponse
+export type GetActiveLicense404 = RenderErrorResponse
+export const GetActiveLicense404 = RenderErrorResponse
+export type GetActiveLicense500 = RenderErrorResponse
+export const GetActiveLicense500 = RenderErrorResponse
+export type GetActiveLicense501 = RenderErrorResponse
+export const GetActiveLicense501 = RenderErrorResponse
 export type GetWaterfallV4RequestJson = SpantypesPostableWaterfall
 export const GetWaterfallV4RequestJson = SpantypesPostableWaterfall
 export type GetWaterfallV4200 = { readonly "data": SpantypesGettableWaterfallTrace, readonly "status": string }
@@ -3274,6 +3590,70 @@ export type ReplaceVariables403 = RenderErrorResponse
 export const ReplaceVariables403 = RenderErrorResponse
 export type ReplaceVariables500 = RenderErrorResponse
 export const ReplaceVariables500 = RenderErrorResponse
+export type PrometheusQueryParams = { readonly "query": string, readonly "time"?: string, readonly "timeout"?: string, readonly "stats"?: string }
+export const PrometheusQueryParams = Schema.Struct({ "query": Schema.String.annotate({ "description": "PromQL expression." }), "time": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timestamp: RFC3339 or float unix seconds. Defaults to the server's current time." })), "timeout": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timeout: duration string or float seconds." })), "stats": Schema.optionalKey(Schema.String.annotate({ "description": "Any non-empty value includes query statistics in the response." })) })
+export type PrometheusQuery200 = PrometheusSuccessResponseSchema
+export const PrometheusQuery200 = PrometheusSuccessResponseSchema
+export type PrometheusQuery400 = PrometheusErrorResponseSchema
+export const PrometheusQuery400 = PrometheusErrorResponseSchema
+export type PrometheusQuery401 = RenderErrorResponse
+export const PrometheusQuery401 = RenderErrorResponse
+export type PrometheusQuery403 = RenderErrorResponse
+export const PrometheusQuery403 = RenderErrorResponse
+export type PrometheusQuery422 = PrometheusErrorResponseSchema
+export const PrometheusQuery422 = PrometheusErrorResponseSchema
+export type PrometheusQuery500 = PrometheusErrorResponseSchema
+export const PrometheusQuery500 = PrometheusErrorResponseSchema
+export type PrometheusQuery503 = PrometheusErrorResponseSchema
+export const PrometheusQuery503 = PrometheusErrorResponseSchema
+export type PrometheusQueryPostParams = { readonly "query": string, readonly "time"?: string, readonly "timeout"?: string, readonly "stats"?: string }
+export const PrometheusQueryPostParams = Schema.Struct({ "query": Schema.String.annotate({ "description": "PromQL expression." }), "time": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timestamp: RFC3339 or float unix seconds. Defaults to the server's current time." })), "timeout": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timeout: duration string or float seconds." })), "stats": Schema.optionalKey(Schema.String.annotate({ "description": "Any non-empty value includes query statistics in the response." })) })
+export type PrometheusQueryPost200 = PrometheusSuccessResponseSchema
+export const PrometheusQueryPost200 = PrometheusSuccessResponseSchema
+export type PrometheusQueryPost400 = PrometheusErrorResponseSchema
+export const PrometheusQueryPost400 = PrometheusErrorResponseSchema
+export type PrometheusQueryPost401 = RenderErrorResponse
+export const PrometheusQueryPost401 = RenderErrorResponse
+export type PrometheusQueryPost403 = RenderErrorResponse
+export const PrometheusQueryPost403 = RenderErrorResponse
+export type PrometheusQueryPost422 = PrometheusErrorResponseSchema
+export const PrometheusQueryPost422 = PrometheusErrorResponseSchema
+export type PrometheusQueryPost500 = PrometheusErrorResponseSchema
+export const PrometheusQueryPost500 = PrometheusErrorResponseSchema
+export type PrometheusQueryPost503 = PrometheusErrorResponseSchema
+export const PrometheusQueryPost503 = PrometheusErrorResponseSchema
+export type PrometheusQueryRangeParams = { readonly "query": string, readonly "start": string, readonly "end": string, readonly "step": string, readonly "timeout"?: string, readonly "stats"?: string }
+export const PrometheusQueryRangeParams = Schema.Struct({ "query": Schema.String.annotate({ "description": "PromQL expression." }), "start": Schema.String.annotate({ "description": "Range start: RFC3339 or float unix seconds." }), "end": Schema.String.annotate({ "description": "Range end: RFC3339 or float unix seconds." }), "step": Schema.String.annotate({ "description": "Resolution step: duration string or float seconds." }), "timeout": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timeout: duration string or float seconds." })), "stats": Schema.optionalKey(Schema.String.annotate({ "description": "Any non-empty value includes query statistics in the response." })) })
+export type PrometheusQueryRange200 = PrometheusSuccessResponseSchema
+export const PrometheusQueryRange200 = PrometheusSuccessResponseSchema
+export type PrometheusQueryRange400 = PrometheusErrorResponseSchema
+export const PrometheusQueryRange400 = PrometheusErrorResponseSchema
+export type PrometheusQueryRange401 = RenderErrorResponse
+export const PrometheusQueryRange401 = RenderErrorResponse
+export type PrometheusQueryRange403 = RenderErrorResponse
+export const PrometheusQueryRange403 = RenderErrorResponse
+export type PrometheusQueryRange422 = PrometheusErrorResponseSchema
+export const PrometheusQueryRange422 = PrometheusErrorResponseSchema
+export type PrometheusQueryRange500 = PrometheusErrorResponseSchema
+export const PrometheusQueryRange500 = PrometheusErrorResponseSchema
+export type PrometheusQueryRange503 = PrometheusErrorResponseSchema
+export const PrometheusQueryRange503 = PrometheusErrorResponseSchema
+export type PrometheusQueryRangePostParams = { readonly "query": string, readonly "start": string, readonly "end": string, readonly "step": string, readonly "timeout"?: string, readonly "stats"?: string }
+export const PrometheusQueryRangePostParams = Schema.Struct({ "query": Schema.String.annotate({ "description": "PromQL expression." }), "start": Schema.String.annotate({ "description": "Range start: RFC3339 or float unix seconds." }), "end": Schema.String.annotate({ "description": "Range end: RFC3339 or float unix seconds." }), "step": Schema.String.annotate({ "description": "Resolution step: duration string or float seconds." }), "timeout": Schema.optionalKey(Schema.String.annotate({ "description": "Evaluation timeout: duration string or float seconds." })), "stats": Schema.optionalKey(Schema.String.annotate({ "description": "Any non-empty value includes query statistics in the response." })) })
+export type PrometheusQueryRangePost200 = PrometheusSuccessResponseSchema
+export const PrometheusQueryRangePost200 = PrometheusSuccessResponseSchema
+export type PrometheusQueryRangePost400 = PrometheusErrorResponseSchema
+export const PrometheusQueryRangePost400 = PrometheusErrorResponseSchema
+export type PrometheusQueryRangePost401 = RenderErrorResponse
+export const PrometheusQueryRangePost401 = RenderErrorResponse
+export type PrometheusQueryRangePost403 = RenderErrorResponse
+export const PrometheusQueryRangePost403 = RenderErrorResponse
+export type PrometheusQueryRangePost422 = PrometheusErrorResponseSchema
+export const PrometheusQueryRangePost422 = PrometheusErrorResponseSchema
+export type PrometheusQueryRangePost500 = PrometheusErrorResponseSchema
+export const PrometheusQueryRangePost500 = PrometheusErrorResponseSchema
+export type PrometheusQueryRangePost503 = PrometheusErrorResponseSchema
+export const PrometheusQueryRangePost503 = PrometheusErrorResponseSchema
 
 export interface OperationConfig {
   /**
@@ -3346,6 +3726,26 @@ export const make = (
       )
   return {
     httpClient,
+    "GetAIObservabilityFieldsKeys": (options) => HttpClientRequest.get(`/api/v1/ai_observability/fields/keys`).pipe(
+    HttpClientRequest.setUrlParams({ "searchText": options?.params?.["searchText"] as any, "fieldContext": options?.params?.["fieldContext"] as any, "fieldDataType": options?.params?.["fieldDataType"] as any, "startUnixMilli": options?.params?.["startUnixMilli"] as any, "endUnixMilli": options?.params?.["endUnixMilli"] as any, "limit": options?.params?.["limit"] as any }),
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetAIObservabilityFieldsKeys200),
+      "401": decodeError("GetAIObservabilityFieldsKeys401", GetAIObservabilityFieldsKeys401),
+      "403": decodeError("GetAIObservabilityFieldsKeys403", GetAIObservabilityFieldsKeys403),
+      "500": decodeError("GetAIObservabilityFieldsKeys500", GetAIObservabilityFieldsKeys500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetAIObservabilityFieldsValues": (options) => HttpClientRequest.get(`/api/v1/ai_observability/fields/values`).pipe(
+    HttpClientRequest.setUrlParams({ "searchText": options?.params?.["searchText"] as any, "fieldContext": options?.params?.["fieldContext"] as any, "fieldDataType": options?.params?.["fieldDataType"] as any, "startUnixMilli": options?.params?.["startUnixMilli"] as any, "endUnixMilli": options?.params?.["endUnixMilli"] as any, "limit": options?.params?.["limit"] as any, "name": options?.params?.["name"] as any, "existingQuery": options?.params?.["existingQuery"] as any }),
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetAIObservabilityFieldsValues200),
+      "401": decodeError("GetAIObservabilityFieldsValues401", GetAIObservabilityFieldsValues401),
+      "403": decodeError("GetAIObservabilityFieldsValues403", GetAIObservabilityFieldsValues403),
+      "500": decodeError("GetAIObservabilityFieldsValues500", GetAIObservabilityFieldsValues500),
+      orElse: unexpectedStatus
+    }))
+  ),
     "GetAlerts": (options) => HttpClientRequest.get(`/api/v1/alerts`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetAlerts200),
@@ -3535,7 +3935,6 @@ export const make = (
     }))
   ),
     "ListServicesMetadata": (cloudProvider, options) => HttpClientRequest.get(`/api/v1/cloud_integrations/${cloudProvider}/services`).pipe(
-    HttpClientRequest.setUrlParams({ "cloud_integration_id": options?.params?.["cloud_integration_id"] as any }),
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(ListServicesMetadata200),
       "401": decodeError("ListServicesMetadata401", ListServicesMetadata401),
@@ -3545,7 +3944,6 @@ export const make = (
     }))
   ),
     "GetService": (cloudProvider, serviceId, options) => HttpClientRequest.get(`/api/v1/cloud_integrations/${cloudProvider}/services/${serviceId}`).pipe(
-    HttpClientRequest.setUrlParams({ "cloud_integration_id": options?.params?.["cloud_integration_id"] as any }),
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetService200),
       "401": decodeError("GetService401", GetService401),
@@ -3619,59 +4017,6 @@ export const make = (
       "401": decodeError("DeletePublicDashboard401", DeletePublicDashboard401),
       "403": decodeError("DeletePublicDashboard403", DeletePublicDashboard403),
       "500": decodeError("DeletePublicDashboard500", DeletePublicDashboard500),
-      "204": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
-    "ListAuthDomains": (options) => HttpClientRequest.get(`/api/v1/domains`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(ListAuthDomains200),
-      "401": decodeError("ListAuthDomains401", ListAuthDomains401),
-      "403": decodeError("ListAuthDomains403", ListAuthDomains403),
-      "500": decodeError("ListAuthDomains500", ListAuthDomains500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "CreateAuthDomain": (options) => HttpClientRequest.post(`/api/v1/domains`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(CreateAuthDomain201),
-      "400": decodeError("CreateAuthDomain400", CreateAuthDomain400),
-      "401": decodeError("CreateAuthDomain401", CreateAuthDomain401),
-      "403": decodeError("CreateAuthDomain403", CreateAuthDomain403),
-      "409": decodeError("CreateAuthDomain409", CreateAuthDomain409),
-      "500": decodeError("CreateAuthDomain500", CreateAuthDomain500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "GetAuthDomain": (id, options) => HttpClientRequest.get(`/api/v1/domains/${id}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(GetAuthDomain200),
-      "401": decodeError("GetAuthDomain401", GetAuthDomain401),
-      "403": decodeError("GetAuthDomain403", GetAuthDomain403),
-      "404": decodeError("GetAuthDomain404", GetAuthDomain404),
-      "500": decodeError("GetAuthDomain500", GetAuthDomain500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "UpdateAuthDomain": (id, options) => HttpClientRequest.put(`/api/v1/domains/${id}`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "400": decodeError("UpdateAuthDomain400", UpdateAuthDomain400),
-      "401": decodeError("UpdateAuthDomain401", UpdateAuthDomain401),
-      "403": decodeError("UpdateAuthDomain403", UpdateAuthDomain403),
-      "409": decodeError("UpdateAuthDomain409", UpdateAuthDomain409),
-      "500": decodeError("UpdateAuthDomain500", UpdateAuthDomain500),
-      "204": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
-    "DeleteAuthDomain": (id, options) => HttpClientRequest.delete(`/api/v1/domains/${id}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "400": decodeError("DeleteAuthDomain400", DeleteAuthDomain400),
-      "401": decodeError("DeleteAuthDomain401", DeleteAuthDomain401),
-      "403": decodeError("DeleteAuthDomain403", DeleteAuthDomain403),
-      "500": decodeError("DeleteAuthDomain500", DeleteAuthDomain500),
       "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
@@ -3761,45 +4106,10 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
-    "GetResetPasswordTokenDeprecated": (id, options) => HttpClientRequest.get(`/api/v1/getResetPasswordToken/${id}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(GetResetPasswordTokenDeprecated200),
-      "400": decodeError("GetResetPasswordTokenDeprecated400", GetResetPasswordTokenDeprecated400),
-      "401": decodeError("GetResetPasswordTokenDeprecated401", GetResetPasswordTokenDeprecated401),
-      "403": decodeError("GetResetPasswordTokenDeprecated403", GetResetPasswordTokenDeprecated403),
-      "404": decodeError("GetResetPasswordTokenDeprecated404", GetResetPasswordTokenDeprecated404),
-      "500": decodeError("GetResetPasswordTokenDeprecated500", GetResetPasswordTokenDeprecated500),
-      orElse: unexpectedStatus
-    }))
-  ),
     "GetGlobalConfig": (options) => HttpClientRequest.get(`/api/v1/global/config`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetGlobalConfig200),
       "500": decodeError("GetGlobalConfig500", GetGlobalConfig500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "CreateInvite": (options) => HttpClientRequest.post(`/api/v1/invite`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(CreateInvite201),
-      "400": decodeError("CreateInvite400", CreateInvite400),
-      "401": decodeError("CreateInvite401", CreateInvite401),
-      "403": decodeError("CreateInvite403", CreateInvite403),
-      "409": decodeError("CreateInvite409", CreateInvite409),
-      "500": decodeError("CreateInvite500", CreateInvite500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "CreateBulkInvite": (options) => HttpClientRequest.post(`/api/v1/invite/bulk`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "400": decodeError("CreateBulkInvite400", CreateBulkInvite400),
-      "401": decodeError("CreateBulkInvite401", CreateBulkInvite401),
-      "403": decodeError("CreateBulkInvite403", CreateBulkInvite403),
-      "409": decodeError("CreateBulkInvite409", CreateBulkInvite409),
-      "500": decodeError("CreateBulkInvite500", CreateBulkInvite500),
-      "201": () => Effect.void,
       orElse: unexpectedStatus
     }))
   ),
@@ -3923,16 +4233,6 @@ export const make = (
       "401": decodeError("GetPublicDashboardWidgetQueryRange401", GetPublicDashboardWidgetQueryRange401),
       "403": decodeError("GetPublicDashboardWidgetQueryRange403", GetPublicDashboardWidgetQueryRange403),
       "500": decodeError("GetPublicDashboardWidgetQueryRange500", GetPublicDashboardWidgetQueryRange500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "ResetPassword": (options) => HttpClientRequest.post(`/api/v1/resetPassword`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "400": decodeError("ResetPassword400", ResetPassword400),
-      "409": decodeError("ResetPassword409", ResetPassword409),
-      "500": decodeError("ResetPassword500", ResetPassword500),
-      "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
   ),
@@ -4185,26 +4485,6 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
-    "CreateServiceAccountRoleDeprecated": (id, options) => HttpClientRequest.post(`/api/v1/service_accounts/${id}/roles`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(CreateServiceAccountRoleDeprecated201),
-      "400": decodeError("CreateServiceAccountRoleDeprecated400", CreateServiceAccountRoleDeprecated400),
-      "401": decodeError("CreateServiceAccountRoleDeprecated401", CreateServiceAccountRoleDeprecated401),
-      "403": decodeError("CreateServiceAccountRoleDeprecated403", CreateServiceAccountRoleDeprecated403),
-      "500": decodeError("CreateServiceAccountRoleDeprecated500", CreateServiceAccountRoleDeprecated500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "DeleteServiceAccountRoleDeprecated": (id, rid, options) => HttpClientRequest.delete(`/api/v1/service_accounts/${id}/roles/${rid}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "401": decodeError("DeleteServiceAccountRoleDeprecated401", DeleteServiceAccountRoleDeprecated401),
-      "403": decodeError("DeleteServiceAccountRoleDeprecated403", DeleteServiceAccountRoleDeprecated403),
-      "500": decodeError("DeleteServiceAccountRoleDeprecated500", DeleteServiceAccountRoleDeprecated500),
-      "204": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
     "GetMyServiceAccount": (options) => HttpClientRequest.get(`/api/v1/service_accounts/me`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetMyServiceAccount200),
@@ -4334,6 +4614,42 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "GetSubscription": (options) => HttpClientRequest.get(`/api/v1/subscriptions`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetSubscription200),
+      "400": decodeError("GetSubscription400", GetSubscription400),
+      "401": decodeError("GetSubscription401", GetSubscription401),
+      "403": decodeError("GetSubscription403", GetSubscription403),
+      "404": decodeError("GetSubscription404", GetSubscription404),
+      "500": decodeError("GetSubscription500", GetSubscription500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "UpdateSubscription": (options) => HttpClientRequest.put(`/api/v1/subscriptions`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(UpdateSubscription200),
+      "400": decodeError("UpdateSubscription400", UpdateSubscription400),
+      "401": decodeError("UpdateSubscription401", UpdateSubscription401),
+      "403": decodeError("UpdateSubscription403", UpdateSubscription403),
+      "404": decodeError("UpdateSubscription404", UpdateSubscription404),
+      "500": decodeError("UpdateSubscription500", UpdateSubscription500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "CreateSubscription": (options) => HttpClientRequest.post(`/api/v1/subscriptions`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(CreateSubscription201),
+      "400": decodeError("CreateSubscription400", CreateSubscription400),
+      "401": decodeError("CreateSubscription401", CreateSubscription401),
+      "403": decodeError("CreateSubscription403", CreateSubscription403),
+      "404": decodeError("CreateSubscription404", CreateSubscription404),
+      "409": decodeError("CreateSubscription409", CreateSubscription409),
+      "500": decodeError("CreateSubscription500", CreateSubscription500),
+      orElse: unexpectedStatus
+    }))
+  ),
     "TestChannelDeprecated": (options) => HttpClientRequest.post(`/api/v1/testChannel`).pipe(
     HttpClientRequest.bodyJsonUnsafe(options.payload),
     withResponse(options.config)(HttpClientResponse.matchStatus({
@@ -4357,53 +4673,13 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
-    "ListUsersDeprecated": (options) => HttpClientRequest.get(`/api/v1/user`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(ListUsersDeprecated200),
-      "401": decodeError("ListUsersDeprecated401", ListUsersDeprecated401),
-      "403": decodeError("ListUsersDeprecated403", ListUsersDeprecated403),
-      "500": decodeError("ListUsersDeprecated500", ListUsersDeprecated500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "GetUserDeprecated": (id, options) => HttpClientRequest.get(`/api/v1/user/${id}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(GetUserDeprecated200),
-      "401": decodeError("GetUserDeprecated401", GetUserDeprecated401),
-      "403": decodeError("GetUserDeprecated403", GetUserDeprecated403),
-      "404": decodeError("GetUserDeprecated404", GetUserDeprecated404),
-      "500": decodeError("GetUserDeprecated500", GetUserDeprecated500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "UpdateUserDeprecated": (id, options) => HttpClientRequest.put(`/api/v1/user/${id}`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(UpdateUserDeprecated200),
-      "400": decodeError("UpdateUserDeprecated400", UpdateUserDeprecated400),
-      "401": decodeError("UpdateUserDeprecated401", UpdateUserDeprecated401),
-      "403": decodeError("UpdateUserDeprecated403", UpdateUserDeprecated403),
-      "404": decodeError("UpdateUserDeprecated404", UpdateUserDeprecated404),
-      "500": decodeError("UpdateUserDeprecated500", UpdateUserDeprecated500),
-      orElse: unexpectedStatus
-    }))
-  ),
-    "DeleteUserDeprecated": (id, options) => HttpClientRequest.delete(`/api/v1/user/${id}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "401": decodeError("DeleteUserDeprecated401", DeleteUserDeprecated401),
-      "403": decodeError("DeleteUserDeprecated403", DeleteUserDeprecated403),
-      "404": decodeError("DeleteUserDeprecated404", DeleteUserDeprecated404),
-      "500": decodeError("DeleteUserDeprecated500", DeleteUserDeprecated500),
-      "204": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
     "GetMyUserDeprecated": (options) => HttpClientRequest.get(`/api/v1/user/me`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "2xx": decodeSuccess(GetMyUserDeprecated200),
       "401": decodeError("GetMyUserDeprecated401", GetMyUserDeprecated401),
       "403": decodeError("GetMyUserDeprecated403", GetMyUserDeprecated403),
       "500": decodeError("GetMyUserDeprecated500", GetMyUserDeprecated500),
+      "501": decodeError("GetMyUserDeprecated501", GetMyUserDeprecated501),
+      "200": () => Effect.void,
       orElse: unexpectedStatus
     }))
   ),
@@ -4434,6 +4710,59 @@ export const make = (
       "403": decodeError("UpdateUserPreference403", UpdateUserPreference403),
       "404": decodeError("UpdateUserPreference404", UpdateUserPreference404),
       "500": decodeError("UpdateUserPreference500", UpdateUserPreference500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ListAuthDomains": (options) => HttpClientRequest.get(`/api/v2/auth_domains`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(ListAuthDomains200),
+      "401": decodeError("ListAuthDomains401", ListAuthDomains401),
+      "403": decodeError("ListAuthDomains403", ListAuthDomains403),
+      "500": decodeError("ListAuthDomains500", ListAuthDomains500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "CreateAuthDomain": (options) => HttpClientRequest.post(`/api/v2/auth_domains`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(CreateAuthDomain201),
+      "400": decodeError("CreateAuthDomain400", CreateAuthDomain400),
+      "401": decodeError("CreateAuthDomain401", CreateAuthDomain401),
+      "403": decodeError("CreateAuthDomain403", CreateAuthDomain403),
+      "409": decodeError("CreateAuthDomain409", CreateAuthDomain409),
+      "500": decodeError("CreateAuthDomain500", CreateAuthDomain500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetAuthDomain": (id, options) => HttpClientRequest.get(`/api/v2/auth_domains/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetAuthDomain200),
+      "401": decodeError("GetAuthDomain401", GetAuthDomain401),
+      "403": decodeError("GetAuthDomain403", GetAuthDomain403),
+      "404": decodeError("GetAuthDomain404", GetAuthDomain404),
+      "500": decodeError("GetAuthDomain500", GetAuthDomain500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "UpdateAuthDomain": (id, options) => HttpClientRequest.put(`/api/v2/auth_domains/${id}`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("UpdateAuthDomain400", UpdateAuthDomain400),
+      "401": decodeError("UpdateAuthDomain401", UpdateAuthDomain401),
+      "403": decodeError("UpdateAuthDomain403", UpdateAuthDomain403),
+      "409": decodeError("UpdateAuthDomain409", UpdateAuthDomain409),
+      "500": decodeError("UpdateAuthDomain500", UpdateAuthDomain500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "DeleteAuthDomain": (id, options) => HttpClientRequest.delete(`/api/v2/auth_domains/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("DeleteAuthDomain400", DeleteAuthDomain400),
+      "401": decodeError("DeleteAuthDomain401", DeleteAuthDomain401),
+      "403": decodeError("DeleteAuthDomain403", DeleteAuthDomain403),
+      "500": decodeError("DeleteAuthDomain500", DeleteAuthDomain500),
       "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
@@ -4582,12 +4911,44 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "MigrateDashboardV2": (id, options) => HttpClientRequest.post(`/api/v2/dashboards/${id}/migrate`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(MigrateDashboardV2200),
+      "400": decodeError("MigrateDashboardV2400", MigrateDashboardV2400),
+      "401": decodeError("MigrateDashboardV2401", MigrateDashboardV2401),
+      "403": decodeError("MigrateDashboardV2403", MigrateDashboardV2403),
+      "404": decodeError("MigrateDashboardV2404", MigrateDashboardV2404),
+      "500": decodeError("MigrateDashboardV2500", MigrateDashboardV2500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetSystemDashboard": (name, options) => HttpClientRequest.get(`/api/v2/dashboards/system/${name}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetSystemDashboard200),
+      "400": decodeError("GetSystemDashboard400", GetSystemDashboard400),
+      "401": decodeError("GetSystemDashboard401", GetSystemDashboard401),
+      "403": decodeError("GetSystemDashboard403", GetSystemDashboard403),
+      "404": decodeError("GetSystemDashboard404", GetSystemDashboard404),
+      "500": decodeError("GetSystemDashboard500", GetSystemDashboard500),
+      orElse: unexpectedStatus
+    }))
+  ),
     "ForgotPassword": (options) => HttpClientRequest.post(`/api/v2/factor_password/forgot`).pipe(
     HttpClientRequest.bodyJsonUnsafe(options.payload),
     withResponse(options.config)(HttpClientResponse.matchStatus({
       "400": decodeError("ForgotPassword400", ForgotPassword400),
       "422": decodeError("ForgotPassword422", ForgotPassword422),
       "500": decodeError("ForgotPassword500", ForgotPassword500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ResetPassword": (options) => HttpClientRequest.post(`/api/v2/factor_password/reset`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("ResetPassword400", ResetPassword400),
+      "404": decodeError("ResetPassword404", ResetPassword404),
+      "500": decodeError("ResetPassword500", ResetPassword500),
       "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
@@ -4621,6 +4982,16 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "GetIngestionKey": (keyId, options) => HttpClientRequest.get(`/api/v2/gateway/ingestion_keys/${keyId}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetIngestionKey200),
+      "401": decodeError("GetIngestionKey401", GetIngestionKey401),
+      "403": decodeError("GetIngestionKey403", GetIngestionKey403),
+      "404": decodeError("GetIngestionKey404", GetIngestionKey404),
+      "500": decodeError("GetIngestionKey500", GetIngestionKey500),
+      orElse: unexpectedStatus
+    }))
+  ),
     "DeleteIngestionKey": (keyId, options) => HttpClientRequest.delete(`/api/v2/gateway/ingestion_keys/${keyId}`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "401": decodeError("DeleteIngestionKey401", DeleteIngestionKey401),
@@ -4637,6 +5008,16 @@ export const make = (
       "403": decodeError("UpdateIngestionKey403", UpdateIngestionKey403),
       "500": decodeError("UpdateIngestionKey500", UpdateIngestionKey500),
       "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetIngestionKeyLimits": (keyId, options) => HttpClientRequest.get(`/api/v2/gateway/ingestion_keys/${keyId}/limits`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetIngestionKeyLimits200),
+      "401": decodeError("GetIngestionKeyLimits401", GetIngestionKeyLimits401),
+      "403": decodeError("GetIngestionKeyLimits403", GetIngestionKeyLimits403),
+      "404": decodeError("GetIngestionKeyLimits404", GetIngestionKeyLimits404),
+      "500": decodeError("GetIngestionKeyLimits500", GetIngestionKeyLimits500),
       orElse: unexpectedStatus
     }))
   ),
@@ -4676,6 +5057,46 @@ export const make = (
       "401": decodeError("SearchIngestionKeys401", SearchIngestionKeys401),
       "403": decodeError("SearchIngestionKeys403", SearchIngestionKeys403),
       "500": decodeError("SearchIngestionKeys500", SearchIngestionKeys500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "CreateIngestionLimit": (options) => HttpClientRequest.post(`/api/v2/gateway/ingestion_limits`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(CreateIngestionLimit201),
+      "400": decodeError("CreateIngestionLimit400", CreateIngestionLimit400),
+      "401": decodeError("CreateIngestionLimit401", CreateIngestionLimit401),
+      "403": decodeError("CreateIngestionLimit403", CreateIngestionLimit403),
+      "500": decodeError("CreateIngestionLimit500", CreateIngestionLimit500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetIngestionLimit": (limitId, options) => HttpClientRequest.get(`/api/v2/gateway/ingestion_limits/${limitId}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetIngestionLimit200),
+      "401": decodeError("GetIngestionLimit401", GetIngestionLimit401),
+      "403": decodeError("GetIngestionLimit403", GetIngestionLimit403),
+      "404": decodeError("GetIngestionLimit404", GetIngestionLimit404),
+      "500": decodeError("GetIngestionLimit500", GetIngestionLimit500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "DeleteIngestionLimit": (limitId, options) => HttpClientRequest.delete(`/api/v2/gateway/ingestion_limits/${limitId}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "401": decodeError("DeleteIngestionLimit401", DeleteIngestionLimit401),
+      "403": decodeError("DeleteIngestionLimit403", DeleteIngestionLimit403),
+      "500": decodeError("DeleteIngestionLimit500", DeleteIngestionLimit500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "UpdateIngestionLimit": (limitId, options) => HttpClientRequest.patch(`/api/v2/gateway/ingestion_limits/${limitId}`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "401": decodeError("UpdateIngestionLimit401", UpdateIngestionLimit401),
+      "403": decodeError("UpdateIngestionLimit403", UpdateIngestionLimit403),
+      "500": decodeError("UpdateIngestionLimit500", UpdateIngestionLimit500),
+      "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
   ),
@@ -5049,6 +5470,18 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "CreateNotificationChannel": (options) => HttpClientRequest.post(`/api/v2/notification_channels`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(CreateNotificationChannel201),
+      "400": decodeError("CreateNotificationChannel400", CreateNotificationChannel400),
+      "401": decodeError("CreateNotificationChannel401", CreateNotificationChannel401),
+      "403": decodeError("CreateNotificationChannel403", CreateNotificationChannel403),
+      "409": decodeError("CreateNotificationChannel409", CreateNotificationChannel409),
+      "500": decodeError("CreateNotificationChannel500", CreateNotificationChannel500),
+      orElse: unexpectedStatus
+    }))
+  ),
     "GetMyOrganization": (options) => HttpClientRequest.get(`/api/v2/orgs/me`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetMyOrganization200),
@@ -5090,6 +5523,37 @@ export const make = (
       "403": decodeError("GetPublicDashboardPanelQueryRangeV2403", GetPublicDashboardPanelQueryRangeV2403),
       "404": decodeError("GetPublicDashboardPanelQueryRangeV2404", GetPublicDashboardPanelQueryRangeV2404),
       "500": decodeError("GetPublicDashboardPanelQueryRangeV2500", GetPublicDashboardPanelQueryRangeV2500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ListQuickFilters": (options) => HttpClientRequest.get(`/api/v2/quick_filters`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(ListQuickFilters200),
+      "400": decodeError("ListQuickFilters400", ListQuickFilters400),
+      "401": decodeError("ListQuickFilters401", ListQuickFilters401),
+      "403": decodeError("ListQuickFilters403", ListQuickFilters403),
+      "500": decodeError("ListQuickFilters500", ListQuickFilters500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetQuickFilters": (source, options) => HttpClientRequest.get(`/api/v2/quick_filters/${source}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetQuickFilters200),
+      "400": decodeError("GetQuickFilters400", GetQuickFilters400),
+      "401": decodeError("GetQuickFilters401", GetQuickFilters401),
+      "403": decodeError("GetQuickFilters403", GetQuickFilters403),
+      "500": decodeError("GetQuickFilters500", GetQuickFilters500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "UpdateQuickFilters": (source, options) => HttpClientRequest.put(`/api/v2/quick_filters/${source}`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("UpdateQuickFilters400", UpdateQuickFilters400),
+      "401": decodeError("UpdateQuickFilters401", UpdateQuickFilters401),
+      "403": decodeError("UpdateQuickFilters403", UpdateQuickFilters403),
+      "500": decodeError("UpdateQuickFilters500", UpdateQuickFilters500),
+      "204": () => Effect.void,
       orElse: unexpectedStatus
     }))
   ),
@@ -5261,6 +5725,63 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "ListSavedViews": (options) => HttpClientRequest.get(`/api/v2/saved_views`).pipe(
+    HttpClientRequest.setUrlParams({ "source": options?.params?.["source"] as any, "name": options?.params?.["name"] as any }),
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(ListSavedViews200),
+      "400": decodeError("ListSavedViews400", ListSavedViews400),
+      "401": decodeError("ListSavedViews401", ListSavedViews401),
+      "403": decodeError("ListSavedViews403", ListSavedViews403),
+      "500": decodeError("ListSavedViews500", ListSavedViews500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "CreateSavedView": (options) => HttpClientRequest.post(`/api/v2/saved_views`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(CreateSavedView201),
+      "400": decodeError("CreateSavedView400", CreateSavedView400),
+      "401": decodeError("CreateSavedView401", CreateSavedView401),
+      "403": decodeError("CreateSavedView403", CreateSavedView403),
+      "409": decodeError("CreateSavedView409", CreateSavedView409),
+      "500": decodeError("CreateSavedView500", CreateSavedView500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetSavedView": (id, options) => HttpClientRequest.get(`/api/v2/saved_views/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetSavedView200),
+      "400": decodeError("GetSavedView400", GetSavedView400),
+      "401": decodeError("GetSavedView401", GetSavedView401),
+      "403": decodeError("GetSavedView403", GetSavedView403),
+      "404": decodeError("GetSavedView404", GetSavedView404),
+      "500": decodeError("GetSavedView500", GetSavedView500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "UpdateSavedView": (id, options) => HttpClientRequest.put(`/api/v2/saved_views/${id}`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("UpdateSavedView400", UpdateSavedView400),
+      "401": decodeError("UpdateSavedView401", UpdateSavedView401),
+      "403": decodeError("UpdateSavedView403", UpdateSavedView403),
+      "404": decodeError("UpdateSavedView404", UpdateSavedView404),
+      "500": decodeError("UpdateSavedView500", UpdateSavedView500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "DeleteSavedView": (id, options) => HttpClientRequest.delete(`/api/v2/saved_views/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("DeleteSavedView400", DeleteSavedView400),
+      "401": decodeError("DeleteSavedView401", DeleteSavedView401),
+      "403": decodeError("DeleteSavedView403", DeleteSavedView403),
+      "404": decodeError("DeleteSavedView404", DeleteSavedView404),
+      "500": decodeError("DeleteSavedView500", DeleteSavedView500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
     "DeleteSession": (options) => HttpClientRequest.delete(`/api/v2/sessions`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "400": decodeError("DeleteSession400", DeleteSession400),
@@ -5416,27 +5937,6 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
-    "SetRoleByUserID": (id, options) => HttpClientRequest.post(`/api/v2/users/${id}/roles`).pipe(
-    HttpClientRequest.bodyJsonUnsafe(options.payload),
-    withResponse(options.config)(HttpClientResponse.matchStatus({
-      "401": decodeError("SetRoleByUserID401", SetRoleByUserID401),
-      "403": decodeError("SetRoleByUserID403", SetRoleByUserID403),
-      "404": decodeError("SetRoleByUserID404", SetRoleByUserID404),
-      "500": decodeError("SetRoleByUserID500", SetRoleByUserID500),
-      "200": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
-    "RemoveUserRoleByUserIDAndRoleID": (id, roleId, options) => HttpClientRequest.delete(`/api/v2/users/${id}/roles/${roleId}`).pipe(
-    withResponse(options?.config)(HttpClientResponse.matchStatus({
-      "401": decodeError("RemoveUserRoleByUserIDAndRoleID401", RemoveUserRoleByUserIDAndRoleID401),
-      "403": decodeError("RemoveUserRoleByUserIDAndRoleID403", RemoveUserRoleByUserIDAndRoleID403),
-      "404": decodeError("RemoveUserRoleByUserIDAndRoleID404", RemoveUserRoleByUserIDAndRoleID404),
-      "500": decodeError("RemoveUserRoleByUserIDAndRoleID500", RemoveUserRoleByUserIDAndRoleID500),
-      "204": () => Effect.void,
-      orElse: unexpectedStatus
-    }))
-  ),
     "GetMyUser": (options) => HttpClientRequest.get(`/api/v2/users/me`).pipe(
     withResponse(options?.config)(HttpClientResponse.matchStatus({
       "2xx": decodeSuccess(GetMyUser200),
@@ -5538,6 +6038,30 @@ export const make = (
       orElse: unexpectedStatus
     }))
   ),
+    "RefreshLicenseDeprecated": (options) => HttpClientRequest.put(`/api/v3/licenses`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("RefreshLicenseDeprecated400", RefreshLicenseDeprecated400),
+      "401": decodeError("RefreshLicenseDeprecated401", RefreshLicenseDeprecated401),
+      "403": decodeError("RefreshLicenseDeprecated403", RefreshLicenseDeprecated403),
+      "404": decodeError("RefreshLicenseDeprecated404", RefreshLicenseDeprecated404),
+      "500": decodeError("RefreshLicenseDeprecated500", RefreshLicenseDeprecated500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ActivateLicenseDeprecated": (options) => HttpClientRequest.post(`/api/v3/licenses`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("ActivateLicenseDeprecated400", ActivateLicenseDeprecated400),
+      "401": decodeError("ActivateLicenseDeprecated401", ActivateLicenseDeprecated401),
+      "403": decodeError("ActivateLicenseDeprecated403", ActivateLicenseDeprecated403),
+      "404": decodeError("ActivateLicenseDeprecated404", ActivateLicenseDeprecated404),
+      "409": decodeError("ActivateLicenseDeprecated409", ActivateLicenseDeprecated409),
+      "500": decodeError("ActivateLicenseDeprecated500", ActivateLicenseDeprecated500),
+      "202": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
     "GetMetricDashboardsV2": (options) => HttpClientRequest.get(`/api/v3/metrics/dashboards`).pipe(
     HttpClientRequest.setUrlParams({ "metricName": options.params["metricName"] as any }),
     withResponse(options.config)(HttpClientResponse.matchStatus({
@@ -5559,6 +6083,74 @@ export const make = (
       "403": decodeError("GetFlamegraph403", GetFlamegraph403),
       "404": decodeError("GetFlamegraph404", GetFlamegraph404),
       "500": decodeError("GetFlamegraph500", GetFlamegraph500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ListLicenses": (options) => HttpClientRequest.get(`/api/v4/licenses`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(ListLicenses200),
+      "400": decodeError("ListLicenses400", ListLicenses400),
+      "401": decodeError("ListLicenses401", ListLicenses401),
+      "403": decodeError("ListLicenses403", ListLicenses403),
+      "500": decodeError("ListLicenses500", ListLicenses500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "ActivateLicense": (options) => HttpClientRequest.post(`/api/v4/licenses`).pipe(
+    HttpClientRequest.bodyJsonUnsafe(options.payload),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(ActivateLicense201),
+      "400": decodeError("ActivateLicense400", ActivateLicense400),
+      "401": decodeError("ActivateLicense401", ActivateLicense401),
+      "403": decodeError("ActivateLicense403", ActivateLicense403),
+      "404": decodeError("ActivateLicense404", ActivateLicense404),
+      "409": decodeError("ActivateLicense409", ActivateLicense409),
+      "500": decodeError("ActivateLicense500", ActivateLicense500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetLicense": (id, options) => HttpClientRequest.get(`/api/v4/licenses/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetLicense200),
+      "400": decodeError("GetLicense400", GetLicense400),
+      "401": decodeError("GetLicense401", GetLicense401),
+      "403": decodeError("GetLicense403", GetLicense403),
+      "404": decodeError("GetLicense404", GetLicense404),
+      "500": decodeError("GetLicense500", GetLicense500),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "RefreshLicense": (id, options) => HttpClientRequest.put(`/api/v4/licenses/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("RefreshLicense400", RefreshLicense400),
+      "401": decodeError("RefreshLicense401", RefreshLicense401),
+      "403": decodeError("RefreshLicense403", RefreshLicense403),
+      "404": decodeError("RefreshLicense404", RefreshLicense404),
+      "500": decodeError("RefreshLicense500", RefreshLicense500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "DeleteLicense": (id, options) => HttpClientRequest.delete(`/api/v4/licenses/${id}`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "400": decodeError("DeleteLicense400", DeleteLicense400),
+      "401": decodeError("DeleteLicense401", DeleteLicense401),
+      "403": decodeError("DeleteLicense403", DeleteLicense403),
+      "404": decodeError("DeleteLicense404", DeleteLicense404),
+      "500": decodeError("DeleteLicense500", DeleteLicense500),
+      "204": () => Effect.void,
+      orElse: unexpectedStatus
+    }))
+  ),
+    "GetActiveLicense": (options) => HttpClientRequest.get(`/api/v4/licenses/active`).pipe(
+    withResponse(options?.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(GetActiveLicense200),
+      "400": decodeError("GetActiveLicense400", GetActiveLicense400),
+      "401": decodeError("GetActiveLicense401", GetActiveLicense401),
+      "403": decodeError("GetActiveLicense403", GetActiveLicense403),
+      "404": decodeError("GetActiveLicense404", GetActiveLicense404),
+      "500": decodeError("GetActiveLicense500", GetActiveLicense500),
+      "501": decodeError("GetActiveLicense501", GetActiveLicense501),
       orElse: unexpectedStatus
     }))
   ),
@@ -5607,12 +6199,72 @@ export const make = (
       "500": decodeError("ReplaceVariables500", ReplaceVariables500),
       orElse: unexpectedStatus
     }))
+  ),
+    "PrometheusQuery": (options) => HttpClientRequest.get(`/prometheus/api/v1/query`).pipe(
+    HttpClientRequest.setUrlParams({ "query": options.params["query"] as any, "time": options.params["time"] as any, "timeout": options.params["timeout"] as any, "stats": options.params["stats"] as any }),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(PrometheusQuery200),
+      "400": decodeError("PrometheusQuery400", PrometheusQuery400),
+      "401": decodeError("PrometheusQuery401", PrometheusQuery401),
+      "403": decodeError("PrometheusQuery403", PrometheusQuery403),
+      "422": decodeError("PrometheusQuery422", PrometheusQuery422),
+      "500": decodeError("PrometheusQuery500", PrometheusQuery500),
+      "503": decodeError("PrometheusQuery503", PrometheusQuery503),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "PrometheusQueryPost": (options) => HttpClientRequest.post(`/prometheus/api/v1/query`).pipe(
+    HttpClientRequest.setUrlParams({ "query": options.params["query"] as any, "time": options.params["time"] as any, "timeout": options.params["timeout"] as any, "stats": options.params["stats"] as any }),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(PrometheusQueryPost200),
+      "400": decodeError("PrometheusQueryPost400", PrometheusQueryPost400),
+      "401": decodeError("PrometheusQueryPost401", PrometheusQueryPost401),
+      "403": decodeError("PrometheusQueryPost403", PrometheusQueryPost403),
+      "422": decodeError("PrometheusQueryPost422", PrometheusQueryPost422),
+      "500": decodeError("PrometheusQueryPost500", PrometheusQueryPost500),
+      "503": decodeError("PrometheusQueryPost503", PrometheusQueryPost503),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "PrometheusQueryRange": (options) => HttpClientRequest.get(`/prometheus/api/v1/query_range`).pipe(
+    HttpClientRequest.setUrlParams({ "query": options.params["query"] as any, "start": options.params["start"] as any, "end": options.params["end"] as any, "step": options.params["step"] as any, "timeout": options.params["timeout"] as any, "stats": options.params["stats"] as any }),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(PrometheusQueryRange200),
+      "400": decodeError("PrometheusQueryRange400", PrometheusQueryRange400),
+      "401": decodeError("PrometheusQueryRange401", PrometheusQueryRange401),
+      "403": decodeError("PrometheusQueryRange403", PrometheusQueryRange403),
+      "422": decodeError("PrometheusQueryRange422", PrometheusQueryRange422),
+      "500": decodeError("PrometheusQueryRange500", PrometheusQueryRange500),
+      "503": decodeError("PrometheusQueryRange503", PrometheusQueryRange503),
+      orElse: unexpectedStatus
+    }))
+  ),
+    "PrometheusQueryRangePost": (options) => HttpClientRequest.post(`/prometheus/api/v1/query_range`).pipe(
+    HttpClientRequest.setUrlParams({ "query": options.params["query"] as any, "start": options.params["start"] as any, "end": options.params["end"] as any, "step": options.params["step"] as any, "timeout": options.params["timeout"] as any, "stats": options.params["stats"] as any }),
+    withResponse(options.config)(HttpClientResponse.matchStatus({
+      "2xx": decodeSuccess(PrometheusQueryRangePost200),
+      "400": decodeError("PrometheusQueryRangePost400", PrometheusQueryRangePost400),
+      "401": decodeError("PrometheusQueryRangePost401", PrometheusQueryRangePost401),
+      "403": decodeError("PrometheusQueryRangePost403", PrometheusQueryRangePost403),
+      "422": decodeError("PrometheusQueryRangePost422", PrometheusQueryRangePost422),
+      "500": decodeError("PrometheusQueryRangePost500", PrometheusQueryRangePost500),
+      "503": decodeError("PrometheusQueryRangePost503", PrometheusQueryRangePost503),
+      orElse: unexpectedStatus
+    }))
   )
   }
 }
 
 export interface SigNoz {
   readonly httpClient: HttpClient.HttpClient
+  /**
+* This endpoint returns the field keys the AI observability explorer can filter on, including the computed per-trace aggregates
+*/
+readonly "GetAIObservabilityFieldsKeys": <Config extends OperationConfig>(options: { readonly params?: typeof GetAIObservabilityFieldsKeysParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetAIObservabilityFieldsKeys200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetAIObservabilityFieldsKeys401", typeof GetAIObservabilityFieldsKeys401.Type> | SigNozError<"GetAIObservabilityFieldsKeys403", typeof GetAIObservabilityFieldsKeys403.Type> | SigNozError<"GetAIObservabilityFieldsKeys500", typeof GetAIObservabilityFieldsKeys500.Type>>
+  /**
+* This endpoint returns the values the AI observability explorer can filter a field key on
+*/
+readonly "GetAIObservabilityFieldsValues": <Config extends OperationConfig>(options: { readonly params?: typeof GetAIObservabilityFieldsValuesParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetAIObservabilityFieldsValues200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetAIObservabilityFieldsValues401", typeof GetAIObservabilityFieldsValues401.Type> | SigNozError<"GetAIObservabilityFieldsValues403", typeof GetAIObservabilityFieldsValues403.Type> | SigNozError<"GetAIObservabilityFieldsValues500", typeof GetAIObservabilityFieldsValues500.Type>>
   /**
 * This endpoint returns alerts for the organization
 */
@@ -5690,13 +6342,13 @@ readonly "AgentCheckIn": <Config extends OperationConfig>(cloudProvider: string,
 */
 readonly "GetConnectionCredentials": <Config extends OperationConfig>(cloudProvider: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetConnectionCredentials200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetConnectionCredentials401", typeof GetConnectionCredentials401.Type> | SigNozError<"GetConnectionCredentials403", typeof GetConnectionCredentials403.Type> | SigNozError<"GetConnectionCredentials500", typeof GetConnectionCredentials500.Type>>
   /**
-* This endpoint lists the services metadata for the specified cloud provider
+* This endpoint lists the services metadata for the specified cloud provider, without any account context.
 */
-readonly "ListServicesMetadata": <Config extends OperationConfig>(cloudProvider: string, options: { readonly params?: typeof ListServicesMetadataParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListServicesMetadata200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListServicesMetadata401", typeof ListServicesMetadata401.Type> | SigNozError<"ListServicesMetadata403", typeof ListServicesMetadata403.Type> | SigNozError<"ListServicesMetadata500", typeof ListServicesMetadata500.Type>>
+readonly "ListServicesMetadata": <Config extends OperationConfig>(cloudProvider: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListServicesMetadata200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListServicesMetadata401", typeof ListServicesMetadata401.Type> | SigNozError<"ListServicesMetadata403", typeof ListServicesMetadata403.Type> | SigNozError<"ListServicesMetadata500", typeof ListServicesMetadata500.Type>>
   /**
-* This endpoint gets a service for the specified cloud provider
+* This endpoint gets a service definition for the specified cloud provider, without any account context.
 */
-readonly "GetService": <Config extends OperationConfig>(cloudProvider: string, serviceId: string, options: { readonly params?: typeof GetServiceParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetService200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetService401", typeof GetService401.Type> | SigNozError<"GetService403", typeof GetService403.Type> | SigNozError<"GetService500", typeof GetService500.Type>>
+readonly "GetService": <Config extends OperationConfig>(cloudProvider: string, serviceId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetService200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetService401", typeof GetService401.Type> | SigNozError<"GetService403", typeof GetService403.Type> | SigNozError<"GetService500", typeof GetService500.Type>>
   /**
 * This endpoint creates a session for a user using google callback
 */
@@ -5725,26 +6377,6 @@ readonly "CreatePublicDashboard": <Config extends OperationConfig>(id: string, o
 * This endpoint deletes the public sharing config and disables the public sharing of a dashboard
 */
 readonly "DeletePublicDashboard": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeletePublicDashboard401", typeof DeletePublicDashboard401.Type> | SigNozError<"DeletePublicDashboard403", typeof DeletePublicDashboard403.Type> | SigNozError<"DeletePublicDashboard500", typeof DeletePublicDashboard500.Type>>
-  /**
-* This endpoint lists all auth domains
-*/
-readonly "ListAuthDomains": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListAuthDomains200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListAuthDomains401", typeof ListAuthDomains401.Type> | SigNozError<"ListAuthDomains403", typeof ListAuthDomains403.Type> | SigNozError<"ListAuthDomains500", typeof ListAuthDomains500.Type>>
-  /**
-* This endpoint creates an auth domain
-*/
-readonly "CreateAuthDomain": <Config extends OperationConfig>(options: { readonly payload: typeof CreateAuthDomainRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateAuthDomain201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateAuthDomain400", typeof CreateAuthDomain400.Type> | SigNozError<"CreateAuthDomain401", typeof CreateAuthDomain401.Type> | SigNozError<"CreateAuthDomain403", typeof CreateAuthDomain403.Type> | SigNozError<"CreateAuthDomain409", typeof CreateAuthDomain409.Type> | SigNozError<"CreateAuthDomain500", typeof CreateAuthDomain500.Type>>
-  /**
-* This endpoint returns an auth domain by ID
-*/
-readonly "GetAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetAuthDomain200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetAuthDomain401", typeof GetAuthDomain401.Type> | SigNozError<"GetAuthDomain403", typeof GetAuthDomain403.Type> | SigNozError<"GetAuthDomain404", typeof GetAuthDomain404.Type> | SigNozError<"GetAuthDomain500", typeof GetAuthDomain500.Type>>
-  /**
-* This endpoint updates an auth domain
-*/
-readonly "UpdateAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof UpdateAuthDomainRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateAuthDomain400", typeof UpdateAuthDomain400.Type> | SigNozError<"UpdateAuthDomain401", typeof UpdateAuthDomain401.Type> | SigNozError<"UpdateAuthDomain403", typeof UpdateAuthDomain403.Type> | SigNozError<"UpdateAuthDomain409", typeof UpdateAuthDomain409.Type> | SigNozError<"UpdateAuthDomain500", typeof UpdateAuthDomain500.Type>>
-  /**
-* This endpoint deletes an auth domain
-*/
-readonly "DeleteAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteAuthDomain400", typeof DeleteAuthDomain400.Type> | SigNozError<"DeleteAuthDomain401", typeof DeleteAuthDomain401.Type> | SigNozError<"DeleteAuthDomain403", typeof DeleteAuthDomain403.Type> | SigNozError<"DeleteAuthDomain500", typeof DeleteAuthDomain500.Type>>
   /**
 * This endpoint lists all planned maintenance / downtime schedules
 */
@@ -5778,21 +6410,9 @@ readonly "GetFieldsKeys": <Config extends OperationConfig>(options: { readonly p
 */
 readonly "GetFieldsValues": <Config extends OperationConfig>(options: { readonly params?: typeof GetFieldsValuesParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetFieldsValues200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetFieldsValues401", typeof GetFieldsValues401.Type> | SigNozError<"GetFieldsValues403", typeof GetFieldsValues403.Type> | SigNozError<"GetFieldsValues500", typeof GetFieldsValues500.Type>>
   /**
-* This endpoint returns the reset password token by id
-*/
-readonly "GetResetPasswordTokenDeprecated": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetResetPasswordTokenDeprecated200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetResetPasswordTokenDeprecated400", typeof GetResetPasswordTokenDeprecated400.Type> | SigNozError<"GetResetPasswordTokenDeprecated401", typeof GetResetPasswordTokenDeprecated401.Type> | SigNozError<"GetResetPasswordTokenDeprecated403", typeof GetResetPasswordTokenDeprecated403.Type> | SigNozError<"GetResetPasswordTokenDeprecated404", typeof GetResetPasswordTokenDeprecated404.Type> | SigNozError<"GetResetPasswordTokenDeprecated500", typeof GetResetPasswordTokenDeprecated500.Type>>
-  /**
 * This endpoint returns global config
 */
 readonly "GetGlobalConfig": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetGlobalConfig200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetGlobalConfig500", typeof GetGlobalConfig500.Type>>
-  /**
-* This endpoint creates an invite for a user
-*/
-readonly "CreateInvite": <Config extends OperationConfig>(options: { readonly payload: typeof CreateInviteRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateInvite201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateInvite400", typeof CreateInvite400.Type> | SigNozError<"CreateInvite401", typeof CreateInvite401.Type> | SigNozError<"CreateInvite403", typeof CreateInvite403.Type> | SigNozError<"CreateInvite409", typeof CreateInvite409.Type> | SigNozError<"CreateInvite500", typeof CreateInvite500.Type>>
-  /**
-* This endpoint creates a bulk invite for a user
-*/
-readonly "CreateBulkInvite": <Config extends OperationConfig>(options: { readonly payload: typeof CreateBulkInviteRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateBulkInvite400", typeof CreateBulkInvite400.Type> | SigNozError<"CreateBulkInvite401", typeof CreateBulkInvite401.Type> | SigNozError<"CreateBulkInvite403", typeof CreateBulkInvite403.Type> | SigNozError<"CreateBulkInvite409", typeof CreateBulkInvite409.Type> | SigNozError<"CreateBulkInvite500", typeof CreateBulkInvite500.Type>>
   /**
 * Returns all LLM pricing rules for the authenticated org, with pagination.
 */
@@ -5841,10 +6461,6 @@ readonly "GetPublicDashboardData": <Config extends OperationConfig>(id: string, 
 * This endpoint return query range results for a widget of public dashboard
 */
 readonly "GetPublicDashboardWidgetQueryRange": <Config extends OperationConfig>(id: string, idx: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetPublicDashboardWidgetQueryRange200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetPublicDashboardWidgetQueryRange401", typeof GetPublicDashboardWidgetQueryRange401.Type> | SigNozError<"GetPublicDashboardWidgetQueryRange403", typeof GetPublicDashboardWidgetQueryRange403.Type> | SigNozError<"GetPublicDashboardWidgetQueryRange500", typeof GetPublicDashboardWidgetQueryRange500.Type>>
-  /**
-* This endpoint resets the password by token
-*/
-readonly "ResetPassword": <Config extends OperationConfig>(options: { readonly payload: typeof ResetPasswordRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ResetPassword400", typeof ResetPassword400.Type> | SigNozError<"ResetPassword409", typeof ResetPassword409.Type> | SigNozError<"ResetPassword500", typeof ResetPassword500.Type>>
   /**
 * This endpoint lists all roles
 */
@@ -5938,14 +6554,6 @@ readonly "RevokeServiceAccountKey": <Config extends OperationConfig>(id: string,
 */
 readonly "GetServiceAccountRoles": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetServiceAccountRoles200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetServiceAccountRoles401", typeof GetServiceAccountRoles401.Type> | SigNozError<"GetServiceAccountRoles403", typeof GetServiceAccountRoles403.Type> | SigNozError<"GetServiceAccountRoles404", typeof GetServiceAccountRoles404.Type> | SigNozError<"GetServiceAccountRoles500", typeof GetServiceAccountRoles500.Type>>
   /**
-* This endpoint assigns a role to a service account
-*/
-readonly "CreateServiceAccountRoleDeprecated": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof CreateServiceAccountRoleDeprecatedRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateServiceAccountRoleDeprecated201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateServiceAccountRoleDeprecated400", typeof CreateServiceAccountRoleDeprecated400.Type> | SigNozError<"CreateServiceAccountRoleDeprecated401", typeof CreateServiceAccountRoleDeprecated401.Type> | SigNozError<"CreateServiceAccountRoleDeprecated403", typeof CreateServiceAccountRoleDeprecated403.Type> | SigNozError<"CreateServiceAccountRoleDeprecated500", typeof CreateServiceAccountRoleDeprecated500.Type>>
-  /**
-* This endpoint revokes a role from service account
-*/
-readonly "DeleteServiceAccountRoleDeprecated": <Config extends OperationConfig>(id: string, rid: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteServiceAccountRoleDeprecated401", typeof DeleteServiceAccountRoleDeprecated401.Type> | SigNozError<"DeleteServiceAccountRoleDeprecated403", typeof DeleteServiceAccountRoleDeprecated403.Type> | SigNozError<"DeleteServiceAccountRoleDeprecated500", typeof DeleteServiceAccountRoleDeprecated500.Type>>
-  /**
 * This endpoint gets my service account
 */
 readonly "GetMyServiceAccount": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetMyServiceAccount200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMyServiceAccount404", typeof GetMyServiceAccount404.Type> | SigNozError<"GetMyServiceAccount500", typeof GetMyServiceAccount500.Type>>
@@ -5994,6 +6602,18 @@ readonly "TestSpanMappers": <Config extends OperationConfig>(options: { readonly
 */
 readonly "GetStats": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetStats200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetStats401", typeof GetStats401.Type> | SigNozError<"GetStats403", typeof GetStats403.Type> | SigNozError<"GetStats500", typeof GetStats500.Type>>
   /**
+* This endpoint gets the organization's subscription along with its usage and billing details.
+*/
+readonly "GetSubscription": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetSubscription200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetSubscription400", typeof GetSubscription400.Type> | SigNozError<"GetSubscription401", typeof GetSubscription401.Type> | SigNozError<"GetSubscription403", typeof GetSubscription403.Type> | SigNozError<"GetSubscription404", typeof GetSubscription404.Type> | SigNozError<"GetSubscription500", typeof GetSubscription500.Type>>
+  /**
+* This endpoint updates the organization's subscription.
+*/
+readonly "UpdateSubscription": <Config extends OperationConfig>(options: { readonly payload: typeof UpdateSubscriptionRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof UpdateSubscription200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateSubscription400", typeof UpdateSubscription400.Type> | SigNozError<"UpdateSubscription401", typeof UpdateSubscription401.Type> | SigNozError<"UpdateSubscription403", typeof UpdateSubscription403.Type> | SigNozError<"UpdateSubscription404", typeof UpdateSubscription404.Type> | SigNozError<"UpdateSubscription500", typeof UpdateSubscription500.Type>>
+  /**
+* This endpoint creates a subscription for the organization.
+*/
+readonly "CreateSubscription": <Config extends OperationConfig>(options: { readonly payload: typeof CreateSubscriptionRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateSubscription201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateSubscription400", typeof CreateSubscription400.Type> | SigNozError<"CreateSubscription401", typeof CreateSubscription401.Type> | SigNozError<"CreateSubscription403", typeof CreateSubscription403.Type> | SigNozError<"CreateSubscription404", typeof CreateSubscription404.Type> | SigNozError<"CreateSubscription409", typeof CreateSubscription409.Type> | SigNozError<"CreateSubscription500", typeof CreateSubscription500.Type>>
+  /**
 * Deprecated: use /api/v1/channels/test instead
 */
 readonly "TestChannelDeprecated": <Config extends OperationConfig>(options: { readonly payload: typeof TestChannelDeprecatedRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"TestChannelDeprecated400", typeof TestChannelDeprecated400.Type> | SigNozError<"TestChannelDeprecated401", typeof TestChannelDeprecated401.Type> | SigNozError<"TestChannelDeprecated403", typeof TestChannelDeprecated403.Type> | SigNozError<"TestChannelDeprecated500", typeof TestChannelDeprecated500.Type>>
@@ -6002,25 +6622,9 @@ readonly "TestChannelDeprecated": <Config extends OperationConfig>(options: { re
 */
 readonly "GetTraceAggregations": <Config extends OperationConfig>(traceID: string, options: { readonly payload: typeof GetTraceAggregationsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof GetTraceAggregations200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetTraceAggregations400", typeof GetTraceAggregations400.Type> | SigNozError<"GetTraceAggregations401", typeof GetTraceAggregations401.Type> | SigNozError<"GetTraceAggregations403", typeof GetTraceAggregations403.Type> | SigNozError<"GetTraceAggregations404", typeof GetTraceAggregations404.Type> | SigNozError<"GetTraceAggregations500", typeof GetTraceAggregations500.Type>>
   /**
-* This endpoint lists all users
+* This endpoint is deprecated and always fails. Use GET /api/v2/users/me instead.
 */
-readonly "ListUsersDeprecated": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListUsersDeprecated200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListUsersDeprecated401", typeof ListUsersDeprecated401.Type> | SigNozError<"ListUsersDeprecated403", typeof ListUsersDeprecated403.Type> | SigNozError<"ListUsersDeprecated500", typeof ListUsersDeprecated500.Type>>
-  /**
-* This endpoint returns the user by id
-*/
-readonly "GetUserDeprecated": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetUserDeprecated200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetUserDeprecated401", typeof GetUserDeprecated401.Type> | SigNozError<"GetUserDeprecated403", typeof GetUserDeprecated403.Type> | SigNozError<"GetUserDeprecated404", typeof GetUserDeprecated404.Type> | SigNozError<"GetUserDeprecated500", typeof GetUserDeprecated500.Type>>
-  /**
-* This endpoint updates the user by id
-*/
-readonly "UpdateUserDeprecated": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof UpdateUserDeprecatedRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof UpdateUserDeprecated200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateUserDeprecated400", typeof UpdateUserDeprecated400.Type> | SigNozError<"UpdateUserDeprecated401", typeof UpdateUserDeprecated401.Type> | SigNozError<"UpdateUserDeprecated403", typeof UpdateUserDeprecated403.Type> | SigNozError<"UpdateUserDeprecated404", typeof UpdateUserDeprecated404.Type> | SigNozError<"UpdateUserDeprecated500", typeof UpdateUserDeprecated500.Type>>
-  /**
-* This endpoint deletes the user by id
-*/
-readonly "DeleteUserDeprecated": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteUserDeprecated401", typeof DeleteUserDeprecated401.Type> | SigNozError<"DeleteUserDeprecated403", typeof DeleteUserDeprecated403.Type> | SigNozError<"DeleteUserDeprecated404", typeof DeleteUserDeprecated404.Type> | SigNozError<"DeleteUserDeprecated500", typeof DeleteUserDeprecated500.Type>>
-  /**
-* This endpoint returns the user I belong to
-*/
-readonly "GetMyUserDeprecated": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetMyUserDeprecated200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMyUserDeprecated401", typeof GetMyUserDeprecated401.Type> | SigNozError<"GetMyUserDeprecated403", typeof GetMyUserDeprecated403.Type> | SigNozError<"GetMyUserDeprecated500", typeof GetMyUserDeprecated500.Type>>
+readonly "GetMyUserDeprecated": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMyUserDeprecated401", typeof GetMyUserDeprecated401.Type> | SigNozError<"GetMyUserDeprecated403", typeof GetMyUserDeprecated403.Type> | SigNozError<"GetMyUserDeprecated500", typeof GetMyUserDeprecated500.Type> | SigNozError<"GetMyUserDeprecated501", typeof GetMyUserDeprecated501.Type>>
   /**
 * This endpoint lists all user preferences
 */
@@ -6033,6 +6637,26 @@ readonly "GetUserPreference": <Config extends OperationConfig>(name: string, opt
 * This endpoint updates the user preference by name
 */
 readonly "UpdateUserPreference": <Config extends OperationConfig>(name: string, options: { readonly payload: typeof UpdateUserPreferenceRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateUserPreference400", typeof UpdateUserPreference400.Type> | SigNozError<"UpdateUserPreference401", typeof UpdateUserPreference401.Type> | SigNozError<"UpdateUserPreference403", typeof UpdateUserPreference403.Type> | SigNozError<"UpdateUserPreference404", typeof UpdateUserPreference404.Type> | SigNozError<"UpdateUserPreference500", typeof UpdateUserPreference500.Type>>
+  /**
+* This endpoint lists all auth domains
+*/
+readonly "ListAuthDomains": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListAuthDomains200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListAuthDomains401", typeof ListAuthDomains401.Type> | SigNozError<"ListAuthDomains403", typeof ListAuthDomains403.Type> | SigNozError<"ListAuthDomains500", typeof ListAuthDomains500.Type>>
+  /**
+* This endpoint creates an auth domain
+*/
+readonly "CreateAuthDomain": <Config extends OperationConfig>(options: { readonly payload: typeof CreateAuthDomainRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateAuthDomain201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateAuthDomain400", typeof CreateAuthDomain400.Type> | SigNozError<"CreateAuthDomain401", typeof CreateAuthDomain401.Type> | SigNozError<"CreateAuthDomain403", typeof CreateAuthDomain403.Type> | SigNozError<"CreateAuthDomain409", typeof CreateAuthDomain409.Type> | SigNozError<"CreateAuthDomain500", typeof CreateAuthDomain500.Type>>
+  /**
+* This endpoint returns an auth domain by ID
+*/
+readonly "GetAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetAuthDomain200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetAuthDomain401", typeof GetAuthDomain401.Type> | SigNozError<"GetAuthDomain403", typeof GetAuthDomain403.Type> | SigNozError<"GetAuthDomain404", typeof GetAuthDomain404.Type> | SigNozError<"GetAuthDomain500", typeof GetAuthDomain500.Type>>
+  /**
+* This endpoint updates an auth domain
+*/
+readonly "UpdateAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof UpdateAuthDomainRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateAuthDomain400", typeof UpdateAuthDomain400.Type> | SigNozError<"UpdateAuthDomain401", typeof UpdateAuthDomain401.Type> | SigNozError<"UpdateAuthDomain403", typeof UpdateAuthDomain403.Type> | SigNozError<"UpdateAuthDomain409", typeof UpdateAuthDomain409.Type> | SigNozError<"UpdateAuthDomain500", typeof UpdateAuthDomain500.Type>>
+  /**
+* This endpoint deletes an auth domain
+*/
+readonly "DeleteAuthDomain": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteAuthDomain400", typeof DeleteAuthDomain400.Type> | SigNozError<"DeleteAuthDomain401", typeof DeleteAuthDomain401.Type> | SigNozError<"DeleteAuthDomain403", typeof DeleteAuthDomain403.Type> | SigNozError<"DeleteAuthDomain500", typeof DeleteAuthDomain500.Type>>
   /**
 * Returns every saved view in the calling user's org. Saved views are shared org-wide.
 */
@@ -6086,9 +6710,21 @@ readonly "LockDashboardV2": <Config extends OperationConfig>(id: string, options
 */
 readonly "UnlockDashboardV2": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UnlockDashboardV2400", typeof UnlockDashboardV2400.Type> | SigNozError<"UnlockDashboardV2401", typeof UnlockDashboardV2401.Type> | SigNozError<"UnlockDashboardV2403", typeof UnlockDashboardV2403.Type> | SigNozError<"UnlockDashboardV2404", typeof UnlockDashboardV2404.Type> | SigNozError<"UnlockDashboardV2500", typeof UnlockDashboardV2500.Type>>
   /**
+* This endpoint retries the v1→v2 (Perses) migration on a dashboard still stored in the v1 schema and returns the v2-shape result. It is idempotent: a dashboard already in the v2 schema is returned unchanged.
+*/
+readonly "MigrateDashboardV2": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof MigrateDashboardV2200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"MigrateDashboardV2400", typeof MigrateDashboardV2400.Type> | SigNozError<"MigrateDashboardV2401", typeof MigrateDashboardV2401.Type> | SigNozError<"MigrateDashboardV2403", typeof MigrateDashboardV2403.Type> | SigNozError<"MigrateDashboardV2404", typeof MigrateDashboardV2404.Type> | SigNozError<"MigrateDashboardV2500", typeof MigrateDashboardV2500.Type>>
+  /**
+* Returns a dashboard SigNoz ships and owns, addressed by its stable definition name (e.g. `ai-o11y-overview`) rather than its id. System dashboards are read-only and upgraded through releases. The dashboard's own `name` field carries a reserved prefix that the path segment must not include.
+*/
+readonly "GetSystemDashboard": <Config extends OperationConfig>(name: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetSystemDashboard200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetSystemDashboard400", typeof GetSystemDashboard400.Type> | SigNozError<"GetSystemDashboard401", typeof GetSystemDashboard401.Type> | SigNozError<"GetSystemDashboard403", typeof GetSystemDashboard403.Type> | SigNozError<"GetSystemDashboard404", typeof GetSystemDashboard404.Type> | SigNozError<"GetSystemDashboard500", typeof GetSystemDashboard500.Type>>
+  /**
 * This endpoint initiates the forgot password flow by sending a reset password email
 */
 readonly "ForgotPassword": <Config extends OperationConfig>(options: { readonly payload: typeof ForgotPasswordRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ForgotPassword400", typeof ForgotPassword400.Type> | SigNozError<"ForgotPassword422", typeof ForgotPassword422.Type> | SigNozError<"ForgotPassword500", typeof ForgotPassword500.Type>>
+  /**
+* This endpoint resets the password using a single use reset password token
+*/
+readonly "ResetPassword": <Config extends OperationConfig>(options: { readonly payload: typeof ResetPasswordRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ResetPassword400", typeof ResetPassword400.Type> | SigNozError<"ResetPassword404", typeof ResetPassword404.Type> | SigNozError<"ResetPassword500", typeof ResetPassword500.Type>>
   /**
 * This endpoint returns the supported features and their details
 */
@@ -6102,6 +6738,10 @@ readonly "GetIngestionKeys": <Config extends OperationConfig>(options: { readonl
 */
 readonly "CreateIngestionKey": <Config extends OperationConfig>(options: { readonly payload: typeof CreateIngestionKeyRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateIngestionKey201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateIngestionKey401", typeof CreateIngestionKey401.Type> | SigNozError<"CreateIngestionKey403", typeof CreateIngestionKey403.Type> | SigNozError<"CreateIngestionKey500", typeof CreateIngestionKey500.Type>>
   /**
+* This endpoint returns an ingestion key for the workspace
+*/
+readonly "GetIngestionKey": <Config extends OperationConfig>(keyId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetIngestionKey200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetIngestionKey401", typeof GetIngestionKey401.Type> | SigNozError<"GetIngestionKey403", typeof GetIngestionKey403.Type> | SigNozError<"GetIngestionKey404", typeof GetIngestionKey404.Type> | SigNozError<"GetIngestionKey500", typeof GetIngestionKey500.Type>>
+  /**
 * This endpoint deletes an ingestion key for the workspace
 */
 readonly "DeleteIngestionKey": <Config extends OperationConfig>(keyId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteIngestionKey401", typeof DeleteIngestionKey401.Type> | SigNozError<"DeleteIngestionKey403", typeof DeleteIngestionKey403.Type> | SigNozError<"DeleteIngestionKey500", typeof DeleteIngestionKey500.Type>>
@@ -6110,7 +6750,11 @@ readonly "DeleteIngestionKey": <Config extends OperationConfig>(keyId: string, o
 */
 readonly "UpdateIngestionKey": <Config extends OperationConfig>(keyId: string, options: { readonly payload: typeof UpdateIngestionKeyRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateIngestionKey401", typeof UpdateIngestionKey401.Type> | SigNozError<"UpdateIngestionKey403", typeof UpdateIngestionKey403.Type> | SigNozError<"UpdateIngestionKey500", typeof UpdateIngestionKey500.Type>>
   /**
-* This endpoint creates an ingestion key limit
+* This endpoint returns the ingestion limits for an ingestion key
+*/
+readonly "GetIngestionKeyLimits": <Config extends OperationConfig>(keyId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetIngestionKeyLimits200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetIngestionKeyLimits401", typeof GetIngestionKeyLimits401.Type> | SigNozError<"GetIngestionKeyLimits403", typeof GetIngestionKeyLimits403.Type> | SigNozError<"GetIngestionKeyLimits404", typeof GetIngestionKeyLimits404.Type> | SigNozError<"GetIngestionKeyLimits500", typeof GetIngestionKeyLimits500.Type>>
+  /**
+* This endpoint creates an ingestion key limit.
 */
 readonly "CreateIngestionKeyLimit": <Config extends OperationConfig>(keyId: string, options: { readonly payload: typeof CreateIngestionKeyLimitRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateIngestionKeyLimit201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateIngestionKeyLimit401", typeof CreateIngestionKeyLimit401.Type> | SigNozError<"CreateIngestionKeyLimit403", typeof CreateIngestionKeyLimit403.Type> | SigNozError<"CreateIngestionKeyLimit500", typeof CreateIngestionKeyLimit500.Type>>
   /**
@@ -6118,13 +6762,29 @@ readonly "CreateIngestionKeyLimit": <Config extends OperationConfig>(keyId: stri
 */
 readonly "DeleteIngestionKeyLimit": <Config extends OperationConfig>(limitId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteIngestionKeyLimit401", typeof DeleteIngestionKeyLimit401.Type> | SigNozError<"DeleteIngestionKeyLimit403", typeof DeleteIngestionKeyLimit403.Type> | SigNozError<"DeleteIngestionKeyLimit500", typeof DeleteIngestionKeyLimit500.Type>>
   /**
-* This endpoint updates an ingestion key limit
+* This endpoint updates an ingestion key limit.
 */
 readonly "UpdateIngestionKeyLimit": <Config extends OperationConfig>(limitId: string, options: { readonly payload: typeof UpdateIngestionKeyLimitRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateIngestionKeyLimit401", typeof UpdateIngestionKeyLimit401.Type> | SigNozError<"UpdateIngestionKeyLimit403", typeof UpdateIngestionKeyLimit403.Type> | SigNozError<"UpdateIngestionKeyLimit500", typeof UpdateIngestionKeyLimit500.Type>>
   /**
 * This endpoint returns the ingestion keys for a workspace
 */
 readonly "SearchIngestionKeys": <Config extends OperationConfig>(options: { readonly params: typeof SearchIngestionKeysParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof SearchIngestionKeys200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"SearchIngestionKeys401", typeof SearchIngestionKeys401.Type> | SigNozError<"SearchIngestionKeys403", typeof SearchIngestionKeys403.Type> | SigNozError<"SearchIngestionKeys500", typeof SearchIngestionKeys500.Type>>
+  /**
+* This endpoint creates an ingestion limit for the ingestion key referenced by keyId
+*/
+readonly "CreateIngestionLimit": <Config extends OperationConfig>(options: { readonly payload: typeof CreateIngestionLimitRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateIngestionLimit201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateIngestionLimit400", typeof CreateIngestionLimit400.Type> | SigNozError<"CreateIngestionLimit401", typeof CreateIngestionLimit401.Type> | SigNozError<"CreateIngestionLimit403", typeof CreateIngestionLimit403.Type> | SigNozError<"CreateIngestionLimit500", typeof CreateIngestionLimit500.Type>>
+  /**
+* This endpoint returns an ingestion limit
+*/
+readonly "GetIngestionLimit": <Config extends OperationConfig>(limitId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetIngestionLimit200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetIngestionLimit401", typeof GetIngestionLimit401.Type> | SigNozError<"GetIngestionLimit403", typeof GetIngestionLimit403.Type> | SigNozError<"GetIngestionLimit404", typeof GetIngestionLimit404.Type> | SigNozError<"GetIngestionLimit500", typeof GetIngestionLimit500.Type>>
+  /**
+* This endpoint deletes an ingestion limit
+*/
+readonly "DeleteIngestionLimit": <Config extends OperationConfig>(limitId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteIngestionLimit401", typeof DeleteIngestionLimit401.Type> | SigNozError<"DeleteIngestionLimit403", typeof DeleteIngestionLimit403.Type> | SigNozError<"DeleteIngestionLimit500", typeof DeleteIngestionLimit500.Type>>
+  /**
+* This endpoint updates an ingestion limit
+*/
+readonly "UpdateIngestionLimit": <Config extends OperationConfig>(limitId: string, options: { readonly payload: typeof UpdateIngestionLimitRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateIngestionLimit401", typeof UpdateIngestionLimit401.Type> | SigNozError<"UpdateIngestionLimit403", typeof UpdateIngestionLimit403.Type> | SigNozError<"UpdateIngestionLimit500", typeof UpdateIngestionLimit500.Type>>
   /**
 * Health check
 */
@@ -6134,15 +6794,15 @@ readonly "Healthz": <Config extends OperationConfig>(options: { readonly config?
 */
 readonly "GetChecks": <Config extends OperationConfig>(options: { readonly params: typeof GetChecksParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof GetChecks200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetChecks400", typeof GetChecks400.Type> | SigNozError<"GetChecks401", typeof GetChecks401.Type> | SigNozError<"GetChecks403", typeof GetChecks403.Type> | SigNozError<"GetChecks500", typeof GetChecks500.Type>>
   /**
-* Returns a paginated list of Kubernetes clusters with key aggregated metrics derived by summing per-node values within the group: CPU usage, CPU allocatable, memory working set, memory allocatable. Each row also reports per-group nodeCountsByReadiness ({ ready, notReady } from each node's latest k8s.node.condition_ready value) and per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value). Each cluster includes metadata attributes (k8s.cluster.name). The response type is 'list' for the default k8s.cluster.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates nodes and pods in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_allocatable / memory / memory_allocatable, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (clusterCPU, clusterCPUAllocatable, clusterMemory, clusterMemoryAllocatable) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes clusters with key aggregated metrics derived by summing per-node values within the group: CPU usage, CPU allocatable, memory working set, memory allocatable. Each row also reports per-group nodeCountsByReadiness ({ ready, notReady } from each node's latest k8s.node.condition_ready value) and per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status). Each cluster includes metadata attributes (k8s.cluster.name). The response type is 'list' for the default k8s.cluster.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates nodes and pods in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_allocatable / memory / memory_allocatable, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (clusterCPU, clusterCPUAllocatable, clusterMemory, clusterMemoryAllocatable) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListClusters": <Config extends OperationConfig>(options: { readonly payload: typeof ListClustersRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListClusters200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListClusters400", typeof ListClusters400.Type> | SigNozError<"ListClusters401", typeof ListClusters401.Type> | SigNozError<"ListClusters403", typeof ListClusters403.Type> | SigNozError<"ListClusters500", typeof ListClusters500.Type>>
   /**
-* Returns a paginated list of Kubernetes DaemonSets with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the daemonset, plus average CPU/memory request and limit utilization (daemonSetCPURequest, daemonSetCPULimit, daemonSetMemoryRequest, daemonSetMemoryLimit). Each row also reports the latest known node-level counters from kube-state-metrics: desiredNodes (k8s.daemonset.desired_scheduled_nodes, the number of nodes the daemonset wants to run on), currentNodes (k8s.daemonset.current_scheduled_nodes, the number of nodes the daemonset currently runs on), readyNodes (k8s.daemonset.ready_nodes, the number of nodes running at least one ready daemon pod) and misscheduledNodes (k8s.daemonset.misscheduled_nodes, the number of nodes running the daemon pod but not supposed to) — note these are node counts, not pod counts. It also reports per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value). Each daemonset includes metadata attributes (k8s.daemonset.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.daemonset.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by daemonsets in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_nodes / current_nodes / ready_nodes / misscheduled_nodes, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (daemonSetCPU, daemonSetCPURequest, daemonSetCPULimit, daemonSetMemory, daemonSetMemoryRequest, daemonSetMemoryLimit, desiredNodes, currentNodes, readyNodes, misscheduledNodes) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes DaemonSets with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the daemonset, plus average CPU/memory request and limit utilization (daemonSetCPURequest, daemonSetCPULimit, daemonSetMemoryRequest, daemonSetMemoryLimit). Each row also reports the latest known node-level counters from kube-state-metrics: desiredNodes (k8s.daemonset.desired_scheduled_nodes, the number of nodes the daemonset wants to run on), currentNodes (k8s.daemonset.current_scheduled_nodes, the number of nodes the daemonset currently runs on), readyNodes (k8s.daemonset.ready_nodes, the number of nodes running at least one ready daemon pod) and misscheduledNodes (k8s.daemonset.misscheduled_nodes, the number of nodes running the daemon pod but not supposed to) — note these are node counts, not pod counts. It also reports per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status). Each daemonset includes metadata attributes (k8s.daemonset.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.daemonset.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by daemonsets in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_nodes / current_nodes / ready_nodes / misscheduled_nodes, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (daemonSetCPU, daemonSetCPURequest, daemonSetCPULimit, daemonSetMemory, daemonSetMemoryRequest, daemonSetMemoryLimit, desiredNodes, currentNodes, readyNodes, misscheduledNodes) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListDaemonSets": <Config extends OperationConfig>(options: { readonly payload: typeof ListDaemonSetsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListDaemonSets200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListDaemonSets400", typeof ListDaemonSets400.Type> | SigNozError<"ListDaemonSets401", typeof ListDaemonSets401.Type> | SigNozError<"ListDaemonSets403", typeof ListDaemonSets403.Type> | SigNozError<"ListDaemonSets500", typeof ListDaemonSets500.Type>>
   /**
-* Returns a paginated list of Kubernetes Deployments with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the deployment, plus average CPU/memory request and limit utilization (deploymentCPURequest, deploymentCPULimit, deploymentMemoryRequest, deploymentMemoryLimit). Each row also reports the latest known desiredPods (k8s.deployment.desired) and availablePods (k8s.deployment.available) replica counts and per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value). Each deployment includes metadata attributes (k8s.deployment.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.deployment.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by deployments in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_pods / available_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (deploymentCPU, deploymentCPURequest, deploymentCPULimit, deploymentMemory, deploymentMemoryRequest, deploymentMemoryLimit, desiredPods, availablePods) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes Deployments with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the deployment, plus average CPU/memory request and limit utilization (deploymentCPURequest, deploymentCPULimit, deploymentMemoryRequest, deploymentMemoryLimit). Each row also reports the latest known desiredPods (k8s.deployment.desired) and availablePods (k8s.deployment.available) replica counts and per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status). Each deployment includes metadata attributes (k8s.deployment.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.deployment.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by deployments in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_pods / available_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (deploymentCPU, deploymentCPURequest, deploymentCPULimit, deploymentMemory, deploymentMemoryRequest, deploymentMemoryLimit, desiredPods, availablePods) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListDeployments": <Config extends OperationConfig>(options: { readonly payload: typeof ListDeploymentsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListDeployments200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListDeployments400", typeof ListDeployments400.Type> | SigNozError<"ListDeployments401", typeof ListDeployments401.Type> | SigNozError<"ListDeployments403", typeof ListDeployments403.Type> | SigNozError<"ListDeployments500", typeof ListDeployments500.Type>>
   /**
@@ -6150,7 +6810,7 @@ readonly "ListDeployments": <Config extends OperationConfig>(options: { readonly
 */
 readonly "ListHosts": <Config extends OperationConfig>(options: { readonly payload: typeof ListHostsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListHosts200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListHosts400", typeof ListHosts400.Type> | SigNozError<"ListHosts401", typeof ListHosts401.Type> | SigNozError<"ListHosts403", typeof ListHosts403.Type> | SigNozError<"ListHosts500", typeof ListHosts500.Type>>
   /**
-* Returns a paginated list of Kubernetes Jobs with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the job, plus average CPU/memory request and limit utilization (jobCPURequest, jobCPULimit, jobMemoryRequest, jobMemoryLimit). Each row also reports the latest known job-level counters from kube-state-metrics: desiredSuccessfulPods (k8s.job.desired_successful_pods, the target completion count), activePods (k8s.job.active_pods), failedPods (k8s.job.failed_pods, cumulative across the lifetime of the job), and successfulPods (k8s.job.successful_pods, cumulative). It also reports per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value); note podCountsByPhase.failed (current pod-phase) is distinct from failedPods (cumulative job kube-state-metric). Each job includes metadata attributes (k8s.job.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.job.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by jobs in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_successful_pods / active_pods / failed_pods / successful_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (jobCPU, jobCPURequest, jobCPULimit, jobMemory, jobMemoryRequest, jobMemoryLimit, desiredSuccessfulPods, activePods, failedPods, successfulPods) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes Jobs with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the job, plus average CPU/memory request and limit utilization (jobCPURequest, jobCPULimit, jobMemoryRequest, jobMemoryLimit). Each row also reports the latest known job-level counters from kube-state-metrics: desiredSuccessfulPods (k8s.job.desired_successful_pods, the target completion count), activePods (k8s.job.active_pods), failedPods (k8s.job.failed_pods, cumulative across the lifetime of the job), and successfulPods (k8s.job.successful_pods, cumulative). It also reports per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status); note podCountsByStatus.failed (current pod status) is distinct from failedPods (cumulative job kube-state-metric). Each job includes metadata attributes (k8s.job.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.job.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by jobs in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_successful_pods / active_pods / failed_pods / successful_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (jobCPU, jobCPURequest, jobCPULimit, jobMemory, jobMemoryRequest, jobMemoryLimit, desiredSuccessfulPods, activePods, failedPods, successfulPods) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListJobs": <Config extends OperationConfig>(options: { readonly payload: typeof ListJobsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListJobs200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListJobs400", typeof ListJobs400.Type> | SigNozError<"ListJobs401", typeof ListJobs401.Type> | SigNozError<"ListJobs403", typeof ListJobs403.Type> | SigNozError<"ListJobs500", typeof ListJobs500.Type>>
   /**
@@ -6158,15 +6818,15 @@ readonly "ListJobs": <Config extends OperationConfig>(options: { readonly payloa
 */
 readonly "ListContainers": <Config extends OperationConfig>(options: { readonly payload: typeof ListContainersRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListContainers200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListContainers400", typeof ListContainers400.Type> | SigNozError<"ListContainers401", typeof ListContainers401.Type> | SigNozError<"ListContainers403", typeof ListContainers403.Type> | SigNozError<"ListContainers500", typeof ListContainers500.Type>>
   /**
-* Returns a paginated list of Kubernetes namespaces with key aggregated pod metrics: CPU usage and memory working set (summed across pods in the group), plus per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value in the window). Each namespace includes metadata attributes (k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.namespace.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / memory, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (namespaceCPU, namespaceMemory) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes namespaces with key aggregated pod metrics: CPU usage and memory working set (summed across pods in the group), plus per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status in the window). Each namespace includes metadata attributes (k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.namespace.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / memory, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (namespaceCPU, namespaceMemory) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListNamespaces": <Config extends OperationConfig>(options: { readonly payload: typeof ListNamespacesRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListNamespaces200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListNamespaces400", typeof ListNamespaces400.Type> | SigNozError<"ListNamespaces401", typeof ListNamespaces401.Type> | SigNozError<"ListNamespaces403", typeof ListNamespaces403.Type> | SigNozError<"ListNamespaces500", typeof ListNamespaces500.Type>>
   /**
-* Returns a paginated list of Kubernetes nodes with key metrics: CPU usage, CPU allocatable, memory working set, memory allocatable, per-group nodeCountsByReadiness ({ ready, notReady } from each node's latest k8s.node.condition_ready in the window) and per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } for pods scheduled on the listed nodes). Each node includes metadata attributes (k8s.node.uid, k8s.cluster.name). The response type is 'list' for the default k8s.node.name grouping (each row is one node with its current condition string: ready / not_ready / no_data) or 'grouped_list' for custom groupBy keys (each row aggregates nodes in the group; condition stays no_data). Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_allocatable / memory / memory_allocatable, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (nodeCPU, nodeCPUAllocatable, nodeMemory, nodeMemoryAllocatable) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes nodes with key metrics: CPU usage, CPU allocatable, memory working set, memory allocatable, per-group nodeCountsByReadiness ({ ready, notReady } from each node's latest k8s.node.condition_ready in the window) and per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } for pods scheduled on the listed nodes, reflecting each pod's latest kubectl-style display status). Each node includes metadata attributes (k8s.node.uid, k8s.cluster.name). The response type is 'list' for the default k8s.node.name grouping (each row is one node with its current condition string: ready / not_ready / no_data) or 'grouped_list' for custom groupBy keys (each row aggregates nodes in the group; condition stays no_data). Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_allocatable / memory / memory_allocatable, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (nodeCPU, nodeCPUAllocatable, nodeMemory, nodeMemoryAllocatable) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListNodes": <Config extends OperationConfig>(options: { readonly payload: typeof ListNodesRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListNodes200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListNodes400", typeof ListNodes400.Type> | SigNozError<"ListNodes401", typeof ListNodes401.Type> | SigNozError<"ListNodes403", typeof ListNodes403.Type> | SigNozError<"ListNodes500", typeof ListNodes500.Type>>
   /**
-* Returns a paginated list of Kubernetes pods with key metrics: CPU usage, CPU request/limit utilization, memory working set, memory request/limit utilization, current pod phase (pending/running/succeeded/failed/unknown/no_data), and pod age (ms since start time). Each pod includes metadata attributes (namespace, node, workload owner such as deployment/statefulset/daemonset/job/cronjob, cluster). Supports filtering via a filter expression, custom groupBy to aggregate pods by any attribute, ordering by any of the six metrics (cpu, cpu_request, cpu_limit, memory, memory_request, memory_limit), and pagination via offset/limit. The response type is 'list' for the default k8s.pod.uid grouping (each row is one pod with its current phase) or 'grouped_list' for custom groupBy keys (each row aggregates pods in the group with per-phase counts under podCountsByPhase: { pending, running, succeeded, failed, unknown } derived from each pod's latest phase in the window). Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (podCPU, podCPURequest, podCPULimit, podMemory, podMemoryRequest, podMemoryLimit, podAge) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes pods with key metrics: CPU usage, CPU request/limit utilization, memory working set, memory request/limit utilization, current pod status (kubectl-style display status such as Running/Pending/CrashLoopBackOff, or no_data), and pod age (ms since start time). Each pod includes metadata attributes (namespace, node, workload owner such as deployment/statefulset/daemonset/job/cronjob, cluster). Supports filtering via a filter expression, custom groupBy to aggregate pods by any attribute, ordering by any of the six metrics (cpu, cpu_request, cpu_limit, memory, memory_request, memory_limit), and pagination via offset/limit. The response type is 'list' for the default k8s.pod.uid grouping (each row is one pod with its current status) or 'grouped_list' for custom groupBy keys (each row aggregates pods in the group with per-status counts under podCountsByStatus: { pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } derived from each pod's latest kubectl-style display status in the window). Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (podCPU, podCPURequest, podCPULimit, podMemory, podMemoryRequest, podMemoryLimit, podAge) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListPods": <Config extends OperationConfig>(options: { readonly payload: typeof ListPodsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListPods200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListPods400", typeof ListPods400.Type> | SigNozError<"ListPods401", typeof ListPods401.Type> | SigNozError<"ListPods403", typeof ListPods403.Type> | SigNozError<"ListPods500", typeof ListPods500.Type>>
   /**
@@ -6174,7 +6834,7 @@ readonly "ListPods": <Config extends OperationConfig>(options: { readonly payloa
 */
 readonly "ListVolumes": <Config extends OperationConfig>(options: { readonly payload: typeof ListVolumesRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListVolumes200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListVolumes400", typeof ListVolumes400.Type> | SigNozError<"ListVolumes401", typeof ListVolumes401.Type> | SigNozError<"ListVolumes403", typeof ListVolumes403.Type> | SigNozError<"ListVolumes500", typeof ListVolumes500.Type>>
   /**
-* Returns a paginated list of Kubernetes StatefulSets with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the statefulset, plus average CPU/memory request and limit utilization (statefulSetCPURequest, statefulSetCPULimit, statefulSetMemoryRequest, statefulSetMemoryLimit). Each row also reports the latest known desiredPods (k8s.statefulset.desired_pods) and currentPods (k8s.statefulset.current_pods) replica counts and per-group podCountsByPhase ({ pending, running, succeeded, failed, unknown } from each pod's latest k8s.pod.phase value). Each statefulset includes metadata attributes (k8s.statefulset.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.statefulset.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by statefulsets in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_pods / current_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (statefulSetCPU, statefulSetCPURequest, statefulSetCPULimit, statefulSetMemory, statefulSetMemoryRequest, statefulSetMemoryLimit, desiredPods, currentPods) return -1 as a sentinel when no data is available for that field.
+* Returns a paginated list of Kubernetes StatefulSets with key aggregated pod metrics: CPU usage and memory working set summed across pods owned by the statefulset, plus average CPU/memory request and limit utilization (statefulSetCPURequest, statefulSetCPULimit, statefulSetMemoryRequest, statefulSetMemoryLimit). Each row also reports the latest known desiredPods (k8s.statefulset.desired_pods) and currentPods (k8s.statefulset.current_pods) replica counts and per-group podCountsByStatus ({ pending, running, failed, unknown, crashLoopBackOff, imagePullBackOff, errImagePull, createContainerConfigError, containerCreating, oomKilled, completed, error, containerCannotRun, evicted, nodeAffinity, nodeLost, shutdown, unexpectedAdmissionError } reflecting each pod's latest kubectl-style display status). Each statefulset includes metadata attributes (k8s.statefulset.name, k8s.namespace.name, k8s.cluster.name). The response type is 'list' for the default k8s.statefulset.name grouping or 'grouped_list' for custom groupBy keys; in both modes every row aggregates pods owned by statefulsets in the group. Supports filtering via a filter expression, custom groupBy, ordering by cpu / cpu_request / cpu_limit / memory / memory_request / memory_limit / desired_pods / current_pods, and pagination via offset/limit. Also reports whether the requested time range falls before the data retention boundary. Numeric metric fields (statefulSetCPU, statefulSetCPURequest, statefulSetCPULimit, statefulSetMemory, statefulSetMemoryRequest, statefulSetMemoryLimit, desiredPods, currentPods) return -1 as a sentinel when no data is available for that field.
 */
 readonly "ListStatefulSets": <Config extends OperationConfig>(options: { readonly payload: typeof ListStatefulSetsRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ListStatefulSets200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListStatefulSets400", typeof ListStatefulSets400.Type> | SigNozError<"ListStatefulSets401", typeof ListStatefulSets401.Type> | SigNozError<"ListStatefulSets403", typeof ListStatefulSets403.Type> | SigNozError<"ListStatefulSets500", typeof ListStatefulSets500.Type>>
   /**
@@ -6258,6 +6918,10 @@ readonly "GetMetricsStats": <Config extends OperationConfig>(options: { readonly
 */
 readonly "GetMetricsTreemap": <Config extends OperationConfig>(options: { readonly payload: typeof GetMetricsTreemapRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof GetMetricsTreemap200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMetricsTreemap400", typeof GetMetricsTreemap400.Type> | SigNozError<"GetMetricsTreemap401", typeof GetMetricsTreemap401.Type> | SigNozError<"GetMetricsTreemap403", typeof GetMetricsTreemap403.Type> | SigNozError<"GetMetricsTreemap500", typeof GetMetricsTreemap500.Type>>
   /**
+* This endpoint creates a notification channel
+*/
+readonly "CreateNotificationChannel": <Config extends OperationConfig>(options: { readonly payload: typeof CreateNotificationChannelRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateNotificationChannel201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateNotificationChannel400", typeof CreateNotificationChannel400.Type> | SigNozError<"CreateNotificationChannel401", typeof CreateNotificationChannel401.Type> | SigNozError<"CreateNotificationChannel403", typeof CreateNotificationChannel403.Type> | SigNozError<"CreateNotificationChannel409", typeof CreateNotificationChannel409.Type> | SigNozError<"CreateNotificationChannel500", typeof CreateNotificationChannel500.Type>>
+  /**
 * This endpoint returns the organization I belong to
 */
 readonly "GetMyOrganization": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetMyOrganization200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMyOrganization401", typeof GetMyOrganization401.Type> | SigNozError<"GetMyOrganization403", typeof GetMyOrganization403.Type> | SigNozError<"GetMyOrganization500", typeof GetMyOrganization500.Type>>
@@ -6273,6 +6937,18 @@ readonly "GetPublicDashboardDataV2": <Config extends OperationConfig>(id: string
 * This endpoint returns query range results for a panel of a v2-shape public dashboard. The panel is addressed by its key in spec.panels.
 */
 readonly "GetPublicDashboardPanelQueryRangeV2": <Config extends OperationConfig>(id: string, key: string, options: { readonly params?: typeof GetPublicDashboardPanelQueryRangeV2Params.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetPublicDashboardPanelQueryRangeV2200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetPublicDashboardPanelQueryRangeV2400", typeof GetPublicDashboardPanelQueryRangeV2400.Type> | SigNozError<"GetPublicDashboardPanelQueryRangeV2401", typeof GetPublicDashboardPanelQueryRangeV2401.Type> | SigNozError<"GetPublicDashboardPanelQueryRangeV2403", typeof GetPublicDashboardPanelQueryRangeV2403.Type> | SigNozError<"GetPublicDashboardPanelQueryRangeV2404", typeof GetPublicDashboardPanelQueryRangeV2404.Type> | SigNozError<"GetPublicDashboardPanelQueryRangeV2500", typeof GetPublicDashboardPanelQueryRangeV2500.Type>>
+  /**
+* Returns the org's quick filters for every source, each filter as a telemetry field key.
+*/
+readonly "ListQuickFilters": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListQuickFilters200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListQuickFilters400", typeof ListQuickFilters400.Type> | SigNozError<"ListQuickFilters401", typeof ListQuickFilters401.Type> | SigNozError<"ListQuickFilters403", typeof ListQuickFilters403.Type> | SigNozError<"ListQuickFilters500", typeof ListQuickFilters500.Type>>
+  /**
+* Returns the org's quick filters for one source, each filter as a telemetry field key.
+*/
+readonly "GetQuickFilters": <Config extends OperationConfig>(source: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetQuickFilters200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetQuickFilters400", typeof GetQuickFilters400.Type> | SigNozError<"GetQuickFilters401", typeof GetQuickFilters401.Type> | SigNozError<"GetQuickFilters403", typeof GetQuickFilters403.Type> | SigNozError<"GetQuickFilters500", typeof GetQuickFilters500.Type>>
+  /**
+* Replaces the org's quick filters for the source named in the path.
+*/
+readonly "UpdateQuickFilters": <Config extends OperationConfig>(source: string, options: { readonly payload: typeof UpdateQuickFiltersRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateQuickFilters400", typeof UpdateQuickFilters400.Type> | SigNozError<"UpdateQuickFilters401", typeof UpdateQuickFilters401.Type> | SigNozError<"UpdateQuickFilters403", typeof UpdateQuickFilters403.Type> | SigNozError<"UpdateQuickFilters500", typeof UpdateQuickFilters500.Type>>
   /**
 * Readiness check
 */
@@ -6338,6 +7014,26 @@ readonly "GetRuleHistoryTopContributors": <Config extends OperationConfig>(id: s
 */
 readonly "TestRule": <Config extends OperationConfig>(options: { readonly payload: typeof TestRuleRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof TestRule200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"TestRule400", typeof TestRule400.Type> | SigNozError<"TestRule401", typeof TestRule401.Type> | SigNozError<"TestRule403", typeof TestRule403.Type> | SigNozError<"TestRule500", typeof TestRule500.Type>>
   /**
+* Returns saved views, optionally filtered by source and name.
+*/
+readonly "ListSavedViews": <Config extends OperationConfig>(options: { readonly params?: typeof ListSavedViewsParams.Encoded | undefined; readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListSavedViews200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListSavedViews400", typeof ListSavedViews400.Type> | SigNozError<"ListSavedViews401", typeof ListSavedViews401.Type> | SigNozError<"ListSavedViews403", typeof ListSavedViews403.Type> | SigNozError<"ListSavedViews500", typeof ListSavedViews500.Type>>
+  /**
+* Persists a saved view for the explore page. Returns the id of the created view.
+*/
+readonly "CreateSavedView": <Config extends OperationConfig>(options: { readonly payload: typeof CreateSavedViewRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof CreateSavedView201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"CreateSavedView400", typeof CreateSavedView400.Type> | SigNozError<"CreateSavedView401", typeof CreateSavedView401.Type> | SigNozError<"CreateSavedView403", typeof CreateSavedView403.Type> | SigNozError<"CreateSavedView409", typeof CreateSavedView409.Type> | SigNozError<"CreateSavedView500", typeof CreateSavedView500.Type>>
+  /**
+* Returns a saved view by id.
+*/
+readonly "GetSavedView": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetSavedView200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetSavedView400", typeof GetSavedView400.Type> | SigNozError<"GetSavedView401", typeof GetSavedView401.Type> | SigNozError<"GetSavedView403", typeof GetSavedView403.Type> | SigNozError<"GetSavedView404", typeof GetSavedView404.Type> | SigNozError<"GetSavedView500", typeof GetSavedView500.Type>>
+  /**
+* Replaces a saved view's name and query.
+*/
+readonly "UpdateSavedView": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof UpdateSavedViewRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"UpdateSavedView400", typeof UpdateSavedView400.Type> | SigNozError<"UpdateSavedView401", typeof UpdateSavedView401.Type> | SigNozError<"UpdateSavedView403", typeof UpdateSavedView403.Type> | SigNozError<"UpdateSavedView404", typeof UpdateSavedView404.Type> | SigNozError<"UpdateSavedView500", typeof UpdateSavedView500.Type>>
+  /**
+* Deletes a saved view by id.
+*/
+readonly "DeleteSavedView": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteSavedView400", typeof DeleteSavedView400.Type> | SigNozError<"DeleteSavedView401", typeof DeleteSavedView401.Type> | SigNozError<"DeleteSavedView403", typeof DeleteSavedView403.Type> | SigNozError<"DeleteSavedView404", typeof DeleteSavedView404.Type> | SigNozError<"DeleteSavedView500", typeof DeleteSavedView500.Type>>
+  /**
 * This endpoint deletes the session
 */
 readonly "DeleteSession": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteSession400", typeof DeleteSession400.Type> | SigNozError<"DeleteSession401", typeof DeleteSession401.Type> | SigNozError<"DeleteSession403", typeof DeleteSession403.Type> | SigNozError<"DeleteSession500", typeof DeleteSession500.Type>>
@@ -6398,14 +7094,6 @@ readonly "CreateResetPasswordToken": <Config extends OperationConfig>(id: string
 */
 readonly "GetRolesByUserID": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetRolesByUserID200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetRolesByUserID401", typeof GetRolesByUserID401.Type> | SigNozError<"GetRolesByUserID403", typeof GetRolesByUserID403.Type> | SigNozError<"GetRolesByUserID404", typeof GetRolesByUserID404.Type> | SigNozError<"GetRolesByUserID500", typeof GetRolesByUserID500.Type>>
   /**
-* This endpoint assigns the role to the user roles by user id
-*/
-readonly "SetRoleByUserID": <Config extends OperationConfig>(id: string, options: { readonly payload: typeof SetRoleByUserIDRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"SetRoleByUserID401", typeof SetRoleByUserID401.Type> | SigNozError<"SetRoleByUserID403", typeof SetRoleByUserID403.Type> | SigNozError<"SetRoleByUserID404", typeof SetRoleByUserID404.Type> | SigNozError<"SetRoleByUserID500", typeof SetRoleByUserID500.Type>>
-  /**
-* This endpoint removes a role from the user by user id and role id
-*/
-readonly "RemoveUserRoleByUserIDAndRoleID": <Config extends OperationConfig>(id: string, roleId: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"RemoveUserRoleByUserIDAndRoleID401", typeof RemoveUserRoleByUserIDAndRoleID401.Type> | SigNozError<"RemoveUserRoleByUserIDAndRoleID403", typeof RemoveUserRoleByUserIDAndRoleID403.Type> | SigNozError<"RemoveUserRoleByUserIDAndRoleID404", typeof RemoveUserRoleByUserIDAndRoleID404.Type> | SigNozError<"RemoveUserRoleByUserIDAndRoleID500", typeof RemoveUserRoleByUserIDAndRoleID500.Type>>
-  /**
 * This endpoint returns the user I belong to
 */
 readonly "GetMyUser": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetMyUser200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMyUser401", typeof GetMyUser401.Type> | SigNozError<"GetMyUser403", typeof GetMyUser403.Type> | SigNozError<"GetMyUser500", typeof GetMyUser500.Type>>
@@ -6442,6 +7130,14 @@ readonly "PutHost": <Config extends OperationConfig>(options: { readonly payload
 */
 readonly "PutProfile": <Config extends OperationConfig>(options: { readonly payload: typeof PutProfileRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"PutProfile400", typeof PutProfile400.Type> | SigNozError<"PutProfile401", typeof PutProfile401.Type> | SigNozError<"PutProfile403", typeof PutProfile403.Type> | SigNozError<"PutProfile404", typeof PutProfile404.Type> | SigNozError<"PutProfile409", typeof PutProfile409.Type> | SigNozError<"PutProfile500", typeof PutProfile500.Type>>
   /**
+* This endpoint refreshes the active license of the organization from the upstream server.
+*/
+readonly "RefreshLicenseDeprecated": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"RefreshLicenseDeprecated400", typeof RefreshLicenseDeprecated400.Type> | SigNozError<"RefreshLicenseDeprecated401", typeof RefreshLicenseDeprecated401.Type> | SigNozError<"RefreshLicenseDeprecated403", typeof RefreshLicenseDeprecated403.Type> | SigNozError<"RefreshLicenseDeprecated404", typeof RefreshLicenseDeprecated404.Type> | SigNozError<"RefreshLicenseDeprecated500", typeof RefreshLicenseDeprecated500.Type>>
+  /**
+* This endpoint validates the license key with the upstream server and activates the license for the organization.
+*/
+readonly "ActivateLicenseDeprecated": <Config extends OperationConfig>(options: { readonly payload: typeof ActivateLicenseDeprecatedRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ActivateLicenseDeprecated400", typeof ActivateLicenseDeprecated400.Type> | SigNozError<"ActivateLicenseDeprecated401", typeof ActivateLicenseDeprecated401.Type> | SigNozError<"ActivateLicenseDeprecated403", typeof ActivateLicenseDeprecated403.Type> | SigNozError<"ActivateLicenseDeprecated404", typeof ActivateLicenseDeprecated404.Type> | SigNozError<"ActivateLicenseDeprecated409", typeof ActivateLicenseDeprecated409.Type> | SigNozError<"ActivateLicenseDeprecated500", typeof ActivateLicenseDeprecated500.Type>>
+  /**
 * This endpoint returns associated v2 dashboards for a specified metric
 */
 readonly "GetMetricDashboardsV2": <Config extends OperationConfig>(options: { readonly params: typeof GetMetricDashboardsV2Params.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof GetMetricDashboardsV2200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetMetricDashboardsV2400", typeof GetMetricDashboardsV2400.Type> | SigNozError<"GetMetricDashboardsV2401", typeof GetMetricDashboardsV2401.Type> | SigNozError<"GetMetricDashboardsV2403", typeof GetMetricDashboardsV2403.Type> | SigNozError<"GetMetricDashboardsV2404", typeof GetMetricDashboardsV2404.Type> | SigNozError<"GetMetricDashboardsV2500", typeof GetMetricDashboardsV2500.Type>>
@@ -6449,6 +7145,30 @@ readonly "GetMetricDashboardsV2": <Config extends OperationConfig>(options: { re
 * Returns the flamegraph view of spans for a given trace ID.
 */
 readonly "GetFlamegraph": <Config extends OperationConfig>(traceID: string, options: { readonly payload: typeof GetFlamegraphRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof GetFlamegraph200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetFlamegraph400", typeof GetFlamegraph400.Type> | SigNozError<"GetFlamegraph401", typeof GetFlamegraph401.Type> | SigNozError<"GetFlamegraph403", typeof GetFlamegraph403.Type> | SigNozError<"GetFlamegraph404", typeof GetFlamegraph404.Type> | SigNozError<"GetFlamegraph500", typeof GetFlamegraph500.Type>>
+  /**
+* This endpoint lists all the licenses of the organization.
+*/
+readonly "ListLicenses": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof ListLicenses200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ListLicenses400", typeof ListLicenses400.Type> | SigNozError<"ListLicenses401", typeof ListLicenses401.Type> | SigNozError<"ListLicenses403", typeof ListLicenses403.Type> | SigNozError<"ListLicenses500", typeof ListLicenses500.Type>>
+  /**
+* This endpoint validates the license key with the upstream server and activates the license for the organization.
+*/
+readonly "ActivateLicense": <Config extends OperationConfig>(options: { readonly payload: typeof ActivateLicenseRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ActivateLicense201.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ActivateLicense400", typeof ActivateLicense400.Type> | SigNozError<"ActivateLicense401", typeof ActivateLicense401.Type> | SigNozError<"ActivateLicense403", typeof ActivateLicense403.Type> | SigNozError<"ActivateLicense404", typeof ActivateLicense404.Type> | SigNozError<"ActivateLicense409", typeof ActivateLicense409.Type> | SigNozError<"ActivateLicense500", typeof ActivateLicense500.Type>>
+  /**
+* This endpoint gets the license by id.
+*/
+readonly "GetLicense": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetLicense200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetLicense400", typeof GetLicense400.Type> | SigNozError<"GetLicense401", typeof GetLicense401.Type> | SigNozError<"GetLicense403", typeof GetLicense403.Type> | SigNozError<"GetLicense404", typeof GetLicense404.Type> | SigNozError<"GetLicense500", typeof GetLicense500.Type>>
+  /**
+* This endpoint refreshes the active license of the organization from the upstream server.
+*/
+readonly "RefreshLicense": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"RefreshLicense400", typeof RefreshLicense400.Type> | SigNozError<"RefreshLicense401", typeof RefreshLicense401.Type> | SigNozError<"RefreshLicense403", typeof RefreshLicense403.Type> | SigNozError<"RefreshLicense404", typeof RefreshLicense404.Type> | SigNozError<"RefreshLicense500", typeof RefreshLicense500.Type>>
+  /**
+* This endpoint deletes the license by id. Licenses managed by SigNoz Cloud cannot be deleted.
+*/
+readonly "DeleteLicense": <Config extends OperationConfig>(id: string, options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<void, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"DeleteLicense400", typeof DeleteLicense400.Type> | SigNozError<"DeleteLicense401", typeof DeleteLicense401.Type> | SigNozError<"DeleteLicense403", typeof DeleteLicense403.Type> | SigNozError<"DeleteLicense404", typeof DeleteLicense404.Type> | SigNozError<"DeleteLicense500", typeof DeleteLicense500.Type>>
+  /**
+* This endpoint gets the active license of the organization.
+*/
+readonly "GetActiveLicense": <Config extends OperationConfig>(options: { readonly config?: Config | undefined } | undefined) => Effect.Effect<WithOptionalResponse<typeof GetActiveLicense200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"GetActiveLicense400", typeof GetActiveLicense400.Type> | SigNozError<"GetActiveLicense401", typeof GetActiveLicense401.Type> | SigNozError<"GetActiveLicense403", typeof GetActiveLicense403.Type> | SigNozError<"GetActiveLicense404", typeof GetActiveLicense404.Type> | SigNozError<"GetActiveLicense500", typeof GetActiveLicense500.Type> | SigNozError<"GetActiveLicense501", typeof GetActiveLicense501.Type>>
   /**
 * Returns the waterfall view of spans including all spans if total spans are under a limit, a max count otherwise. Aggregations are dropped compared to v3
 */
@@ -6465,6 +7185,22 @@ readonly "QueryRangePreviewV5": <Config extends OperationConfig>(options: { read
 * Replace variables in a query
 */
 readonly "ReplaceVariables": <Config extends OperationConfig>(options: { readonly payload: typeof ReplaceVariablesRequestJson.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof ReplaceVariables200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"ReplaceVariables400", typeof ReplaceVariables400.Type> | SigNozError<"ReplaceVariables401", typeof ReplaceVariables401.Type> | SigNozError<"ReplaceVariables403", typeof ReplaceVariables403.Type> | SigNozError<"ReplaceVariables500", typeof ReplaceVariables500.Type>>
+  /**
+* Prometheus-compatible endpoint: the request and response contract is the upstream Prometheus HTTP API (https://prometheus.io/docs/prometheus/latest/querying/api/). Parameters are accepted as URL query parameters or a form-encoded body, on GET and POST alike.
+*/
+readonly "PrometheusQuery": <Config extends OperationConfig>(options: { readonly params: typeof PrometheusQueryParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof PrometheusQuery200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"PrometheusQuery400", typeof PrometheusQuery400.Type> | SigNozError<"PrometheusQuery401", typeof PrometheusQuery401.Type> | SigNozError<"PrometheusQuery403", typeof PrometheusQuery403.Type> | SigNozError<"PrometheusQuery422", typeof PrometheusQuery422.Type> | SigNozError<"PrometheusQuery500", typeof PrometheusQuery500.Type> | SigNozError<"PrometheusQuery503", typeof PrometheusQuery503.Type>>
+  /**
+* Prometheus-compatible endpoint: the request and response contract is the upstream Prometheus HTTP API (https://prometheus.io/docs/prometheus/latest/querying/api/). Parameters are accepted as URL query parameters or a form-encoded body, on GET and POST alike.
+*/
+readonly "PrometheusQueryPost": <Config extends OperationConfig>(options: { readonly params: typeof PrometheusQueryPostParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof PrometheusQueryPost200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"PrometheusQueryPost400", typeof PrometheusQueryPost400.Type> | SigNozError<"PrometheusQueryPost401", typeof PrometheusQueryPost401.Type> | SigNozError<"PrometheusQueryPost403", typeof PrometheusQueryPost403.Type> | SigNozError<"PrometheusQueryPost422", typeof PrometheusQueryPost422.Type> | SigNozError<"PrometheusQueryPost500", typeof PrometheusQueryPost500.Type> | SigNozError<"PrometheusQueryPost503", typeof PrometheusQueryPost503.Type>>
+  /**
+* Prometheus-compatible endpoint: the request and response contract is the upstream Prometheus HTTP API (https://prometheus.io/docs/prometheus/latest/querying/api/). Parameters are accepted as URL query parameters or a form-encoded body, on GET and POST alike.
+*/
+readonly "PrometheusQueryRange": <Config extends OperationConfig>(options: { readonly params: typeof PrometheusQueryRangeParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof PrometheusQueryRange200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"PrometheusQueryRange400", typeof PrometheusQueryRange400.Type> | SigNozError<"PrometheusQueryRange401", typeof PrometheusQueryRange401.Type> | SigNozError<"PrometheusQueryRange403", typeof PrometheusQueryRange403.Type> | SigNozError<"PrometheusQueryRange422", typeof PrometheusQueryRange422.Type> | SigNozError<"PrometheusQueryRange500", typeof PrometheusQueryRange500.Type> | SigNozError<"PrometheusQueryRange503", typeof PrometheusQueryRange503.Type>>
+  /**
+* Prometheus-compatible endpoint: the request and response contract is the upstream Prometheus HTTP API (https://prometheus.io/docs/prometheus/latest/querying/api/). Parameters are accepted as URL query parameters or a form-encoded body, on GET and POST alike.
+*/
+readonly "PrometheusQueryRangePost": <Config extends OperationConfig>(options: { readonly params: typeof PrometheusQueryRangePostParams.Encoded; readonly config?: Config | undefined }) => Effect.Effect<WithOptionalResponse<typeof PrometheusQueryRangePost200.Type, Config>, HttpClientError.HttpClientError | SchemaError | SigNozError<"PrometheusQueryRangePost400", typeof PrometheusQueryRangePost400.Type> | SigNozError<"PrometheusQueryRangePost401", typeof PrometheusQueryRangePost401.Type> | SigNozError<"PrometheusQueryRangePost403", typeof PrometheusQueryRangePost403.Type> | SigNozError<"PrometheusQueryRangePost422", typeof PrometheusQueryRangePost422.Type> | SigNozError<"PrometheusQueryRangePost500", typeof PrometheusQueryRangePost500.Type> | SigNozError<"PrometheusQueryRangePost503", typeof PrometheusQueryRangePost503.Type>>
 }
 
 export interface SigNozError<Tag extends string, E> {
